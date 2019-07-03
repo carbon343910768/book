@@ -1,4 +1,4 @@
-package com.bjtuxxq.demo;
+package com.bjtu.xxq;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

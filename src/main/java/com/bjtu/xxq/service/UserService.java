@@ -1,6 +1,6 @@
-package com.bjtuxxq.demo.service;
+package com.bjtu.xxq.service;
 
-import com.bjtuxxq.demo.dao.UserDao;
+import com.bjtu.xxq.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,7 +1,7 @@
-package com.bjtuxxq.demo.handler;
+package com.bjtu.xxq.handler;
 
-import com.bjtuxxq.demo.model.ResponseCode;
-import com.bjtuxxq.demo.model.ResponseJson;
+import com.bjtu.xxq.model.ResponseCode;
+import com.bjtu.xxq.model.ResponseJson;
 import com.google.gson.Gson;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;

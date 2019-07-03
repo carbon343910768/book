@@ -1,8 +1,8 @@
-package com.bjtuxxq.demo.controller;
+package com.bjtu.xxq.controller;
 
-import com.bjtuxxq.demo.model.ResponseCode;
-import com.bjtuxxq.demo.model.ResponseJson;
-import com.bjtuxxq.demo.model.Store;
+import com.bjtu.xxq.model.ResponseCode;
+import com.bjtu.xxq.model.ResponseJson;
+import com.bjtu.xxq.model.Store;
 import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

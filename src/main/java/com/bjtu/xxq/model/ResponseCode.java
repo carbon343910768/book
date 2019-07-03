@@ -1,4 +1,4 @@
-package com.bjtuxxq.demo.model;
+package com.bjtu.xxq.model;
 
 public enum ResponseCode {
 

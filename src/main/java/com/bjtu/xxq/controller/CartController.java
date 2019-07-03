@@ -1,8 +1,8 @@
-package com.bjtuxxq.demo.controller;
+package com.bjtu.xxq.controller;
 
-import com.bjtuxxq.demo.model.ResponseCode;
-import com.bjtuxxq.demo.model.ResponseJson;
-import com.bjtuxxq.demo.model.Cart;
+import com.bjtu.xxq.model.ResponseCode;
+import com.bjtu.xxq.model.ResponseJson;
+import com.bjtu.xxq.model.Cart;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;

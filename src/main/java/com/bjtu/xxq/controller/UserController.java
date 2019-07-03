@@ -1,4 +1,4 @@
-package com.bjtuxxq.demo.controller;
+package com.bjtu.xxq.controller;
 
 import com.google.gson.Gson;
 import org.springframework.stereotype.Controller;

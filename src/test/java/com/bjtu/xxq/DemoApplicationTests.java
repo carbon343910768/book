@@ -1,4 +1,4 @@
-package com.bjtuxxq.demo;
+package com.bjtu.xxq;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

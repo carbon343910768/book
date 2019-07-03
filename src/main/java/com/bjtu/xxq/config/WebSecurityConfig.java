@@ -1,6 +1,6 @@
-package com.bjtuxxq.demo.config;
+package com.bjtu.xxq.config;
 
-import com.bjtuxxq.demo.handler.LoginHandler;
+import com.bjtu.xxq.handler.LoginHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

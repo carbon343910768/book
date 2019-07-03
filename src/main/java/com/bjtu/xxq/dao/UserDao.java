@@ -1,6 +1,6 @@
-package com.bjtuxxq.demo.dao;
+package com.bjtu.xxq.dao;
 
-import com.bjtuxxq.demo.model.User;
+import com.bjtu.xxq.model.User;
 import org.springframework.stereotype.Repository;
 
 @Repository
