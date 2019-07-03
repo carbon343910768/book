@@ -1,4 +1,4 @@
-package com.bjtuxxq.demo;
+package com.bjtuxxq.demo.entity;
 /*
 用户类型的实体类
  */
@@ -8,14 +8,11 @@ public class User {
     private String password;//密码
     private String context;//简介
     private String type;//用户类型
-    public User(String id,String name,String password,String context, String type){
-        this.context=context;
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.type = type;
+    private String[] tag;
+    public User(){ }
+    public String getPasswordByUsername(String name){
+        return password;
     }
-
     public String getId() {
         return id;
     }
@@ -36,6 +33,10 @@ public class User {
         return type;
     }
 
+    public String[] getTag() {
+        return tag;
+    }
+
     public void setContext(String context) {
         this.context = context;
     }
@@ -54,5 +55,9 @@ public class User {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setTag(String[] tag) {
+        this.tag = tag;
     }
 }
