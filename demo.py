@@ -8,19 +8,27 @@ class ItemBasedCF:
     def __init__(self,data_file):  
         self.data_file = data_file 
 
+    #读取文件
     def splitData(self,k,M=5,seed=1):
         self.train_file = []
         self.test_file = []
         random.seed(seed)
         for line in open(self.data_file,encoding='gbk'):
             #print(line)
+
             if random.randint(0,M)==k:
                 self.test_file.append(line)
             else:
                 self.train_file.append(line)
 
+    def getfile(self):
+        self.train_file = []
+        for line in open(self.data_file,encoding='gbk'):
+            #print(line)
+            self.train_file.append(line)
+
     def readData(self,file):  
-        #读取文件，并生成用户-物品的评分表 
+        #读取列表，并生成用户-物品的评分表 
         self.data_dict = dict()     #用户-物品的评分表  
         for line in file:
             tmp = line.strip().split("\t")
@@ -30,16 +38,19 @@ class ItemBasedCF:
             self.data_dict.setdefault(user,{})  
             self.data_dict[user][item] = int(float(score)) 
         return self.data_dict
-
+    
+    #计算相识度矩阵
     def ItemSimilarity(self):  
         C = dict()  
         N = dict()  
         for user,items in self.train.items():  
-            for i in items.keys():  
+            for i in items.keys():
+                #print(i)
                 N.setdefault(i,0)  
                 N[i] += 1  
                 C.setdefault(i,{})  
-                for j in items.keys():  
+                for j in items.keys():
+                    #print(j)
                     if i == j : continue  
                     C[i].setdefault(j,0)  
                     #C[i][j] += 1  #基础算法
@@ -91,8 +102,12 @@ class ItemBasedCF:
 #uid_score_bid='/home/lady/tmp/liushuang/1.9Item-basedCF/data/buy_user_spu.1210_0109'
 #uid_score_bid = '2382.csv'
 uid_score_bid = '123.txt'    
-Item = ItemBasedCF(uid_score_bid)#读取数据集 
-
+Item = ItemBasedCF(uid_score_bid)#读取数据集
+#Item.splitData(k,M,seed=1)
+Item.getfile()
+Item.train=Item.readData(Item.train_file)
+Item.ItemSimilarity() #计算物品相似度矩阵 
+'''
 M=5
 pre_lst=[]
 rec_lst=[]
@@ -132,7 +147,7 @@ for k in range(M): #进行5次交叉验证
     print(k,' hit:',hit,'n_pre:',n_pre,'n_rec;',n_rec)
 print(pre_lst,'平均：',np.mean(pre_lst))
 print(rec_lst,'平均：',np.mean(rec_lst))
-
+'''
 
 result = Item.Recommend('菠菜')
 
