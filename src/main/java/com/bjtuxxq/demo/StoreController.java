@@ -1,39 +1,26 @@
 package com.bjtuxxq.demo;
 
+import com.bjtuxxq.demo.entity.Entity;
+import com.bjtuxxq.demo.entity.RespCode;
+import com.bjtuxxq.demo.entity.Store;
+import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class StoreController {
     /*
-    商店主页
-    功能：
+    我的商店
      */
-    @RequestMapping("/storeHome")
-    public void storeHome(){
+    @RequestMapping("/myStore")
+    public String myStore(@RequestParam("username") String username){
+        Gson gson = new Gson();
+        Store s = new Store();
+
+        return gson.toJson(new Entity(RespCode.REGISTWARN_PASSWORD,s));
 
     }
-    /*
-    购买页
-    功能：
-     */
-    @RequestMapping("/buyBook")
-    public void buyBook(){
 
-    }
-    /*
-    图书详情页
-     */
-    @RequestMapping("/book/{bookid}")
-    public void book(@PathVariable("bookid") String bookid){
-
-    }
-    /*
-    书籍分类页面
-     */
-    @RequestMapping("/buyBook/{bookType}")
-    public void bookType(@PathVariable("bookType") String bookType){
-
-    }
 }

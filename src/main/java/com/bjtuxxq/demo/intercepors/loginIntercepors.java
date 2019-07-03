@@ -20,7 +20,6 @@ public class loginIntercepors implements HandlerInterceptor {
         HttpSession session = request.getSession();
         String username = (String) session.getAttribute("username");
         if (username == null) {
-            response.sendRedirect("/login");
             return false;
         }
         else
