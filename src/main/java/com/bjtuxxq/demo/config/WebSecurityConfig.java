@@ -1,12 +1,15 @@
 package com.bjtuxxq.demo.config;
 
+import com.bjtuxxq.demo.handler.LoginHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * Created by yangyibo on 17/1/18.
@@ -16,19 +19,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private LoginSuccessHandler successHandler;
+    private LoginHandler loginHandler;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(customUserService()).passwordEncoder(encoder);
         auth.inMemoryAuthentication()
-                //.userDetailsService(customUserService());
-                .passwordEncoder(new BCryptPasswordEncoder())
+                .passwordEncoder(encoder)
                 .withUser("test")
-                .password(new BCryptPasswordEncoder().encode("111111"))
+                .password(encoder.encode("111111"))
                 .roles("CUSTOMER");
     }
-
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -42,7 +43,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/login")
-//                .successHandler(successHandler)
+                .successHandler(loginHandler)
+                .failureHandler(loginHandler)
                 .permitAll()
 
                 // 管理员权限
@@ -69,5 +71,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
         ;
+    }
+
+    private PasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return encoder;
     }
 }

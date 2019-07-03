@@ -1,20 +1,22 @@
 package com.bjtuxxq.demo.model;
 
-public class ShoppingCart {
-    private String bookid;
+public class Cart {
+    private String bookId;
     private int price;
     private int num;
-    public ShoppingCart(){
+
+    public Cart() {
 
     }
-    public ShoppingCart(String bookid,int price,int num){
-        this.bookid = bookid;
+
+    public Cart(String bookId, int price, int num) {
+        this.bookId = bookId;
         this.price = price;
         this.num = num;
     }
 
-    public void setBookid(String bookid) {
-        this.bookid = bookid;
+    public void setBookId(String bookId) {
+        this.bookId = bookId;
     }
 
     public void setPrice(int price) {
@@ -33,37 +35,38 @@ public class ShoppingCart {
         return price;
     }
 
-    public String getBookid() {
-        return bookid;
+    public String getBookId() {
+        return bookId;
     }
 
-    public static ShoppingCart merge(ShoppingCart s1, ShoppingCart s2) {
+    public static Cart merge(Cart s1, Cart s2) {
         if (!s1.equals(s2)) {
             throw new IllegalArgumentException();
         }
-        return new ShoppingCart(s1.bookid, s1.price, s1.num + s2.num);
+        return new Cart(s1.bookId, s1.price, s1.num + s2.num);
     }
 
     @Override
-    public int hashCode(){
+    public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((bookid == null) ? 0 : bookid.hashCode());
+        result = prime * result + ((bookId == null) ? 0 : bookId.hashCode());
         return result;
     }
+
     @Override
-    public boolean equals(Object obj){
+    public boolean equals(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ShoppingCart other = (ShoppingCart) obj;
-        if (bookid == null) {
-            if (other.bookid != null)
+        Cart other = (Cart) obj;
+        if (bookId == null) {
+            if (other.bookId != null)
                 return false;
-        } else if (!bookid.equals(other.bookid))
+        } else if (!bookId.equals(other.bookId))
             return false;
         return true;
     }

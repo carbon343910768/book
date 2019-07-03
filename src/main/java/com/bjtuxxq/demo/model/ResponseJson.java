@@ -3,17 +3,15 @@ package com.bjtuxxq.demo.model;
 
 public class ResponseJson {
 
-    private int code;
-    private String msg;
+    private String message;
     private Object data;
 
-    public ResponseJson(RespCode respCode) {
-        this.code = respCode.getCode();
-        this.msg = respCode.getMsg();
+    public ResponseJson(ResponseCode responseCode) {
+        this.message = responseCode.getMessage();
     }
 
-    public ResponseJson(RespCode respCode, Object data) {
-        this(respCode);
+    public ResponseJson(ResponseCode responseCode, Object data) {
+        this(responseCode);
         this.data = data;
     }
 }
