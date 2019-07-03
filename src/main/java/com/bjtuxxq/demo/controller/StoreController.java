@@ -1,10 +1,9 @@
-package com.bjtuxxq.demo;
+package com.bjtuxxq.demo.controller;
 
-import com.bjtuxxq.demo.entity.Entity;
-import com.bjtuxxq.demo.entity.RespCode;
-import com.bjtuxxq.demo.entity.Store;
+import com.bjtuxxq.demo.model.ResponseJson;
+import com.bjtuxxq.demo.model.RespCode;
+import com.bjtuxxq.demo.model.Store;
 import com.google.gson.Gson;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +18,7 @@ public class StoreController {
         Gson gson = new Gson();
         Store s = new Store();
 
-        return gson.toJson(new Entity(RespCode.REGISTWARN_PASSWORD,s));
+        return gson.toJson(new ResponseJson(RespCode.REGISTWARN_PASSWORD,s));
 
     }
 

@@ -1,18 +1,16 @@
-
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
 </head>
 <body>
 
-<form name=""   method="post">
+<form name="" method="post">
     <table align="center">
-        <p style="color: red;" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
         <tr>
             <td>
-                用户名<input type="text" name="username" />
+                用户名<input type="text" name="username"/>
             </td>
             <td>
                 密码<input type="password" name="password"/>
@@ -27,7 +25,5 @@
     </table>
 
 </form>
-
-
 </body>
 </html>

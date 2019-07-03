@@ -1,4 +1,4 @@
-package com.bjtuxxq.demo.entity;
+package com.bjtuxxq.demo.model;
 
 public class ShoppingCart {
     private String bookid;

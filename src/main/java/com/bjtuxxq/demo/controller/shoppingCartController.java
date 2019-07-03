@@ -1,8 +1,8 @@
-package com.bjtuxxq.demo;
+package com.bjtuxxq.demo.controller;
 
-import com.bjtuxxq.demo.entity.Entity;
-import com.bjtuxxq.demo.entity.RespCode;
-import com.bjtuxxq.demo.entity.ShoppingCart;
+import com.bjtuxxq.demo.model.ResponseJson;
+import com.bjtuxxq.demo.model.RespCode;
+import com.bjtuxxq.demo.model.ShoppingCart;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -43,9 +43,9 @@ public class shoppingCartController {
             sclist.clear();
             for(Map.Entry<ShoppingCart,ShoppingCart> TEMP :map.entrySet())
                 sclist.add(TEMP.getValue());
-            return gson.toJson(new Entity(RespCode.SHOPPINGCART_ADD_SUCCESS,sclist));
+            return gson.toJson(new ResponseJson(RespCode.SHOPPINGCART_ADD_SUCCESS,sclist));
         }else
-            return gson.toJson(new Entity(RespCode.SHOPPINGCART_ADD_WARN,sclist));
+            return gson.toJson(new ResponseJson(RespCode.SHOPPINGCART_ADD_WARN,sclist));
     }
 
    /*
@@ -55,14 +55,14 @@ public class shoppingCartController {
     @ResponseBody
     public String getCart(){
         Gson gson = new Gson();
-        return gson.toJson(new Entity(RespCode.SHOPPINGCART_ADD_SUCCESS,sclist));
+        return gson.toJson(new ResponseJson(RespCode.SHOPPINGCART_ADD_SUCCESS,sclist));
     }
 
     @RequestMapping(value = "/price",method = RequestMethod.GET)
     @ResponseBody
     public String getprice(){
         Gson gson = new Gson();
-        return gson.toJson(new Entity(RespCode.SHOPPINGCART_ADD_SUCCESS,sclist));
+        return gson.toJson(new ResponseJson(RespCode.SHOPPINGCART_ADD_SUCCESS,sclist));
     }
     /*
     选择购买的商品
@@ -79,8 +79,8 @@ public class shoppingCartController {
             sc.setPrice(bookPrice);
             sc.setNum(num);
             buylist.add(sc);
-            return gson.toJson(new Entity(RespCode.BUYCART_SUCCESS,buylist));
+            return gson.toJson(new ResponseJson(RespCode.BUYCART_SUCCESS,buylist));
         }else
-            return gson.toJson(new Entity(RespCode.BUYCART_WARN,buylist));
+            return gson.toJson(new ResponseJson(RespCode.BUYCART_WARN,buylist));
     }
 }

@@ -1,4 +1,4 @@
-package com.bjtuxxq.demo.entity;
+package com.bjtuxxq.demo.model;
 /*
 书籍的实体类
  */
