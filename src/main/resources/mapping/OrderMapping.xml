@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.bjtu.xxq.dao.OrderDao">
+
+    <resultMap id="BaseResultMap" type="edu.bjtu.xxq.model.Order">
+        <result column="orderId" jdbcType="VARCHAR" property="orderId"/>
+        <result column="orderOwner" jdbcType="VARCHAR" property="orderOwner"/>
+        <result column="orderTime" jdbcType="DATE" property="orderTime"/>
+        <result column="orderState" jdbcType="BOOLEAN" property="orderState"/>
+    </resultMap>
+    <select id="bookList" resultType="edu.bjtu.xxq.model.Book">
+        SELECT book.* FROM book,orderbook WHERE orderbook.bookId = book.bookId AND orderbook.orderId = #{orderId}
+    </select>
+
+    <select id="orderList" resultType="edu.bjtu.xxq.model.Order">
+        SELECT * FROM orderr WHERE orderOwner = #{id}
+    </select>
+
+    <select id="getOrder" resultType="edu.bjtu.xxq.model.Order">
+        SELECT * FROM orderr WHERE orderId = #{orderId}
+    </select>
+
+    <insert id="addOrder" >
+        INSERT INTO orderr (orderId, orderOwner, orderTime, orderState) VALUES (#{orderId}, #{orderOwner}, #{orderTime}, #{orderState})
+    </insert>
+
+    <insert id="addOrderBook" >
+        INSERT INTO orderBook (orderId, bookid, orderBookState) VALUES (#{orderId}, #{bookId}, NULL )
+    </insert>
+
+
+</mapper>

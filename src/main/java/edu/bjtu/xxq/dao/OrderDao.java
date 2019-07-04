@@ -15,5 +15,7 @@ public interface OrderDao {
 
     Order getOrder(String orderId);
 
+    boolean addOrder(Order order);
 
+    boolean addOrderBook(String orderId,String bookId);
 }

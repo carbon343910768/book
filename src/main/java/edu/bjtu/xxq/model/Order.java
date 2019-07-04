@@ -15,16 +15,8 @@ public class Order {
         this.orderOwner = orderOwner;
     }
 
-    public void setBook(Book book) {
+    public void setBook(Object book) {
         this.book = book;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-
-    public void setOrderOwner(String orderOwner) {
-        this.orderOwner = orderOwner;
     }
 
     public Object getBook() {
@@ -35,7 +27,4 @@ public class Order {
         return orderId;
     }
 
-    public String getOrderOwner() {
-        return orderOwner;
-    }
 }
