@@ -22,7 +22,9 @@ import java.util.Arrays;
 @Component
 public class LogAspect {
     private static final Logger LOG = LoggerFactory.getLogger(LogAspect.class);
+    @Autowired
     private SysLogService sysLogService;
+
     private SysLog sysLog = new SysLog();
 
     @Pointcut("execution(public * edu.bjtu.xxq.controller..*.*(..))")
@@ -45,8 +47,6 @@ public class LogAspect {
         sysLog.setIp(request.getRemoteAddr());
         sysLog.setHTTPMethod(request.getMethod());
         sysLog.setUrl(request.getRequestURI().toString());
-        sysLog.setClassMethod(joinPoint.getSignature().getDeclaringTypeName() + "." +
-                joinPoint.getSignature().getName());
     }
 
     @AfterReturning(returning = "ret", pointcut = "controllerLog()")

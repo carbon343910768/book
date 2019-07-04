@@ -6,12 +6,11 @@
         <result column="ip" jdbcType="VARCHAR" property="i"/>
         <result column="url" jdbcType="VARCHAR" property="url"/>
         <result column="HTTPMethod" jdbcType="VARCHAR" property="HTTPMethod"/>
-        <result column="classMethod" jdbcType="VARCHAR" property="classMethod"/>
         <result column="result" jdbcType="VARCHAR" property="result"/>
     </resultMap>
 
     <insert id="save" parameterType="edu.bjtu.xxq.model.SysLog">
-        insert into log(ip,url,HTTPMethod,classMethod,result) values (#{ip},#{url},#{HTTPMethod},#{classMethod},#{result})
+        insert into log(ip,url,HTTPMethod,result) values (#{ip},#{url},#{HTTPMethod},#{result})
     </insert>
 
 </mapper>
