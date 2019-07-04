@@ -8,7 +8,7 @@ public class RequestLog {
     private String uri;
     private String header;
     private String body;
-    private Integer userId;
+    private String userId;
 
     public String getDate() {
         return date;
@@ -64,11 +64,11 @@ public class RequestLog {
         return this;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public RequestLog setUserId(Integer userId) {
+    public RequestLog setUserId(String userId) {
         this.userId = userId;
         return this;
     }

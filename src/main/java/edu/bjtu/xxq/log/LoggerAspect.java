@@ -2,14 +2,15 @@ package edu.bjtu.xxq.log;
 
 import com.google.gson.Gson;
 import edu.bjtu.xxq.model.RequestLog;
+import edu.bjtu.xxq.model.User;
 import edu.bjtu.xxq.service.LoggerService;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestAttributes;
@@ -20,7 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.Enumeration;
 
@@ -38,7 +38,7 @@ public class LoggerAspect {
     }
 
     @Before("requestLogger()")
-    public void logRequest(JoinPoint joinPoint) {
+    public void logRequest() {
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         if (requestAttributes == null) return;
         HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
@@ -52,34 +52,41 @@ public class LoggerAspect {
 
     private RequestLog getRequestLog(HttpServletRequest request) {
         LocalDateTime now = LocalDateTime.now();
+        Object token = SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+        String userId = null;
+        if (!token.equals("anonymousUser"))
+            userId = ((User) token).getId();
         return new RequestLog()
                 .setDate(now.toLocalDate().toString())
                 .setTime(now.toLocalTime().toString())
                 .setIp(request.getRemoteAddr())
                 .setUri(getFullUri(request))
+                .setUserId(userId)
                 ;
     }
 
     private static String getFullUri(HttpServletRequest request) {
         String uri = request.getRequestURI();
         StringBuilder builder = new StringBuilder();
-        Enumeration<String> params = request.getParameterNames();
-        while (params.hasMoreElements()) {
-            String next = params.nextElement();
-            String[] x = request.getParameterValues(next);
-            System.out.println(Arrays.toString(x));
-            builder.append('&').append(next).append('=').append(request.getParameter(next));
-        }
-        if (StringUtils.hasLength(builder))
-            builder.setCharAt(0, '?');
         try {
-            System.out.println(request.getQueryString());
-            System.out.println(builder);
-            System.out.println(URLEncoder.encode(builder.toString(), "UTF-8"));
-            return uri + URLEncoder.encode(builder.toString(), "UTF-8");
+            request.setCharacterEncoding("UTF-8");
+            Enumeration<String> params = request.getParameterNames();
+            while (params.hasMoreElements()) {
+                String next = params.nextElement();
+                builder
+                        .append('&')
+                        .append(next)
+                        .append('=')
+                        .append(URLEncoder.encode(request.getParameter(next), "UTF-8"));
+            }
         } catch (UnsupportedEncodingException e) {
             return null;
         }
+        if (StringUtils.hasLength(builder))
+            builder.setCharAt(0, '?');
+        builder.insert(0, uri);
+        return builder.toString();
     }
 
     private static final Base64.Encoder encoder = Base64.getEncoder();
