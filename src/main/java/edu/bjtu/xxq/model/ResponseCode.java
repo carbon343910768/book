@@ -6,6 +6,7 @@ public enum ResponseCode {
     LOGIN_FAIL("login fail"),
 
     REGISTER_SUCCESS("register success"),
+    REGISTER_FAIL("register fail"),
     REGISTER_ILLEGAL_PASSWORD("register illegal password"),
     REGISTER_ILLEGAL_USERNAME("register illegal username"),
     REGISTER_EXISTED_USERNAME("register illegal password"),

@@ -1,34 +1,37 @@
 package edu.bjtu.xxq.config;
 
 import edu.bjtu.xxq.handler.LoginHandler;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import edu.bjtu.xxq.model.UserRole;
+import edu.bjtu.xxq.service.UserService;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-/**
- * Created by yangyibo on 17/1/18.
- */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private LoginHandler loginHandler;
+    private final LoginHandler loginHandler;
+    private final UserService userService;
+    private final PasswordEncoder encoder;
+
+    public WebSecurityConfig(LoginHandler loginHandler, UserService userService, PasswordEncoder encoder) {
+        this.loginHandler = loginHandler;
+        this.userService = userService;
+        this.encoder = encoder;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(customUserService()).passwordEncoder(encoder);
-        auth.inMemoryAuthentication()
-                .passwordEncoder(encoder)
-                .withUser("test")
-                .password(encoder.encode("111111"))
-                .roles("CUSTOMER");
+        auth.userDetailsService(userService).passwordEncoder(encoder);
+//        auth.inMemoryAuthentication()
+//                .passwordEncoder(encoder)
+//                .withUser("test")
+//                .password(encoder.encode("111111"))
+//                .roles(UserRole.CUSTOMER);
     }
 
     @Override
@@ -38,6 +41,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated()
+
+                // 登录注册页面允许
+                .and()
+                .authorizeRequests()
+                .antMatchers("/register", "/admin/login")
+                .permitAll()
 
                 // 登录页面用户任意访问
                 .and()
@@ -51,13 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/admin/**")
-                .hasRole("ADMIN")
-
-                // 管理员登录界面
-                .and()
-                .authorizeRequests()
-                .antMatchers("/admin/login")
-                .permitAll()
+                .hasRole(UserRole.ADMIN)
 
 //                .and()
 //                .authorizeRequests()
@@ -71,12 +74,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
         ;
-    }
-
-    private PasswordEncoder encoder = new BCryptPasswordEncoder();
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return encoder;
     }
 }

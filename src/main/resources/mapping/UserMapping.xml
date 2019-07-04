@@ -9,8 +9,16 @@
         <result column="role" jdbcType="VARCHAR" property="role"/>
     </resultMap>
 
-    <select id="findByUserName" resultType="edu.bjtu.xxq.model.User">
-        select * from user where username = #{username}
+    <select id="findByUsername" resultType="edu.bjtu.xxq.model.User">
+        SELECT * FROM user WHERE username = #{username}
+    </select>
+
+    <select id="findById" resultType="edu.bjtu.xxq.model.User">
+        SELECT * FROM user WHERE id = #{id}
+    </select>
+
+    <select id="addUser" resultType="java.lang.Boolean">
+        INSERT INTO user (username, password, role) VALUES (#{user.id}, #{user.username}, #{user.password})
     </select>
 
 </mapper>
