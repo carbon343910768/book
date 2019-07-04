@@ -47,6 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 登录页面用户任意访问
                 .and()
                 .formLogin()
+                .loginPage("/login.html")
                 .loginProcessingUrl("/login")
                 .successHandler(loginHandler)
                 .failureHandler(loginHandler)
@@ -75,6 +76,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/css/**",
                 "/images/**", "/js/**",
                 "/plugin/**", "/*.html"
-        ).and().ignoring().antMatchers("/register");
+        );
     }
 }
