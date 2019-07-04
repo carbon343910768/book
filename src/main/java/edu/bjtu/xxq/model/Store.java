@@ -4,11 +4,11 @@ public class Store {
     private String storeName;
     private String storeId;
     private String userId;
-    private String storeContext;
+    private String storeContent;
     private Object goods;
     public Store(){}
-    public Store(String storeContext,String storeId,String storeName ,String storeOwner,Object goods){
-        this.storeContext = storeContext;
+    public Store(String storeContent,String storeId,String storeName ,String storeOwner,Object goods){
+        this.storeContent = storeContent;
         this.storeId = storeId;
         this.storeName = storeName;
         this.userId = storeOwner;
