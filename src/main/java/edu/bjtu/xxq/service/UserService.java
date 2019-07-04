@@ -31,12 +31,14 @@ public class UserService implements UserDetailsService {
     public boolean addUser(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
         user.setRole(UserRole.CUSTOMER);
-        return userDao.addUser(user);
+        userDao.addUser(user);
+        return true;
     }
 
     public boolean addAdmin(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
         user.setRole(UserRole.ADMIN);
-        return userDao.addUser(user);
+        userDao.addUser(user);
+        return true;
     }
 }

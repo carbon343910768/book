@@ -10,5 +10,5 @@ public interface UserDao {
 
     User findById(int id);
 
-    boolean addUser(User user);
+    void addUser(User user);
 }

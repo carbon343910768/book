@@ -18,7 +18,7 @@
     </select>
 
     <select id="addUser" resultType="java.lang.Boolean">
-        INSERT INTO user (username, password, role) VALUES (#{user.id}, #{user.username}, #{user.password})
+        INSERT INTO user (username, password, role) VALUES (#{username}, #{password}, #{role})
     </select>
 
 </mapper>

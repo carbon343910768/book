@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Scanner;
-
 @Controller
 public class UserController {
 
@@ -25,22 +23,20 @@ public class UserController {
     @PostMapping(value = "/register")
     @ResponseBody
     public String register(
-            @RequestParam() User user
-//            @RequestParam("username") String username,
-//            @RequestParam("password") String password
+            @RequestParam("username") String username,
+            @RequestParam("password") String password
     ) {
-        ResponseCode response;
+        User user = new User(username, password);
         if (!verifyUsername(user.getUsername()))
-            response = ResponseCode.REGISTER_ILLEGAL_USERNAME;
-        else if (!verifyPassword(user.getPassword()))
-            response = ResponseCode.REGISTER_ILLEGAL_PASSWORD;
-        else if (userService.loadUserByUsername(user.getUsername()) != null)
-            response = ResponseCode.REGISTER_EXISTED_USERNAME;
-        else if(userService.addUser(user))
-            response = ResponseCode.REGISTER_SUCCESS;
+            return gson.toJson(new ResponseJson(ResponseCode.REGISTER_ILLEGAL_USERNAME, username));
+        if (!verifyPassword(user.getPassword()))
+            return gson.toJson(new ResponseJson(ResponseCode.REGISTER_ILLEGAL_PASSWORD, password));
+        if (userService.loadUserByUsername(user.getUsername()) != null)
+            return gson.toJson(new ResponseJson(ResponseCode.REGISTER_EXISTED_USERNAME, username));
+        if (userService.addUser(user))
+            return gson.toJson(new ResponseJson(ResponseCode.REGISTER_SUCCESS));
         else
-            response = ResponseCode.REGISTER_FAIL;
-        return gson.toJson(new ResponseJson(response, user));
+            return gson.toJson(new ResponseJson(ResponseCode.REGISTER_FAIL));
     }
 
     private static final int USERNAME_MIN_LENGTH = 2;

@@ -15,6 +15,11 @@ public class User implements UserDetails {
     private String password;//密码
     private List<GrantedAuthority> role = new ArrayList<>(1);
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     @Override
     public List<? extends GrantedAuthority> getAuthorities() {
         return role;
