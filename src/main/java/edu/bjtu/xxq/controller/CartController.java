@@ -1,9 +1,13 @@
 package edu.bjtu.xxq.controller;
 
+import edu.bjtu.xxq.dao.UserDao;
 import edu.bjtu.xxq.model.ResponseCode;
 import edu.bjtu.xxq.model.ResponseJson;
 import edu.bjtu.xxq.model.Cart;
 import com.google.gson.Gson;
+import edu.bjtu.xxq.model.User;
+import edu.bjtu.xxq.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +19,8 @@ import java.util.Map;
 
 @Controller
 public class CartController {
+    @Autowired
+    private UserService userService;
     private List<Cart> sclist = new LinkedList<Cart>();
     private List<Cart> buylist = new LinkedList<Cart>();
     /*
@@ -47,13 +53,14 @@ public class CartController {
         }else
             return gson.toJson(new ResponseJson(ResponseCode.ADD_TO_CART_FAIL,sclist));
     }
-
+    private UserDao userDao ;
    /*
    返回购物车内容
     */
     @RequestMapping(value = "/cart",method = RequestMethod.GET)
     @ResponseBody
     public String getCart(){
+
         Gson gson = new Gson();
         return gson.toJson(new ResponseJson(ResponseCode.ADD_TO_CART_SUCCESS,sclist));
     }
