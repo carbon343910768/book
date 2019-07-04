@@ -41,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // 登录注册页面允许
                 .authorizeRequests()
-                .antMatchers("/register", "/admin/login")
+                .antMatchers("/register", "/admin/login", "/test")
                 .permitAll()
 
                 // 登录页面用户任意访问

@@ -17,8 +17,8 @@
         SELECT * FROM user WHERE id = #{id}
     </select>
 
-    <select id="addUser" resultType="java.lang.Boolean">
+    <insert id="addUser">
         INSERT INTO user (username, password, role) VALUES (#{username}, #{password}, #{role})
-    </select>
+    </insert>
 
 </mapper>

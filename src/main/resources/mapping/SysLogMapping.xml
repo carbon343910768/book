@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="edu.bjtu.xxq.dao.SysLogDao">
+<mapper namespace="edu.bjtu.xxq.dao.LoggerDao">
 
-    <resultMap id="BaseResultMap" type="edu.bjtu.xxq.model.SysLog">
+    <resultMap id="BaseResultMap" type="edu.bjtu.xxq.model.RequestLog">
         <result column="ip" jdbcType="VARCHAR" property="i"/>
-        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="uri" jdbcType="VARCHAR" property="uri"/>
         <result column="HTTPMethod" jdbcType="VARCHAR" property="HTTPMethod"/>
         <result column="result" jdbcType="VARCHAR" property="result"/>
     </resultMap>
 
-    <insert id="save" parameterType="edu.bjtu.xxq.model.SysLog">
-        insert into log(ip,url,HTTPMethod,result) values (#{ip},#{url},#{HTTPMethod},#{result})
+    <insert id="save" parameterType="edu.bjtu.xxq.model.RequestLog">
+        INSERT INTO log (ip, uri, HTTPMethod, result) VALUES (#{ip}, #{uri}, #{HTTPMethod}, #{result})
     </insert>
 
 </mapper>
