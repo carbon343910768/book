@@ -30,6 +30,10 @@ public class Cart {
         return this;
     }
 
+    public String getBookId() {
+        return bookId;
+    }
+
     public static Cart merge(Cart s1, Cart s2) {
         if (!s1.equals(s2)) {
             throw new IllegalArgumentException();
