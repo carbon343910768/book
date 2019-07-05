@@ -13,18 +13,17 @@ public class BookService {
     @Autowired
     private BookDao bookDao;
 
-    public List<Book> loadBookByTag(String tag) {
-        return bookDao.findBookByTag(tag);
+//    public List<Book> loadBookByTag(String tag) {
+//        return bookDao.findBookByTag(tag);
+//    }
+
+    public Book getOne(int id) {
+        return bookDao.findBookById(id);
     }
 
-    public List<Book> getAll() {
-        return bookDao.getAll();
-    }
-
-
-    public List<Book> loadBookByName(String bookName){
-        String name = "%" +bookName +"%";
-        return bookDao.findBookByName(name);
-    }
+//    public List<Book> loadBookByName(String bookName) {
+//        String name = "%" + bookName + "%";
+//        return bookDao.findBookByName(name);
+//    }
 
 }

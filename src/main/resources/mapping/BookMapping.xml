@@ -12,7 +12,8 @@
         <result column="book_isbn" jdbcType="VARCHAR" property="bookISBN"/>
         <result column="book_price" jdbcType="DECIMAL" property="bookPrice"/>
     </resultMap>
-    <select id="findBookByTag" resultType="edu.bjtu.xxq.model.Book">
+
+    <select id="findBooksByTag" resultType="edu.bjtu.xxq.model.Book">
         SELECT book.*
         FROM book,
              book_tag
@@ -40,6 +41,5 @@
     <select id="findBookByName" resultType="edu.bjtu.xxq.model.Book">
         SELECT * FROM book WHERE book_name LIKE #{name}
     </select>
-
 
 </mapper>
