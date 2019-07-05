@@ -2612,7 +2612,7 @@ Outlayer.create = function( namespace, options ) {
       try {
         options = attr && JSON.parse( attr );
       } catch ( error ) {
-        // log error, do not initialize
+        // util error, do not initialize
         if ( console ) {
           console.error( 'Error parsing ' + dataAttr + ' on ' +
             elem.nodeName.toLowerCase() + ( elem.id ? '#' + elem.id : '' ) + ': ' +

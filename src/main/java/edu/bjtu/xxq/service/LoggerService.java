@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LoggerService {
+
     @Autowired
     private LoggerDao loggerDao;
-    public boolean saveLog(RequestLog requestLog){
-        return loggerDao.save(requestLog);
+
+    public void saveLog(RequestLog log){
+        loggerDao.save(log);
     }
 }
