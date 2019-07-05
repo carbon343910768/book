@@ -11,10 +11,10 @@ CREATE TABLE user
 CREATE TABLE book
 (
     book_id          int unsigned auto_increment,
-    book_name        varchar(255)   not null,
-    book_description text(21845) not null,
-    book_author      varchar(255)   not null,
-    book_publisher   varchar(255)   not null,
+    book_name        varchar(255) not null,
+    book_description text         not null,
+    book_author      varchar(255) not null,
+    book_publisher   varchar(255) not null,
     book_published   date,
     book_isbn        char(13),
     book_price       decimal(9, 2),
@@ -27,7 +27,7 @@ CREATE TABLE book
 CREATE TABLE tag
 (
     tag_name    varchar(255) not null,
-    tag_content text(21845),
+    tag_content text,
     primary key (tag_name)
 );
 
@@ -116,8 +116,16 @@ CREATE TABLE log
     date    varchar(255),
     time    varchar(255),
     ip      varchar(255),
-    uri     text(21845),
-    header  text(21845),
-    body    text(21845),
+    uri     text,
+    header  text,
+    body    text,
     user_id int unsigned
+);
+
+
+CREATE TABLE weighted_record
+(
+    user_id int unsigned not null,
+    book_id int unsigned not null,
+    weight  int
 );
