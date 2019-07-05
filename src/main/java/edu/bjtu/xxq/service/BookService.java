@@ -9,17 +9,20 @@ import java.util.List;
 
 @Service
 public class BookService {
+
     @Autowired
     private BookDao bookDao;
 
-    public List<Book> loadBookByTag(String tag){
+    public List<Book> loadBookByTag(String tag) {
         return bookDao.findBookByTag(tag);
     }
 
-    public List<Book> getAll(){
+    public List<Book> getAll() {
         return bookDao.getAll();
     }
 
-    public int getPrice(String bookId){return bookDao.getPrice(bookId);}
+    public int getPrice(String bookId) {
+        return bookDao.getPrice(bookId);
+    }
 
 }

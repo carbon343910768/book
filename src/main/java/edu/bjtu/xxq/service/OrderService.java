@@ -11,23 +11,18 @@ import java.util.List;
 
 @Service
 public class OrderService {
+
     @Autowired
     private OrderDao orderDao;
 
-    /*
-        返回订单书籍
-    */
-    public List<Book> bookList(String orderId){
+    public List<Book> bookList(String orderId) {
         return orderDao.bookList(orderId);
     }
 
-    /*
-    返回用户全部订单
-     */
-    public List<Order> orderList(String id){
-        List<Order> idList = new ArrayList<Order>();
-        idList = orderDao.orderList(id);
-        for(Order o:idList)
+
+    public List<Order> orderList(String id) {
+        List<Order> idList = orderDao.orderList(id);
+        for (Order o : idList)
             o.setBook(bookList(o.getOrderId()));
         return idList;
     }
@@ -35,28 +30,29 @@ public class OrderService {
     /*
     返回订单内容
      */
-    public Order getOrder(String orderId){
-        List<Book> book = new ArrayList<Book>();
+    public Order getOrder(String orderId) {
+        List<Book> book;
         book = bookList(orderId);
         Order order = new Order();
         order = orderDao.getOrder(orderId);
         order.setBook(book);
         return order;
     }
+
     /*
     添加订单
      */
-    public boolean addOrder(Order order){
+    public boolean addOrder(Order order) {
 
-        List<String> books =(List<String>) order.getBook();
-        for(String bookid:books)
-            addOrderBook(order.getOrderId(),bookid);
+        List<String> books = (List<String>) order.getBook();
+        for (String bookid : books)
+            addOrderBook(order.getOrderId(), bookid);
         orderDao.addOrder(order);
         return true;
     }
 
-    public boolean addOrderBook(String orderId,String bookId){
-        orderDao.addOrderBook(orderId,bookId);
+    public boolean addOrderBook(String orderId, String bookId) {
+        orderDao.addOrderBook(orderId, bookId);
         return true;
     }
 
