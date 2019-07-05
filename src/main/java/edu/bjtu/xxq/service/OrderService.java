@@ -6,52 +6,53 @@ import edu.bjtu.xxq.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class OrderService {
-
     @Autowired
     private OrderDao orderDao;
 
-    public List<Book> bookList(String orderId) {
+    /*
+        返回订单书籍
+    */
+    public List<Book> bookList(int orderId){
         return orderDao.bookList(orderId);
     }
 
-
-    public List<Order> orderList(String id) {
-        List<Order> idList = orderDao.orderList(id);
-        for (Order o : idList)
+    /*
+    返回订单
+     */
+    public List<Order> orderList(String method,String term){
+        List<Order> idList = new ArrayList<Order>();
+        idList = orderDao.orderList(method,term);
+        for(Order o:idList)
+            o.setBook(bookList(o.getOrderId()));
+        return idList;
+    }
+    public List<Order> orderListByTime(String method,String time){
+        List<Order> idList = new ArrayList<Order>();
+        idList = orderDao.orderListByTime(method,time);
+        for(Order o:idList)
             o.setBook(bookList(o.getOrderId()));
         return idList;
     }
 
     /*
-    返回订单内容
-     */
-    public Order getOrder(String orderId) {
-        List<Book> book;
-        book = bookList(orderId);
-        Order order = new Order();
-        order = orderDao.findOrderById(0);
-        order.setBook(book);
-        return order;
-    }
-
-    /*
     添加订单
      */
-    public boolean addOrder(Order order) {
+    public boolean addOrder(Order order){
 
-        List<String> books = (List<String>) order.getBook();
-        for (String bookid : books)
-            addOrderBook(order.getOrderId(), bookid);
+        List<Book> books =(List<Book>) order.getBook();
+        for(Book book:books)
+            addOrderBook(order.getOrderId(),book.getBookId(),book.getBookNum());
         orderDao.addOrder(order);
         return true;
     }
 
-    public boolean addOrderBook(String orderId, String bookId) {
-        orderDao.addOrderBook(orderId, bookId);
+    public boolean addOrderBook(int orderId,int bookId,int bookNum){
+        orderDao.addOrderBook(orderId,bookId,bookNum);
         return true;
     }
 

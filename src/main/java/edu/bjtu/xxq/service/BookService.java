@@ -21,8 +21,10 @@ public class BookService {
         return bookDao.getAll();
     }
 
-    public int getPrice(String bookId) {
-        return bookDao.getPrice(bookId);
+
+    public List<Book> loadBookByName(String bookName){
+        String name = "%" +bookName +"%";
+        return bookDao.findBookByName(name);
     }
 
 }

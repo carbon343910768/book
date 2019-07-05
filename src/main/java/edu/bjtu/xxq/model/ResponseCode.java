@@ -19,8 +19,8 @@ public enum ResponseCode {
 
     LOAD_ALL_BOOK_SUCCESS("load all book success"),
 
-    LOAD_ALL_ORDER_SUCCESS("loda all order success"),
-    LOAD_ORDER_SUCCESS("loda order success"),
+    LOAD_ORDER_SUCCESS("load success"),
+    LOAD_ORDER_WARN("load fail"),
     ADD_ORDER_SUCCESS("add order success");
 
     private String message;

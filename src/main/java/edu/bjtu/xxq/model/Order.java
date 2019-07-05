@@ -3,13 +3,14 @@ package edu.bjtu.xxq.model;
 import java.util.Date;
 
 public class Order {
-    private String orderId;
-    private String orderOwner;
+    private int orderId;
+    private int orderOwner;
     private Date orderTime;
+    private float orderPrice;
     private Boolean orderState;
     private Object book;
     public Order(){}
-    public Order(String orderId, String orderOwner, Object book){
+    public Order(int orderId, int orderOwner, Object book){
         this.book = book;
         this.orderId = orderId;
         this.orderOwner = orderOwner;
@@ -23,7 +24,7 @@ public class Order {
         return book;
     }
 
-    public String getOrderId() {
+    public int getOrderId() {
         return orderId;
     }
 
