@@ -15,7 +15,13 @@ public enum ResponseCode {
     ADD_TO_CART_FAIL("add to cart fail"),
 
     ORDER_SUCCESS("order success"),
-    ORDER_FAIL( "order fail"),;
+    ORDER_FAIL( "order fail"),
+
+    LOAD_ALL_BOOK_SUCCESS("load all book success"),
+
+    LOAD_ALL_ORDER_SUCCESS("loda all order success"),
+    LOAD_ORDER_SUCCESS("loda order success"),
+    ADD_ORDER_SUCCESS("add order success");
 
     private String message;
 

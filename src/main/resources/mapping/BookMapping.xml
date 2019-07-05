@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.bjtu.xxq.dao.BookDao">
+
+    <resultMap id="BaseResultMap" type="edu.bjtu.xxq.model.Book">
+        <result column="bookId" jdbcType="VARCHAR" property="bookId"/>
+        <result column="bookName" jdbcType="VARCHAR" property="bookName"/>
+        <result column="bookContent" jdbcType="VARCHAR" property="bookContent"/>
+        <result column="bookAuthor" jdbcType="VARCHAR" property="bookAuthor"/>
+        <result column="bookPublisher" jdbcType="VARCHAR" property="bookPublisher"/>
+        <result column="bookPublished" jdbcType="DATE" property="bookPublished"/>
+        <result column="bookPages" jdbcType="INTEGER" property="bookPages"/>
+        <result column="bookISBN" jdbcType="VARCHAR" property="bookISBN"/>
+        <result column="bookPrice" jdbcType="INTEGER" property="bookPrice"/>
+    </resultMap>
+    <select id="findBookByTag" resultType="edu.bjtu.xxq.model.Book">
+        SELECT book.* FROM book,booktag WHERE booktag.bookId = book.bookId AND booktag.tagName = #{tag}
+    </select>
+
+    <select id="getAll" resultType="edu.bjtu.xxq.model.Book">
+        SELECT * FROM book
+    </select>
+
+    <select id="getPrice" resultType="int">
+        SELECT bookPrice FROM book WHERE bookId = #{bookId}
+    </select>
+
+
+</mapper>

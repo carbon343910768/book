@@ -15,28 +15,19 @@ public class Cart {
         this.num = num;
     }
 
-    public void setBookId(String bookId) {
+    public Cart setBookId(String bookId) {
         this.bookId = bookId;
+        return this;
     }
 
-    public void setPrice(int price) {
+    public Cart setPrice(int price) {
         this.price = price;
+        return this;
     }
 
-    public void setNum(int num) {
+    public Cart setNum(int num) {
         this.num = num;
-    }
-
-    public int getNum() {
-        return num;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public String getBookId() {
-        return bookId;
+        return this;
     }
 
     public static Cart merge(Cart s1, Cart s2) {

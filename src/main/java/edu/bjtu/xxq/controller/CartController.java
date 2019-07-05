@@ -6,6 +6,7 @@ import edu.bjtu.xxq.model.ResponseJson;
 import edu.bjtu.xxq.model.Cart;
 import com.google.gson.Gson;
 import edu.bjtu.xxq.model.User;
+import edu.bjtu.xxq.service.BookService;
 import edu.bjtu.xxq.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,9 +21,11 @@ import java.util.Map;
 @Controller
 public class CartController {
     @Autowired
-    private UserService userService;
-    private List<Cart> sclist = new LinkedList<Cart>();
-    private List<Cart> buylist = new LinkedList<Cart>();
+    private BookService bookService;
+
+    private List<Cart> sclist = new LinkedList<Cart>();//购物车列表
+    private List<Cart> buylist = new LinkedList<Cart>();//选择购买列表
+    private  Gson gson = new Gson();
     /*
     修改购物车商品
     返回：购物车修改后内容
@@ -31,16 +34,12 @@ public class CartController {
     @ResponseBody
     public String add(@RequestParam("bookId") String bookId,
                       @RequestParam("num") int num){
-        Gson gson = new Gson();
         Map<Cart,Cart> map = new HashMap<Cart, Cart>();
         if (!StringUtils.isEmpty(bookId)){
-            int bookPrice = 100;
-            Cart sc = new Cart();
-            sc.setBookId(bookId);
-            sc.setPrice(bookPrice);
-            sc.setNum(num);
+            int bookPrice = bookService.getPrice(bookId);
+            Cart sc = new Cart(bookId,bookPrice,num);
             sclist.add(sc);
-            for (Cart sctr : sclist){
+            for (Cart sctr : sclist){//重复检验
                 if (map.containsKey(sctr))
                     map.put(sctr, Cart.merge(sctr,map.get(sctr)));
                 else
@@ -53,24 +52,15 @@ public class CartController {
         }else
             return gson.toJson(new ResponseJson(ResponseCode.ADD_TO_CART_FAIL,sclist));
     }
-    private UserDao userDao ;
    /*
    返回购物车内容
     */
     @RequestMapping(value = "/cart",method = RequestMethod.GET)
     @ResponseBody
     public String getCart(){
-
-        Gson gson = new Gson();
         return gson.toJson(new ResponseJson(ResponseCode.ADD_TO_CART_SUCCESS,sclist));
     }
 
-    @RequestMapping(value = "/price",method = RequestMethod.GET)
-    @ResponseBody
-    public String getprice(){
-        Gson gson = new Gson();
-        return gson.toJson(new ResponseJson(ResponseCode.ADD_TO_CART_SUCCESS,sclist));
-    }
     /*
     选择购买的商品
      */
@@ -78,13 +68,9 @@ public class CartController {
     @ResponseBody
     public String addBuy(@RequestParam("bookId") String bookId,
                          @RequestParam("num") int num){
-        Gson gson = new Gson();
         if(!StringUtils.isEmpty(bookId)){
-            int bookPrice = 100;
-            Cart sc = new Cart();
-            sc.setBookId(bookId);
-            sc.setPrice(bookPrice);
-            sc.setNum(num);
+            int bookPrice = bookService.getPrice(bookId);
+            Cart sc = new Cart(bookId,bookPrice,num);
             buylist.add(sc);
             return gson.toJson(new ResponseJson(ResponseCode.ORDER_SUCCESS,buylist));
         }else

@@ -27,9 +27,8 @@ public class OrderService {
     public List<Order> orderList(String id){
         List<Order> idList = new ArrayList<Order>();
         idList = orderDao.orderList(id);
-        for(Order o:idList){
+        for(Order o:idList)
             o.setBook(bookList(o.getOrderId()));
-        }
         return idList;
     }
 
@@ -49,13 +48,13 @@ public class OrderService {
      */
     public boolean addOrder(Order order){
 
-        List<Book> books =(List<Book>) order.getBook();
-        for(Book book:books){
-            addOrderBook(order.getOrderId(),book.getBookId());
-        }
+        List<String> books =(List<String>) order.getBook();
+        for(String bookid:books)
+            addOrderBook(order.getOrderId(),bookid);
         orderDao.addOrder(order);
         return true;
     }
+
     public boolean addOrderBook(String orderId,String bookId){
         orderDao.addOrderBook(orderId,bookId);
         return true;
