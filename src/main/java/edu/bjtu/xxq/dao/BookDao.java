@@ -14,7 +14,8 @@ public interface BookDao {
 
     int getPrice(String bookId);
 
-    Book findById(int id);
+    Book findBookById(int id);
 
+    List<Book> findBooksById(int[] id);
 
 }

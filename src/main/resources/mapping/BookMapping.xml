@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.bjtu.xxq.dao.BookDao">
 
+<!--    TODO 这里根据数据库字段更改Book对象，然后再一一对应-->
     <resultMap id="BaseResultMap" type="edu.bjtu.xxq.model.Book">
         <result column="bookId" jdbcType="VARCHAR" property="bookId"/>
         <result column="bookName" jdbcType="VARCHAR" property="bookName"/>
@@ -13,17 +14,42 @@
         <result column="bookISBN" jdbcType="VARCHAR" property="bookISBN"/>
         <result column="bookPrice" jdbcType="INTEGER" property="bookPrice"/>
     </resultMap>
+
     <select id="findBookByTag" resultType="edu.bjtu.xxq.model.Book">
-        SELECT book.* FROM book,booktag WHERE booktag.bookId = book.bookId AND booktag.tagName = #{tag}
+        SELECT book.*
+        FROM book,
+             booktag
+        WHERE booktag.bookId = book.bookId
+          AND booktag.tagName = #{tag}
     </select>
 
     <select id="getAll" resultType="edu.bjtu.xxq.model.Book">
-        SELECT * FROM book
+        SELECT *
+        FROM book
     </select>
 
     <select id="getPrice" resultType="int">
-        SELECT bookPrice FROM book WHERE bookId = #{bookId}
+        SELECT bookPrice
+        FROM book
+        WHERE bookId = #{bookId}
     </select>
 
+<!--        TODO 上面的全要改-->
+    <!--    下面的作样例-->
+
+    <select id="findBookById" resultType="edu.bjtu.xxq.model.Book">
+        SELECT *
+        FROM book
+        WHERE book_id = #{id}
+    </select>
+
+    <select id="findBookById" resultType="edu.bjtu.xxq.model.Book">
+        SELECT *
+        FROM book
+        WHERE book_id IN
+        <foreach collection="id" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+    </select>
 
 </mapper>
