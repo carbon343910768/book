@@ -1,139 +1,123 @@
-CREATE TABLE `user` (
-  `id` INT UNSIGNED AUTO_INCREMENT,
-  `username` VARCHAR(255) NOT NULL,
-  `password` VARCHAR(255) NOT NULL,
-  `role` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC));
+CREATE TABLE user
+(
+    user_id  int unsigned not null auto_increment,
+    username varchar(255) not null,
+    password varchar(255) not null,
+    role     varchar(45)  not null,
+    primary key (user_id),
+    unique index username_unique (username asc)
+);
+
+CREATE TABLE book
+(
+    book_id          int unsigned auto_increment,
+    book_name        varchar(255)   not null,
+    book_description varchar(65535) not null,
+    book_author      varchar(255)   not null,
+    book_publisher   varchar(255)   not null,
+    book_published   date,
+    book_isbn        char(13),
+    book_price       decimal(9, 2),
+    primary key (book_id)
 );
 
 /*==============================================================*/
-/* Table: Book                                                  */
+/* Tag                                                          */
 /*==============================================================*/
-create table Book
+CREATE TABLE tag
 (
-   bookId               char(10) not null,
-   bookName             char(20),
-   bookContent          char(255),
-   bookAuthor           char(20),
-   bookPublisher        char(20),
-   bookPublished        date,
-   bookPages            int,
-   bookISBN             char(20),
-   bookPrice            int,
-   primary key (bookId)
+    tag_name    varchar(255) not null,
+    tag_content varchar(65535),
+    primary key (tag_name)
+);
+
+CREATE TABLE book_tag
+(
+    book_id  int unsigned not null,
+    tag_name varchar(255) not null,
+    index book_index (book_id asc),
+    index tag_index (tag_name asc),
+    primary key (book_id, tag_name)
 );
 
 /*==============================================================*/
-/* Table: BookInStore                                           */
+/* Order                                                        */
 /*==============================================================*/
-create table BookInStore
+CREATE TABLE customer_order
 (
-   bookId               char(10) not null,
-   storeId              char(20) not null,
-   primary key (bookId, storeId)
+    order_id    int unsigned not null auto_increment,
+    user_id     int unsigned not null,
+    order_time  datetime,
+    order_price decimal(9, 2),
+    order_state bool,
+    index user_index (user_id asc),
+    index order_index (order_id asc),
+    primary key (user_id, order_id)
+);
+
+CREATE TABLE order_book
+(
+    order_id    int unsigned not null,
+    book_id     int unsigned not null,
+    book_number int,
+    index order_index (order_id asc),
+    index book_index (book_id asc),
+    primary key (order_id, book_id)
 );
 
 /*==============================================================*/
-/* Table: BookTag                                               */
+/* Comment                                                      */
 /*==============================================================*/
-create table BookTag
+CREATE TABLE comment
 (
-   bookId               char(10) not null,
-   tagName              char(10) not null,
-   primary key (bookId, tagName)
+    commentId      char(20) not null,
+    id             int,
+    bookId         char(10),
+    commentContent char(255),
+    commentTime    date,
+    primary key (commentId)
+);
+
+CREATE TABLE reply
+(
+    replyId      char(20) not null,
+    id           int,
+    commentId    char(20),
+    replyContent char(255),
+    replyTime    date,
+    primary key (replyId)
 );
 
 /*==============================================================*/
-/* Table: Log                                                   */
+/* Store                                                        */
 /*==============================================================*/
-create table Log
+CREATE TABLE store
 (
-   ip                   char(200),
-   uri                  char(200),
-   uniqueId             char(200),
-   HTTPMethod           char(20),
-   result               char(255)
+    storeId       char(20) not null,
+    id            int,
+    storeName     char(40),
+    storePhoneNum char(20),
+    primary key (storeId)
+);
+
+
+CREATE TABLE store_book
+(
+    book_id  int unsigned,
+    store_id int unsigned,
+    primary key (book_id, store_id)
 );
 
 /*==============================================================*/
-/* Table: OrderBook                                             */
+/* Log                                                          */
 /*==============================================================*/
-create table OrderBook
+CREATE TABLE log
 (
-   orderId              char(10) not null,
-   bookId               char(10) not null,
-   orderBookState       bool,
-   primary key (orderId, bookId)
-);
-
-/*==============================================================*/
-/* Table: Ordered                                               */
-/*==============================================================*/
-create table Ordered
-(
-   id                   int not null,
-   orderId              char(10) not null,
-   primary key (id, orderId)
-);
-
-/*==============================================================*/
-/* Table: Store                                                 */
-/*==============================================================*/
-create table Store
-(
-   storeId              char(20) not null,
-   id                   int,
-   storeName            char(40),
-   storePhoneNum        char(20),
-   primary key (storeId)
-);
-
-/*==============================================================*/
-/* Table: comment                                               */
-/*==============================================================*/
-create table comment
-(
-   commentId            char(20) not null,
-
-   id                   int,
-   bookId               char(10),
-   commentContent       char(255),
-   commentTime          date,
-   primary key (commentId)
-);
-
-/*==============================================================*/
-/* Table: orderr                                                */
-/*==============================================================*/
-create table orderr
-(
-   orderId              char(10) not null,
-   orderOwner           char(10),
-   orderTime            date,
-   orderState           bool,
-   primary key (orderId)
-);
-
-/*==============================================================*/
-/* Table: reply                                                 */
-/*==============================================================*/
-create table reply
-(
-   replyId              char(20) not null,
-   id                   int,
-   commentId            char(20),
-   replyContent         char(255),
-   replyTime            date,
-   primary key (replyId)
-);
-
-/*==============================================================*/
-/* Table: tag                                                   */
-/*==============================================================*/
-create table tag
-(
-   tagName              char(10) not null,
-   tagContent           char(255),
-   primary key (tagName)
+    date    varchar(255),
+    time    varchar(255),
+    ip      varchar(255),
+    uri     varchar(65535),
+    header  varchar(65535),
+    body    varchar(65535),
+    user_id int unsigned
 );
