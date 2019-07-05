@@ -12,7 +12,7 @@ CREATE TABLE book
 (
     book_id          int unsigned auto_increment,
     book_name        varchar(255)   not null,
-    book_description varchar(65535) not null,
+    book_description text(21845) not null,
     book_author      varchar(255)   not null,
     book_publisher   varchar(255)   not null,
     book_published   date,
@@ -27,7 +27,7 @@ CREATE TABLE book
 CREATE TABLE tag
 (
     tag_name    varchar(255) not null,
-    tag_content varchar(65535),
+    tag_content text(21845),
     primary key (tag_name)
 );
 
@@ -116,8 +116,8 @@ CREATE TABLE log
     date    varchar(255),
     time    varchar(255),
     ip      varchar(255),
-    uri     varchar(65535),
-    header  varchar(65535),
-    body    varchar(65535),
+    uri     text(21845),
+    header  text(21845),
+    body    text(21845),
     user_id int unsigned
 );
