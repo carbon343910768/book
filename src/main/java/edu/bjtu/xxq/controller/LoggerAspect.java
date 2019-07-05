@@ -26,6 +26,16 @@ public class LoggerAspect {
     @Autowired
     private LoggerService loggerService;
 
+    @Pointcut("execution(public * edu.bjtu.xxq.controller.TestController.*(..))")
+    public void testPoint() {
+    }
+
+    @Before("testPoint()")
+    public void testLogger() {
+        RequestLog log = getRequestLog();
+        logger.info(gson.toJson(log));
+    }
+
     @Pointcut("execution(public * edu.bjtu.xxq.controller.BookController.*(..))")
     public void bookQueryPoint() {
     }
