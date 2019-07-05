@@ -31,7 +31,7 @@
         WHERE book_id = #{id}
     </select>
 
-    <select id="findBookById" resultType="edu.bjtu.xxq.model.Book">
+    <select id="findBooksById" resultType="edu.bjtu.xxq.model.Book">
         SELECT *
         FROM book
         WHERE book_id IN

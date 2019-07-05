@@ -26,7 +26,7 @@ public class StoreController {
         Gson gson = new Gson();
         Store s = new Store();
         List<Book> books = new ArrayList<Book>();
-        books = bookService.loadBookByTag("1");
+//        books = bookService.loadBookByTag("1");
 
         return gson.toJson(new ResponseJson(ResponseCode.REGISTER_ILLEGAL_PASSWORD,books));
 

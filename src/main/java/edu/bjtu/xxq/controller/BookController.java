@@ -10,10 +10,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class BookController {
+
     @Autowired
     private BookService bookService;
 
     private Gson gson = new Gson();
+
+    @GetMapping(value = "/book", produces = "application/json;charset=UTF-8")
+    public String getOne(@RequestParam("id") int id) {
+        return null;
+    }
+
     /*
     返回全部图书
     参数：null
@@ -24,10 +31,11 @@ public class BookController {
     ]
     }
      */
-    @RequestMapping(value = "/book",method = RequestMethod.GET)
-    public String getAllBook(){
-        return gson.toJson(new ResponseJson(ResponseCode.LOAD_ALL_BOOK_SUCCESS,bookService.getAll()));
-    }
+//    @RequestMapping(value = "/book", method = RequestMethod.GET)
+//    public String getAllBook() {
+//        return gson.toJson(new ResponseJson(ResponseCode.LOAD_ALL_BOOK_SUCCESS, bookService.getAll()));
+//    }
+
     /*
     返回指定tag的图书
     参数：String tag 图书的标签
@@ -37,8 +45,8 @@ public class BookController {
     ]
     }
      */
-    @RequestMapping(value = "/book/{tag}",method = RequestMethod.GET)
-    public String loadBookByTag(@PathVariable("tag") String tag){
-        return gson.toJson(new ResponseJson(ResponseCode.REGISTER_ILLEGAL_PASSWORD,bookService.loadBookByTag(tag)));
-    }
+//    @RequestMapping(value = "/book/{tag}", method = RequestMethod.GET)
+//    public String loadBookByTag(@PathVariable("tag") String tag) {
+//        return gson.toJson(new ResponseJson(ResponseCode.REGISTER_ILLEGAL_PASSWORD, bookService.loadBookByTag(tag)));
+//    }
 }
