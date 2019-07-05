@@ -41,6 +41,27 @@ CREATE TABLE book_tag
 );
 
 /*==============================================================*/
+/* Cart                                                         */
+/*==============================================================*/
+CREATE TABLE customer_cart
+(
+    user_id int unsigned not null,
+    address text         not null,
+    index user_index (user_id asc),
+    primary key (user_id, address)
+);
+
+CREATE TABLE cart_book
+(
+    order_id    int unsigned not null,
+    book_id     int unsigned not null,
+    book_number int,
+    index order_index (order_id asc),
+    index book_index (book_id asc),
+    primary key (order_id, book_id)
+);
+
+/*==============================================================*/
 /* Order                                                        */
 /*==============================================================*/
 CREATE TABLE customer_order

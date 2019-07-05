@@ -7,12 +7,11 @@ import java.util.List;
 
 @Repository
 public interface BookDao {
-    List<Book> findBookByTag(String tag);
 
-    List<Book> getAll();
+    List<Book> findBooksByTag(String tag, int start, int limit);
 
-    int getPrice(int bookId);
+    Book findBookById(int id);
 
-    List<Book> findBookByName(String bookName);
+    List<Book> findBooksById(List<Integer> id);
 
 }
