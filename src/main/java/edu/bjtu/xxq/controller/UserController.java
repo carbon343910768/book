@@ -3,16 +3,14 @@ package edu.bjtu.xxq.controller;
 import com.google.gson.Gson;
 import edu.bjtu.xxq.model.ResponseCode;
 import edu.bjtu.xxq.model.ResponseJson;
-import edu.bjtu.xxq.model.User;
 import edu.bjtu.xxq.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class UserController {
 
     @Autowired
@@ -20,20 +18,18 @@ public class UserController {
 
     private Gson gson = new Gson();
 
-    @PostMapping(value = "/register")
-    @ResponseBody
+    @PostMapping(value = "/register", produces = "application/json;charset=UTF-8")
     public String register(
             @RequestParam("username") String username,
             @RequestParam("password") String password
     ) {
-        User user = new User(username, password);
-        if (!verifyUsername(user.getUsername()))
+        if (!verifyUsername(username))
             return gson.toJson(new ResponseJson(ResponseCode.REGISTER_ILLEGAL_USERNAME, username));
-        if (!verifyPassword(user.getPassword()))
+        if (!verifyPassword(password))
             return gson.toJson(new ResponseJson(ResponseCode.REGISTER_ILLEGAL_PASSWORD, password));
-        if (userService.loadUserByUsername(user.getUsername()) != null)
+        if (userService.loadUserByUsername(username) != null)
             return gson.toJson(new ResponseJson(ResponseCode.REGISTER_EXISTED_USERNAME, username));
-        if (userService.addUser(user))
+        if (userService.addUser(username, password))
             return gson.toJson(new ResponseJson(ResponseCode.REGISTER_SUCCESS));
         else
             return gson.toJson(new ResponseJson(ResponseCode.REGISTER_FAIL));
