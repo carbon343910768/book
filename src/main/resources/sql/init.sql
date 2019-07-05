@@ -10,14 +10,14 @@ CREATE TABLE user
 
 CREATE TABLE book
 (
-    book_id          int unsigned auto_increment,
-    book_name        varchar(255) not null,
-    book_author      varchar(255) not null,
-    book_publisher   varchar(255) not null,
+    book_id          int unsigned  not null auto_increment,
+    book_name        varchar(255)  not null,
+    book_author      varchar(255)  not null,
+    book_publisher   varchar(255)  not null,
     book_description text,
     book_published   date,
     book_isbn        char(13),
-    book_price       decimal(9, 2),
+    book_price       decimal(9, 2) not null,
     primary key (book_id)
 );
 

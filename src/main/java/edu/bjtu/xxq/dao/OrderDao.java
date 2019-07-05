@@ -8,14 +8,21 @@ import java.util.List;
 
 @Repository
 public interface OrderDao {
-    //获取订单内容
+
+    Order findOrderById(int id);
+
+    List<Order> findOrdersById(List<Integer> id);
+
+    List<Book> findAllBooksInOrder(int id);
+
+    Integer findBookNumberInOrder(int orderId, int bookId);
+
+    void addOrder(Order order);
+
+    //TODO 下面这啥JB玩意都不要了
+    void addOrderBook(String orderId, String bookId);
+
     List<Book> bookList(String orderId);
 
     List<Order> orderList(String id);
-
-    Order getOrder(String orderId);
-    //添加
-    boolean addOrder(Order order);
-
-    boolean addOrderBook(String orderId,String bookId);
 }

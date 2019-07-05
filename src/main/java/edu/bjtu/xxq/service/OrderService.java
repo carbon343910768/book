@@ -6,7 +6,6 @@ import edu.bjtu.xxq.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,7 +33,7 @@ public class OrderService {
         List<Book> book;
         book = bookList(orderId);
         Order order = new Order();
-        order = orderDao.getOrder(orderId);
+        order = orderDao.findOrderById(0);
         order.setBook(book);
         return order;
     }

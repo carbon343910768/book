@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LoggerDao {
 
-    boolean save(RequestLog requestLog);
+    void save(RequestLog requestLog);
 }
