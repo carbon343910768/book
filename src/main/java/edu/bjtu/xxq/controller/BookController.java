@@ -5,13 +5,13 @@ import edu.bjtu.xxq.model.ResponseCode;
 import edu.bjtu.xxq.model.ResponseJson;
 import edu.bjtu.xxq.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-@Component
+@Controller
 public class BookController {
     @Autowired
     private BookService bookService;
@@ -19,6 +19,8 @@ public class BookController {
     private Gson gson = new Gson();
     /*
     返回全部图书
+    参数：null
+    返回：
      */
     @RequestMapping(value = "/book",method = RequestMethod.GET)
     public String getAllBook(){

@@ -8,13 +8,14 @@ import edu.bjtu.xxq.model.ResponseJson;
 import edu.bjtu.xxq.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Controller
 public class OrderController {
     @Autowired
     private OrderService orderService;
