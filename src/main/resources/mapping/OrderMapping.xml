@@ -3,29 +3,30 @@
 <mapper namespace="edu.bjtu.xxq.dao.OrderDao">
 
     <resultMap id="BaseResultMap" type="edu.bjtu.xxq.model.Order">
-        <result column="orderId" jdbcType="VARCHAR" property="orderId"/>
-        <result column="orderOwner" jdbcType="VARCHAR" property="orderOwner"/>
-        <result column="orderTime" jdbcType="DATE" property="orderTime"/>
-        <result column="orderState" jdbcType="BOOLEAN" property="orderState"/>
+        <result column="order_id" jdbcType="INTEGER" property="orderId"/>
+        <result column="user_id" jdbcType="INTEGER" property="orderOwner"/>
+        <result column="order_time" jdbcType="DATE" property="orderTime"/>
+        <result column="order_state" jdbcType="BOOLEAN" property="orderState"/>
+        <result column="order_price" jdbcType="DECIMAL" property="orderPrice"/>
     </resultMap>
     <select id="bookList" resultType="edu.bjtu.xxq.model.Book">
-        SELECT book.* FROM book,orderbook WHERE orderbook.bookId = book.bookId AND orderbook.orderId = #{orderId}
+        SELECT book.* FROM book,order_book WHERE order_book.book_id = book.book_id AND order_book.order_id = #{orderId}
     </select>
 
     <select id="orderList" resultType="edu.bjtu.xxq.model.Order">
-        SELECT * FROM orderr WHERE orderOwner = #{id}
+        SELECT * FROM customer_order WHERE ${method} = #{term}
     </select>
 
-    <select id="getOrder" resultType="edu.bjtu.xxq.model.Order">
-        SELECT * FROM orderr WHERE orderId = #{orderId}
+    <select id="orderListByTime" resultType="edu.bjtu.xxq.model.Order">
+        SELECT * FROM customer_order WHERE order_time = DATE_FORMAT(#{time},'%Y-%m')
     </select>
 
     <insert id="addOrder" >
-        INSERT INTO orderr (orderId, orderOwner, orderTime, orderState) VALUES (#{orderId}, #{orderOwner}, #{orderTime}, #{orderState})
+        INSERT INTO customer_order (order_id, user_id, order_time, order_state) VALUES (#{orderId}, #{orderOwner}, #{orderTime}, #{orderState})
     </insert>
 
     <insert id="addOrderBook" >
-        INSERT INTO orderBook (orderId, bookid, orderBookState) VALUES (#{orderId}, #{bookId}, NULL )
+        INSERT INTO order_book (order_id, book_id, book_number) VALUES (#{orderId}, #{bookId}, NULL )
     </insert>
 
 
