@@ -5,6 +5,8 @@ import edu.bjtu.xxq.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -19,6 +21,10 @@ public class BookService {
 
     public Book getOne(int id) {
         return bookDao.findBookById(id);
+    }
+
+    public List<Book> getList(Integer[] id) {
+        return bookDao.findBooksById(Arrays.asList(id));
     }
 
 //    public List<Book> loadBookByName(String bookName) {

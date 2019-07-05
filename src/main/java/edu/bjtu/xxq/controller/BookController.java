@@ -21,6 +21,11 @@ public class BookController {
         return gson.toJson(bookService.getOne(id));
     }
 
+    @GetMapping(value = "/books", produces = "application/json;charset=UTF-8")
+    public String query(@RequestParam("id") Integer[] id) {
+        return gson.toJson(bookService.getList(id));
+    }
+
 //    /*
 //    返回指定tag的图书
 //    参数：String tag 图书的标签，path
