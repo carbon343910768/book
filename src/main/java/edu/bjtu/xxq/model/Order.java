@@ -2,54 +2,54 @@ package edu.bjtu.xxq.model;
 
 public class Order {
 
-    private int orderId;
-    private int orderOwner;
-    private String orderTime;
-    private String orderPrice;
-    private boolean orderState;
+    private int id;
+    private int customer;
+    private String time;
+    private String price;
+    private boolean state;
 
-    public int getOrderId() {
-        return orderId;
+    public int getId() {
+        return id;
     }
 
-    public Order setOrderId(int orderId) {
-        this.orderId = orderId;
+    public Order setId(int id) {
+        this.id = id;
         return this;
     }
 
-    public int getOrderOwner() {
-        return orderOwner;
+    public int getCustomer() {
+        return customer;
     }
 
-    public Order setOrderOwner(int orderOwner) {
-        this.orderOwner = orderOwner;
+    public Order setCustomer(int customer) {
+        this.customer = customer;
         return this;
     }
 
-    public String getOrderTime() {
-        return orderTime;
+    public String getTime() {
+        return time;
     }
 
-    public Order setOrderTime(String orderTime) {
-        this.orderTime = orderTime;
+    public Order setTime(String time) {
+        this.time = time;
         return this;
     }
 
-    public String getOrderPrice() {
-        return orderPrice;
+    public String getPrice() {
+        return price;
     }
 
-    public Order setOrderPrice(String orderPrice) {
-        this.orderPrice = orderPrice;
+    public Order setPrice(String price) {
+        this.price = price;
         return this;
     }
 
-    public boolean isOrderState() {
-        return orderState;
+    public boolean isState() {
+        return state;
     }
 
-    public Order setOrderState(boolean orderState) {
-        this.orderState = orderState;
+    public Order setState(boolean state) {
+        this.state = state;
         return this;
     }
 }

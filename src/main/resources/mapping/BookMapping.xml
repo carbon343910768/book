@@ -14,14 +14,14 @@
     </resultMap>
 
     <parameterMap id="bookMap" type="edu.bjtu.xxq.model.Book">
-        <parameter  resultMap="bookMap" property="id"/>
-        <parameter  resultMap="bookMap" property="name"/>
-        <parameter  resultMap="bookMap" property="description"/>
-        <parameter  resultMap="bookMap" property="author"/>
-        <parameter  resultMap="bookMap" property="publisher"/>
-        <parameter  resultMap="bookMap" property="published"/>
-        <parameter  resultMap="bookMap" property="ISBN"/>
-        <parameter  resultMap="bookMap" property="price"/>
+        <parameter resultMap="bookMap" property="id"/>
+        <parameter resultMap="bookMap" property="name"/>
+        <parameter resultMap="bookMap" property="description"/>
+        <parameter resultMap="bookMap" property="author"/>
+        <parameter resultMap="bookMap" property="publisher"/>
+        <parameter resultMap="bookMap" property="published"/>
+        <parameter resultMap="bookMap" property="ISBN"/>
+        <parameter resultMap="bookMap" property="price"/>
     </parameterMap>
 
     <select id="findBooksByTag" resultType="integer">
@@ -51,7 +51,8 @@
     <select id="findBookImages" resultType="integer">
         SELECT image_id
         FROM book_image
-        WHERE book_id = #{id} ORDER BY sequence
+        WHERE book_id = #{id}
+        ORDER BY sequence
     </select>
 
     <select id="findBookTags" resultType="string">
@@ -61,9 +62,24 @@
     </select>
 
     <insert id="addBook" parameterMap="bookMap">
-        INSERT INTO book(book_id,book_name,book_description,book_author,book_publisher,book_published,book_isbn,book_price)
-        VALUES (#{bookId},#{bookName},#{bookDescription},#{bookAuthor},#{bookPublisher},#{bookPublished},#{bookISBN},#{bookPrice})
+        INSERT INTO book(book_id,
+                         book_name,
+                         book_description,
+                         book_author,
+                         book_publisher,
+                         book_published,
+                         book_isbn,
+                         book_price)
+        VALUES (#{id},
+                #{name},
+                #{description},
+                #{author},
+                #{publisher},
+                #{published},
+                #{ISBN},
+                #{price})
     </insert>
+
     <!--
     <insert id="addBookImage">
         <selectKey keyColumn="image_id" order="AFTER" resultType="integer">
@@ -74,11 +90,12 @@
         INSERT INTO book_image(book_id,sequence) VALUES (#{book},1);
     </insert>
     -->
-    <insert id="addBookTag" >
-        INSERT INTO book_tag(book_id,tag_name) VALUES (#{book},#{tag})
+
+    <insert id="addBookTag">
+        INSERT INTO book_tag(book_id,
+                             tag_name)
+        VALUES (#{book},
+                #{tag})
     </insert>
-
-
-
 
 </mapper>

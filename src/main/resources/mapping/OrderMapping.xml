@@ -2,38 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.bjtu.xxq.dao.OrderDao">
 
-    <resultMap id="BaseResultMap" type="edu.bjtu.xxq.model.Order">
-        <result column="order_id" jdbcType="INTEGER" property="orderId"/>
-        <result column="user_id" jdbcType="INTEGER" property="orderOwner"/>
-        <result column="order_time" jdbcType="DATE" property="orderTime"/>
-        <result column="order_state" jdbcType="BOOLEAN" property="orderState"/>
-        <result column="order_price" jdbcType="DECIMAL" property="orderPrice"/>
-        <!--
-        <collection property="book" ofType="edu.bjtu.xxq.model.Book">
-            <result column="book_id" jdbcType="INTEGER" property="bookId"/>
-            <result column="book_name" jdbcType="VARCHAR" property="bookName"/>
-            <result column="book_description" jdbcType="VARCHAR" property="bookContent"/>
-            <result column="book_author" jdbcType="VARCHAR" property="bookAuthor"/>
-            <result column="book_publisher" jdbcType="VARCHAR" property="bookPublisher"/>
-            <result column="book_published" jdbcType="DATE" property="bookPublished"/>
-            <result column="book_isbn" jdbcType="VARCHAR" property="bookISBN"/>
-            <result column="book_price" jdbcType="DECIMAL" property="bookPrice"/>
-        </collection>
-        -->
+    <resultMap id="orderMap" type="edu.bjtu.xxq.model.Order">
+        <result column="order_id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="customer"/>
+        <result column="order_time" jdbcType="DATE" property="time"/>
+        <result column="order_price" jdbcType="DECIMAL" property="price"/>
+        <result column="order_state" jdbcType="BOOLEAN" property="state"/>
     </resultMap>
-    <select id="findOrderById" resultMap="BaseResultMap">
-        SELECT
-        co.*
-        FROM  customer_order AS co
-        WHERE  co.order_id = #{id}
+
+    <select id="findOrderById" resultMap="orderMap">
+        SELECT co.*
+        FROM customer_order AS co
+        WHERE co.order_id = #{id}
     </select>
 
-    <select id="findOrdersById" resultMap="BaseResultMap" parameterType="java.util.List">
+    <select id="findOrdersById" resultMap="orderMap" parameterType="java.util.List">
         SELECT
         co.*
         FROM customer_order AS co
-        WHERE  co.order_id IN (
-        <foreach collection="list" item="id" index="index" separator =",">
+        WHERE co.order_id IN (
+        <foreach collection="list" item="id" index="index" separator=",">
             #{id}
         </foreach>
         )
@@ -42,20 +30,38 @@
 
     <select id="findAllBooksInOrder" resultType="integer">
         SELECT book.book_id
-        FROM book,order_book WHERE order_book.book_id = book.book_id AND order_book.order_id = #{id}
+        FROM book,
+             order_book
+        WHERE order_book.book_id = book.book_id
+          AND order_book.order_id = #{id}
     </select>
 
     <select id="findBookNumberInOrder" resultType="integer">
         SELECT order_book.book_number
         FROM order_book
         WHERE order_book.book_id = #{bookId}
-        AND order_book.order_id = #{orderId}
+          AND order_book.order_id = #{orderId}
     </select>
 
-    <insert id="addOrder" >
-        INSERT INTO customer_order (order_id, user_id, order_time, order_price, order_state)
-        VALUES (#{order.orderId}, #{order.orderOwner}, #{order.orderTime}, #{order.orderPrice}, #{order.orderState});
-        INSERT INTO order_book (order_id, book_id, book_number)
+    <insert id="addOrder">
+        INSERT INTO
+        customer_order (
+        order_id,
+        user_id,
+        order_time,
+        order_price,
+        order_state
+        )
+        VALUES (
+        #{order.orderId},
+        #{order.orderOwner},
+        #{order.orderTime},
+        #{order.orderPrice},
+        #{order.orderState}
+        );
+        INSERT INTO order_book (order_id,
+        book_id,
+        book_number)
         VALUES
         <foreach collection="books" index="key" item="value" open="" separator="," close=" ">
             (#{order.orderId},#{key},#{value})

@@ -1,25 +1,25 @@
 package edu.bjtu.xxq.model;
 
 public class Cart {
-    private int cartId;
-    private int cartOwner;
+    private int id;
+    private int owner;
     private String address;
 
-    public int getCartId() {
-        return cartId;
+    public int getId() {
+        return id;
     }
 
-    public Cart setCartId(int cartId) {
-        this.cartId = cartId;
+    public Cart setId(int id) {
+        this.id = id;
         return this;
     }
 
-    public int getCartOwner() {
-        return cartOwner;
+    public int getOwner() {
+        return owner;
     }
 
-    public Cart setCartOwner(int cartOwner) {
-        this.cartOwner = cartOwner;
+    public Cart setOwner(int owner) {
+        this.owner = owner;
         return this;
     }
 
