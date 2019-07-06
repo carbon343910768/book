@@ -22,12 +22,7 @@ public class OrderService {
     }
 
     public List<Order> getMany(List<Integer> idList){
-        List<Order> orderList = new ArrayList<Order>();
-        for (Integer id:idList){
-            orderList.add(getOne(id));
-        }
-        return orderList;
-        //return orderDao.findOrdersById(id);
+        return orderDao.findOrdersById(idList);
     }
 
     public List<Book> getAllBooksInOrder(int id ){return orderDao.findAllBooksInOrder(id);}

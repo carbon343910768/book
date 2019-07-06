@@ -11,7 +11,7 @@ public interface OrderDao {
 
     Order findOrderById(int id);
 
-   // List<Order> findOrdersById(List<Integer> id);
+    List<Order> findOrdersById(List<Integer> id);
 
     List<Book> findAllBooksInOrder(int id);
 

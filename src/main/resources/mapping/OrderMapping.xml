@@ -27,22 +27,20 @@
         JOIN customer_order AS co ON co.order_id = ob.order_id
         WHERE  co.order_id = #{id}
     </select>
-    <!--
-    <select id="findOrdersById" resultType="edu.bjtu.xxq.model.Order" parameterType="java.util.List">
-        SELECT customer_order.*, book.*
-        FROM book,order_book,customer_order
-        WHERE order_book.book_id = book.book_id
-        AND order_book.order_id IN (
-        <foreach collection="id" item="id" index="index" separator =",">
-            #{id}
-        </foreach>
-        )AND customer_order.order_id IN (
-        <foreach collection="id" item="id" index="index" separator =",">
-            #{id}
-        </foreach>
 
+    <select id="findOrdersById" resultMap="BaseResultMap" parameterType="java.util.List">
+        SELECT
+        co.*,
+        b.*
+        FROM book AS b JOIN order_book AS ob ON ob.book_id = b.book_id
+        JOIN customer_order AS co ON co.order_id = ob.order_id
+        WHERE  co.order_id IN (
+        <foreach collection="list" item="id" index="index" separator =",">
+            #{id}
+        </foreach>
+        )
     </select>
-    -->
+
 
     <select id="findAllBooksInOrder" resultType="edu.bjtu.xxq.model.Book">
         SELECT book.book_id bookId,
