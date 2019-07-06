@@ -30,12 +30,11 @@ public class LoggerUtil {
             request.setCharacterEncoding("UTF-8");
             Enumeration<String> params = request.getParameterNames();
             while (params.hasMoreElements()) {
-                String next = params.nextElement();
-                builder
-                        .append('&')
-                        .append(next)
-                        .append('=')
-                        .append(URLEncoder.encode(request.getParameter(next), "UTF-8"));
+                String key = params.nextElement();
+                for (String value : request.getParameterValues(key)) {
+                    builder.append('&').append(URLEncoder.encode(key, "UTF-8"))
+                            .append('=').append(URLEncoder.encode(value, "UTF-8"));
+                }
             }
         } catch (UnsupportedEncodingException e) {
             return null;
@@ -52,8 +51,12 @@ public class LoggerUtil {
         StringBuilder builder = new StringBuilder();
         Enumeration<String> headerNames = request.getHeaderNames();
         while (headerNames.hasMoreElements()) {
-            String next = headerNames.nextElement();
-            builder.append(next).append(':').append(request.getHeader(next)).append('\n');
+            String key = headerNames.nextElement();
+            Enumeration<String> headers = request.getHeaders(key);
+            while (headers.hasMoreElements()) {
+                builder.append(key).append(':')
+                        .append(headers.nextElement()).append('\n');
+            }
         }
         return encoder.encodeToString(builder.toString().getBytes());
     }
