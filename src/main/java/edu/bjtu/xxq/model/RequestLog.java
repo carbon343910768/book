@@ -1,5 +1,7 @@
 package edu.bjtu.xxq.model;
 
+import java.time.LocalDateTime;
+
 public class RequestLog {
 
     private String date;
@@ -14,18 +16,14 @@ public class RequestLog {
         return date;
     }
 
-    public RequestLog setDate(String date) {
-        this.date = date;
+    public RequestLog setDateTime(LocalDateTime dateTime) {
+        this.date = dateTime.toLocalDate().toString();
+        this.time = dateTime.toLocalTime().toString();
         return this;
     }
 
     public String getTime() {
         return time;
-    }
-
-    public RequestLog setTime(String time) {
-        this.time = time;
-        return this;
     }
 
     public String getIp() {

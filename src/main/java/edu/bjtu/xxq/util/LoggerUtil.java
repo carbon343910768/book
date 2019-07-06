@@ -13,10 +13,8 @@ import java.util.Enumeration;
 public class LoggerUtil {
 
     public static RequestLog getRequestLog(HttpServletRequest request) {
-        LocalDateTime now = LocalDateTime.now();
         return new RequestLog()
-                .setDate(now.toLocalDate().toString())
-                .setTime(now.toLocalTime().toString())
+                .setDateTime(LocalDateTime.now())
                 .setIp(request.getRemoteAddr())
                 .setUri(getFullUri(request))
                 .setHeader(getHeader(request))
