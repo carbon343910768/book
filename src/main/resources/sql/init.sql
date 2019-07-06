@@ -69,6 +69,7 @@ CREATE TABLE book_tag
 /*==============================================================*/
 CREATE TABLE customer_cart
 (
+    cart_id int unsigned not null auto_increment,
     user_id int unsigned not null,
     address text         not null,
     index user_index (user_id asc),
@@ -77,12 +78,11 @@ CREATE TABLE customer_cart
 
 CREATE TABLE cart_book
 (
-    order_id    int unsigned not null,
+    cart_id     int unsigned not null,
     book_id     int unsigned not null,
     book_number int,
-    index order_index (order_id asc),
-    index book_index (book_id asc),
-    primary key (order_id, book_id)
+    index cart_index (cart_id asc),
+    primary key (cart_id, book_id)
 );
 
 /*==============================================================*/

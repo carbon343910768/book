@@ -5,6 +5,7 @@ import edu.bjtu.xxq.model.Order;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface OrderDao {
@@ -13,12 +14,11 @@ public interface OrderDao {
 
     List<Order> findOrdersById(List<Integer> id);
 
-    List<Book> findAllBooksInOrder(int id);
+    List<Integer> findAllBooksInOrder(int id);
 
     Integer findBookNumberInOrder(int orderId, int bookId);
 
-    void addOrder(Order order);
-
-    void addOrderBook(int orderId, int bookId, int bookNumber);
+    // books: 图书ID -> 数量（在properties文件里，url后面跟上&allowMultiQueries=true，可执行多条插入）
+    void addOrder(Order order, Map<Integer, Integer> books);
 
 }

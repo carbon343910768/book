@@ -1,68 +1,34 @@
 package edu.bjtu.xxq.model;
 
 public class Cart {
-    private String bookId;
-    private int price;
-    private int num;
+    private int cartId;
+    private int cartOwner;
+    private String address;
 
-    public Cart() {
-
+    public int getCartId() {
+        return cartId;
     }
 
-    public Cart(String bookId, int price, int num) {
-        this.bookId = bookId;
-        this.price = price;
-        this.num = num;
-    }
-
-    public Cart setBookId(String bookId) {
-        this.bookId = bookId;
+    public Cart setCartId(int cartId) {
+        this.cartId = cartId;
         return this;
     }
 
-    public Cart setPrice(int price) {
-        this.price = price;
+    public int getCartOwner() {
+        return cartOwner;
+    }
+
+    public Cart setCartOwner(int cartOwner) {
+        this.cartOwner = cartOwner;
         return this;
     }
 
-    public Cart setNum(int num) {
-        this.num = num;
+    public String getAddress() {
+        return address;
+    }
+
+    public Cart setAddress(String address) {
+        this.address = address;
         return this;
-    }
-
-    public String getBookId() {
-        return bookId;
-    }
-
-    public static Cart merge(Cart s1, Cart s2) {
-        if (!s1.equals(s2)) {
-            throw new IllegalArgumentException();
-        }
-        return new Cart(s1.bookId, s1.price, s1.num + s2.num);
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((bookId == null) ? 0 : bookId.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Cart other = (Cart) obj;
-        if (bookId == null) {
-            if (other.bookId != null)
-                return false;
-        } else if (!bookId.equals(other.bookId))
-            return false;
-        return true;
     }
 }

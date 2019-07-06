@@ -1,5 +1,7 @@
 package edu.bjtu.xxq.model;
 
+import java.util.List;
+
 /*
 书籍的实体类
  */
