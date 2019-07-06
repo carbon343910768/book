@@ -41,13 +41,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // 登录注册页面允许
                 .authorizeRequests()
-                .antMatchers("/register", "/admin/login", "/test")
+                .antMatchers("/register", "/admin/login", "/test/**")
                 .permitAll()
 
                 // 登录页面用户任意访问
                 .and()
                 .formLogin()
-                .loginPage("/login.html")
+                .loginPage("/login-page.html")
                 .loginProcessingUrl("/login")
                 .successHandler(loginHandler)
                 .failureHandler(loginHandler)
@@ -75,7 +75,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers(
                 "/css/**",
                 "/images/**", "/js/**",
-                "/plugin/**", "/*.html"
+                "/plugin/**", "/*.jpg", "/*.html"
         );
     }
 }

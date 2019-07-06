@@ -16,9 +16,9 @@
     <select id="findBooksByTag" resultType="edu.bjtu.xxq.model.Book">
         SELECT book.*
         FROM book,
-             book_tag
+        book_tag
         WHERE book_tag.book_id = book.book_id
-          AND book_tag.tag_name = #{0}
+        AND book_tag.tag_name = #{0}
         LIMIT #{1}, #{2}
         <!-- 多参数根据0,1,2赋值 -->
     </select>
@@ -27,7 +27,7 @@
         SELECT *
         FROM book
         WHERE book_id = #{id}
-    </select>
+    </select>findImagesOfBook
 
     <select id="findBooksById" resultType="edu.bjtu.xxq.model.Book">
         SELECT *
@@ -38,8 +38,16 @@
         </foreach>
     </select>
 
+    <select id="findImagesOfBook" resultType="java.lang.Integer">
+        SELECT image_id
+        FROM book_image
+        WHERE book_id = #{id}
+    </select>
+
     <select id="findBookByName" resultType="edu.bjtu.xxq.model.Book">
-        SELECT * FROM book WHERE book_name LIKE #{name}
+        SELECT *
+        FROM book
+        WHERE book_name LIKE #{name}
     </select>
 
 </mapper>

@@ -5,6 +5,7 @@ import edu.bjtu.xxq.model.ResponseCode;
 import edu.bjtu.xxq.model.ResponseJson;
 import edu.bjtu.xxq.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,7 +19,7 @@ public class UserController {
 
     private Gson gson = new Gson();
 
-    @PostMapping(value = "/register", produces = "application/json;charset=UTF-8")
+    @PostMapping(value = "/register", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String register(
             @RequestParam("username") String username,
             @RequestParam("password") String password

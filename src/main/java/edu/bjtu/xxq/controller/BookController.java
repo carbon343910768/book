@@ -1,13 +1,15 @@
 package edu.bjtu.xxq.controller;
 
 import com.google.gson.Gson;
-import edu.bjtu.xxq.model.ResponseCode;
-import edu.bjtu.xxq.model.ResponseJson;
 import edu.bjtu.xxq.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-
+@RequestMapping("/book")
 @RestController
 public class BookController {
 
@@ -16,14 +18,19 @@ public class BookController {
 
     private Gson gson = new Gson();
 
-    @GetMapping(value = "/book", produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/one", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String query(@RequestParam("id") int id) {
         return gson.toJson(bookService.getOne(id));
     }
 
-    @GetMapping(value = "/books", produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/batch", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String query(@RequestParam("id") Integer[] id) {
         return gson.toJson(bookService.getList(id));
+    }
+
+    @GetMapping(value = "/image", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String image(@RequestParam("id") int id) {
+        return gson.toJson(bookService.getBookPhotos(id));
     }
 
 //    /*

@@ -8,6 +8,10 @@ CREATE TABLE user
     unique index username_unique (username asc)
 );
 
+/*==============================================================*/
+/* Book                                                         */
+/*==============================================================*/
+
 CREATE TABLE book
 (
     book_id          int unsigned  not null auto_increment,
@@ -19,6 +23,26 @@ CREATE TABLE book
     book_isbn        char(13),
     book_price       decimal(9, 2) not null,
     primary key (book_id)
+);
+
+/*==============================================================*/
+/* Image                                                        */
+/*==============================================================*/
+
+CREATE TABLE image
+(
+    image_id      int unsigned not null auto_increment,
+    image_content blob         not null,
+    primary key (image_id)
+);
+
+CREATE TABLE book_image
+(
+    book_id  int unsigned not null auto_increment,
+    image_id int unsigned not null,
+    sequence int unsigned not null,
+    index book_index (book_id asc),
+    primary key (book_id, image_id)
 );
 
 /*==============================================================*/

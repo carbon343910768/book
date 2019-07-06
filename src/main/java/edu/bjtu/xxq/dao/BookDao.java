@@ -14,4 +14,6 @@ public interface BookDao {
 
     List<Book> findBooksById(List<Integer> id);
 
+    List<Integer> findImagesOfBook(int id);
+
 }

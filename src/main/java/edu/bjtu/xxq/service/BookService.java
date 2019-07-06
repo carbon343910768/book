@@ -5,7 +5,6 @@ import edu.bjtu.xxq.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,6 +24,10 @@ public class BookService {
 
     public List<Book> getList(Integer[] id) {
         return bookDao.findBooksById(Arrays.asList(id));
+    }
+
+    public List<Integer> getBookPhotos(int id) {
+        return bookDao.findImagesOfBook(id);
     }
 
 //    public List<Book> loadBookByName(String bookName) {
