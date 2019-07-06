@@ -24,9 +24,9 @@
         book.book_isbn bookISBN,
         book.book_price bookPrice
         FROM book,
-             book_tag
+        book_tag
         WHERE book_tag.book_id = book.book_id
-          AND book_tag.tag_name = #{param1}
+        AND book_tag.tag_name = #{param1}
         LIMIT #{param2}, #{param3}
         <!-- 多参数根据0,1,2赋值 -->
     </select>
@@ -46,8 +46,16 @@
         </foreach>
     </select>
 
+    <select id="findImagesOfBook" resultType="edu.bjtu.xxq.model.Book">
+        SELECT *
+        FROM book
+        WHERE book_id = #{id}
+    </select>
+
     <select id="findBookByName" resultType="edu.bjtu.xxq.model.Book">
-        SELECT * FROM book WHERE book_name LIKE #{name}
+        SELECT *
+        FROM book
+        WHERE book_name LIKE #{name}
     </select>
 
 </mapper>

@@ -5,6 +5,7 @@ import edu.bjtu.xxq.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -13,8 +14,8 @@ public class BookService {
     @Autowired
     private BookDao bookDao;
 
-    public List<Book> loadBooksByTag(String tag, int start,int limit) {
-        return bookDao.findBooksByTag(tag,start,limit);
+    public List<Book> loadBooksByTag(String tag, int start, int limit) {
+        return bookDao.findBooksByTag(tag, start, limit);
     }
 
     public Book getOne(int id) {
