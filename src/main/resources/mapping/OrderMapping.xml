@@ -43,28 +43,32 @@
           AND order_book.order_id = #{orderId}
     </select>
 
-    <insert id="addOrder">
+    <insert id="addOrder" >
+        <selectKey keyColumn="order_id" keyProperty="id" order="AFTER" resultType="integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
         INSERT INTO
         customer_order (
-        order_id,
         user_id,
         order_time,
         order_price,
         order_state
         )
         VALUES (
-        #{order.orderId},
-        #{order.orderOwner},
-        #{order.orderTime},
-        #{order.orderPrice},
-        #{order.orderState}
+        #{customer},
+        #{time},
+        #{price},
+        #{state}
         );
+
+    </insert>
+    <insert id="addBook">
         INSERT INTO order_book (order_id,
         book_id,
         book_number)
         VALUES
         <foreach collection="books" index="key" item="value" open="" separator="," close=" ">
-            (#{order.orderId},#{key},#{value})
+            (#{orderId},#{key},#{value})
         </foreach>
 
     </insert>

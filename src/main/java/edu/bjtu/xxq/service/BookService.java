@@ -36,11 +36,12 @@ public class BookService {
 
     public int addBook(Book book) {
         bookDao.addBook(book);
-        return 1;
+        return book.getId();
     }
 
-    public Integer addBookImage(int book, byte[] image) {
-        return bookDao.addBookImage(book, image);
+    public boolean addBookImage(int book, int image) {
+         bookDao.addBookImage(book, image);
+         return true;
     }
 
     public boolean addTag(int bookId, String bookTag) {
