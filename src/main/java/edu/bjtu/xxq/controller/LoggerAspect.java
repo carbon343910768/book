@@ -26,7 +26,7 @@ public class LoggerAspect {
     @Autowired
     private LoggerService loggerService;
 
-    @Pointcut("execution(public * edu.bjtu.xxq.controller.TestController.*(..))")
+    @Pointcut("execution(public * edu.bjtu.xxq.controller.*.*(..))")
     public void testPoint() {
     }
 
@@ -83,7 +83,6 @@ public class LoggerAspect {
         if (!token.equals("anonymousUser"))
             userId = ((User) token).getId();
         log.setUserId(userId);
-        logger.info("request:" + new Gson().toJson(log));
         return log;
     }
 }

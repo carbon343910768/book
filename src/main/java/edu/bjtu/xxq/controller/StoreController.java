@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 public class StoreController {
+
     @Autowired
     private OrderService orderService;
     @Autowired
@@ -21,7 +22,7 @@ public class StoreController {
     /*
     我的商店
      */
-    @RequestMapping("/myStore")
+    @RequestMapping("/store")
     public String myStore(@RequestParam("username") String username){
         Gson gson = new Gson();
         Store s = new Store();
