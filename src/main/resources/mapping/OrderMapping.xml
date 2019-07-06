@@ -8,7 +8,7 @@
         <result column="order_time" jdbcType="DATE" property="orderTime"/>
         <result column="order_state" jdbcType="BOOLEAN" property="orderState"/>
         <result column="order_price" jdbcType="DECIMAL" property="orderPrice"/>
-        <association property="book" javaType="edu.bjtu.xxq.model.Book">
+        <collection property="book" ofType="edu.bjtu.xxq.model.Book">
             <result column="book_id" jdbcType="INTEGER" property="bookId"/>
             <result column="book_name" jdbcType="VARCHAR" property="bookName"/>
             <result column="book_description" jdbcType="VARCHAR" property="bookContent"/>
@@ -17,15 +17,14 @@
             <result column="book_published" jdbcType="DATE" property="bookPublished"/>
             <result column="book_isbn" jdbcType="VARCHAR" property="bookISBN"/>
             <result column="book_price" jdbcType="DECIMAL" property="bookPrice"/>
-        </association>
+        </collection>
     </resultMap>
-    <select id="findOrderById" resultType="edu.bjtu.xxq.model.Order">
-        SELECT co.order_id orderId,
-        co.user_id orderOwner,
-        co.order_time orderTime,
-        co.order_state orderState,
-        co.order_price orderPrice
-        FROM  customer_order AS co
+    <select id="findOrderById" resultMap="BaseResultMap">
+        SELECT
+        co.*,
+        b.*
+        FROM book AS b JOIN order_book AS ob ON ob.book_id = b.book_id
+        JOIN customer_order AS co ON co.order_id = ob.order_id
         WHERE  co.order_id = #{id}
     </select>
     <!--

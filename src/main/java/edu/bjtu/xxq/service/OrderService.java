@@ -18,7 +18,7 @@ public class OrderService {
         返回订单书籍
     */
     public Order getOne(int id) {
-        return orderDao.findOrderById(id).setBook(getAllBooksInOrder(id));
+        return orderDao.findOrderById(id);
     }
 
     public List<Order> getMany(List<Integer> idList){
@@ -37,7 +37,7 @@ public class OrderService {
     public boolean addOrder(Order order){
         orderDao.addOrder(order);
         for(Book book:order.getBook()){
-            orderDao.addOrderBook(order.getOrderId(),book.getBookId(),book.getBookNum());
+            orderDao.addOrderBook(order.getOrderId(),book.getBookId(),1);
         }
         return true;
     }
