@@ -38,8 +38,7 @@ public class BookService {
     }
 
     public int addBook(Book book) {
-        bookDao.addBook(book);
-        return book.getId();
+        return bookDao.addBook(book);
     }
 
     public void addBookImage(int bookId, byte[] image) {
