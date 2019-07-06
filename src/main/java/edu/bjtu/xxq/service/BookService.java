@@ -15,6 +15,7 @@ public class BookService {
     private BookDao bookDao;
 
     public List<Book> loadBooksByTag(String tag, int start, int limit) {
+        System.out.println(Arrays.toString(bookDao.findBooksByTag(tag, start, limit).toArray()));
         return bookDao.findBooksByTag(tag, start, limit);
     }
 

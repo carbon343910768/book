@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.bjtu.xxq.dao.BookDao">
 
-    <resultMap id="BaseResultMap" type="edu.bjtu.xxq.model.Book">
+    <resultMap id="bookMap" type="edu.bjtu.xxq.model.Book">
         <result column="book_id" jdbcType="INTEGER" property="bookId"/>
         <result column="book_name" jdbcType="VARCHAR" property="bookName"/>
         <result column="book_description" jdbcType="VARCHAR" property="bookContent"/>
@@ -13,16 +13,9 @@
         <result column="book_price" jdbcType="DECIMAL" property="bookPrice"/>
     </resultMap>
 
-    <select id="findBooksByTag" resultType="edu.bjtu.xxq.model.Book">
+    <select id="findBooksByTag" resultMap="bookMap">
         SELECT
-        book.book_id bookId,
-        book.book_name bookName,
-        book.book_description bookContent,
-        book.book_author bookAuthor,
-        book.book_publisher bookPublisher,
-        book.book_published bookPublished,
-        book.book_isbn bookISBN,
-        book.book_price bookPrice
+        book.*
         FROM book,
         book_tag
         WHERE book_tag.book_id = book.book_id
