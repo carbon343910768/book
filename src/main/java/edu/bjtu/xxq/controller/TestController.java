@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -34,7 +32,7 @@ public class TestController {
     public String testOrder() {
         byte[] k ={1,1,1};
         Order order = new Order().setCustomer(1).setPrice("1").setState(true).setTime("1111-1-1");
-        Map<Integer,Integer> books = new HashMap<Integer, Integer>();
+        Map<Integer,Integer> books = new HashMap<>();
         books.put(110001,1);
         books.put(110002,2);
         Book book = new Book().setName("asdqwe").setDescription("asdqwe").setAuthor("asdqwe").setPublisher("asdqwe").setPublished("1111-1-1").setISBN("11111").setPrice("11.12");
