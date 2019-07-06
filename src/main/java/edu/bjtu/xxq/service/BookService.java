@@ -27,7 +27,7 @@ public class BookService {
     }
 
     public List<Integer> getBookPhotos(int id) {
-        return bookDao.findImagesOfBook(id);
+        return bookDao.findBookImages(id);
     }
 
 //    public List<Book> loadBookByName(String bookName) {

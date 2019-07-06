@@ -37,7 +37,7 @@
         </foreach>
     </select>
 
-    <select id="findImagesOfBook" resultType="edu.bjtu.xxq.model.Book">
+    <select id="findBookImages" resultType="edu.bjtu.xxq.model.Book">
         SELECT *
         FROM book
         WHERE book_id = #{id}

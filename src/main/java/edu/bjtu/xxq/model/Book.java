@@ -13,8 +13,6 @@ public class Book {
     private String bookPublished;
     private String bookISBN;
     private float bookPrice;
-    private String[] bookTags;
-    private int bookCoverImage;
 
     public int getBookId() {
         return bookId;
@@ -85,24 +83,6 @@ public class Book {
 
     public Book setBookPrice(float bookPrice) {
         this.bookPrice = bookPrice;
-        return this;
-    }
-
-    public String[] getBookTags() {
-        return bookTags;
-    }
-
-    public Book setBookTags(String[] bookTags) {
-        this.bookTags = bookTags;
-        return this;
-    }
-
-    public int getBookCoverImage() {
-        return bookCoverImage;
-    }
-
-    public Book setBookCoverImage(int bookCoverImage) {
-        this.bookCoverImage = bookCoverImage;
         return this;
     }
 }
