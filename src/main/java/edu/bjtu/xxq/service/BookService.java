@@ -13,12 +13,16 @@ public class BookService {
     @Autowired
     private BookDao bookDao;
 
-//    public List<Book> loadBookByTag(String tag) {
-//        return bookDao.findBookByTag(tag);
-//    }
+    public List<Book> loadBooksByTag(String tag, int start,int limit) {
+        return bookDao.findBooksByTag(tag,start,limit);
+    }
 
     public Book getOne(int id) {
         return bookDao.findBookById(id);
+    }
+
+    public List<Book> loadBooksById(List<Integer> id){
+        return bookDao.findBooksById(id);
     }
 
 //    public List<Book> loadBookByName(String bookName) {

@@ -14,12 +14,20 @@
     </resultMap>
 
     <select id="findBooksByTag" resultType="edu.bjtu.xxq.model.Book">
-        SELECT book.*
+        SELECT
+        book.book_id bookId,
+        book.book_name bookName,
+        book.book_description bookContent,
+        book.book_author bookAuthor,
+        book.book_publisher bookPublisher,
+        book.book_published bookPublished,
+        book.book_isbn bookISBN,
+        book.book_price bookPrice
         FROM book,
              book_tag
         WHERE book_tag.book_id = book.book_id
-          AND book_tag.tag_name = #{0}
-        LIMIT #{1}, #{2}
+          AND book_tag.tag_name = #{param1}
+        LIMIT #{param2}, #{param3}
         <!-- 多参数根据0,1,2赋值 -->
     </select>
 
