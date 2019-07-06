@@ -13,11 +13,11 @@
         <result column="book_price" jdbcType="DECIMAL" property="bookPrice"/>
     </resultMap>
 
-    <select id="findBooksByTag" resultType="java.lang.Integer">
-        SELECT
-        book_id
-        FROM book_tag
-        WHERE book_tag.tag_name = #{param1}
+    <select id="findBooksByTag" resultMap="bookMap">
+        SELECT book.*
+        FROM book, book_tag
+        WHERE book.book_id = book_tag.book_id
+        AND book_tag.tag_name = #{param1}
         LIMIT #{param2}, #{param3}
         <!-- 多参数根据0,1,2赋值 -->
     </select>
