@@ -62,34 +62,30 @@
     </select>
 
     <insert id="addBook" parameterMap="bookMap">
-        INSERT INTO book(book_id,
-                         book_name,
+        INSERT INTO book(book_name,
                          book_description,
                          book_author,
                          book_publisher,
                          book_published,
                          book_isbn,
                          book_price)
-        VALUES (#{id},
-                #{name},
+        VALUES (#{name},
                 #{description},
                 #{author},
                 #{publisher},
                 #{published},
                 #{ISBN},
                 #{price})
-    </insert>
-
-    <!--
-    <insert id="addBookImage">
-        <selectKey keyColumn="image_id" order="AFTER" resultType="integer">
+        <selectKey keyColumn="book_id" keyProperty="id" order="AFTER" resultType="integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        INSERT INTO image(image_content) VALUES (#{image});
-
-        INSERT INTO book_image(book_id,sequence) VALUES (#{book},1);
     </insert>
-    -->
+
+
+    <insert id="addBookImage">
+        INSERT INTO book_image(book_id,image_id,sequence) SELECT #{bookId},#{imageId},count(*)+1 FROM book_image WHERE book_id = #{bookId};
+    </insert>
+
 
     <insert id="addBookTag">
         INSERT INTO book_tag(book_id,
