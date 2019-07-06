@@ -30,6 +30,12 @@ public class CartService {
     }
 
     public int addCart(Cart cart) {
-        return cartDao.addCart(cart);
+        cartDao.addCart(cart);
+        return cart.getId();
+    }
+
+    public boolean addBook(int cartId, int bookId, int number){
+        cartDao.addBook(cartId,bookId,number);
+        return true;
     }
 }

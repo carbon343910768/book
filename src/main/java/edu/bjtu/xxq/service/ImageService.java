@@ -1,6 +1,7 @@
 package edu.bjtu.xxq.service;
 
 import edu.bjtu.xxq.dao.ImageDao;
+import edu.bjtu.xxq.model.Image;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,5 +13,10 @@ public class ImageService {
 
     public byte[] getImage(int id) {
         return imageDao.findImageById(id);
+    }
+
+    public int addImage(Image image){
+        imageDao.addImage(image);
+        return image.getId();
     }
 }
