@@ -5,16 +5,11 @@ import edu.bjtu.xxq.model.Book;
 import edu.bjtu.xxq.model.ResponseCode;
 import edu.bjtu.xxq.model.ResponseJson;
 import edu.bjtu.xxq.service.BookService;
-import edu.bjtu.xxq.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 @RequestMapping("/book")
@@ -23,8 +18,6 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
-    @Autowired
-    private ImageService imageService;
 
     private Gson gson = new Gson();
 
@@ -75,9 +68,10 @@ public class BookController {
 
     @PostMapping(value = "/image", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String addImage(
+            @RequestParam("bookId") int bookId,
             @RequestParam("image") MultipartFile image
-    ) {
-//        bookService.addBookImage(bookId, image.getBytes());
+    ) throws IOException {
+        bookService.addBookImage(bookId, image.getBytes());
         return gson.toJson(new ResponseJson(ResponseCode.ADD_TAG_SUCCESS));
     }
 

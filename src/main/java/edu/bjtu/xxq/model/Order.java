@@ -4,6 +4,7 @@ public class Order {
 
     private int id;
     private int customer;
+    private String address;
     private String time;
     private String price;
     private boolean state;
@@ -23,6 +24,15 @@ public class Order {
 
     public Order setCustomer(int customer) {
         this.customer = customer;
+        return this;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public Order setAddress(String address) {
+        this.address = address;
         return this;
     }
 

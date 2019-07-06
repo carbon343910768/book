@@ -1,6 +1,7 @@
 package edu.bjtu.xxq.service;
 
 import edu.bjtu.xxq.dao.BookDao;
+import edu.bjtu.xxq.dao.ImageDao;
 import edu.bjtu.xxq.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,8 @@ public class BookService {
 
     @Autowired
     private BookDao bookDao;
+    @Autowired
+    private ImageDao imageDao;
 
     public List<Integer> getBooksByTag(String tag, int start, int limit) {
         return bookDao.findBooksByTag(tag, start, limit);
@@ -39,8 +42,9 @@ public class BookService {
         return 1;
     }
 
-    public Integer addBookImage(int book, byte[] image) {
-        return bookDao.addBookImage(book, image);
+    public void addBookImage(int bookId, byte[] image) {
+        int imageId = imageDao.addImage(image);
+        bookDao.addBookImage(bookId, imageId);
     }
 
     public boolean addTag(int bookId, String bookTag) {

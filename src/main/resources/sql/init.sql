@@ -43,7 +43,8 @@ CREATE TABLE book_image
     sequence int unsigned not null,
     index book_index (image_id asc),
     primary key (book_id, image_id)
-)ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE = MyISAM
+  DEFAULT CHARSET = latin1;
 
 /*==============================================================*/
 /* Tag                                                          */
@@ -69,11 +70,11 @@ CREATE TABLE book_tag
 /*==============================================================*/
 CREATE TABLE customer_cart
 (
-    cart_id int unsigned not null auto_increment,
-    user_id int unsigned not null,
-    address text         not null,
+    cart_id      int unsigned not null auto_increment,
+    user_id      int unsigned not null,
+    cart_address text         not null,
     index user_index (user_id asc),
-    primary key (user_id, address)
+    primary key (cart_id)
 );
 
 CREATE TABLE cart_book
@@ -90,11 +91,12 @@ CREATE TABLE cart_book
 /*==============================================================*/
 CREATE TABLE customer_order
 (
-    order_id    int unsigned not null auto_increment,
-    user_id     int unsigned not null,
-    order_time  datetime,
-    order_price decimal(9, 2),
-    order_state bool,
+    order_id      int unsigned not null auto_increment,
+    user_id       int unsigned not null,
+    order_address text,
+    order_time    datetime,
+    order_price   decimal(9, 2),
+    order_state   bool,
     index user_index (user_id asc),
     index order_index (order_id asc),
     primary key (user_id, order_id)
