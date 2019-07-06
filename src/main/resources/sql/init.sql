@@ -38,12 +38,12 @@ CREATE TABLE image
 
 CREATE TABLE book_image
 (
-    book_id  int unsigned not null auto_increment,
-    image_id int unsigned not null,
+    book_id  int unsigned not null,
+    image_id int unsigned not null  auto_increment,
     sequence int unsigned not null,
-    index book_index (book_id asc),
+    index book_index (image_id asc),
     primary key (book_id, image_id)
-);
+)ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*==============================================================*/
 /* Tag                                                          */

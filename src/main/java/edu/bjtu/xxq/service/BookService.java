@@ -30,6 +30,24 @@ public class BookService {
         return bookDao.findBookImages(id);
     }
 
+    public List<String> getBookTags(int id) {
+        return bookDao.findBookTags(id);
+    }
+
+    public boolean addBook(Book book){
+        bookDao.addBook(book);
+        return true;
+    }
+
+    public Integer addBookImage(int book,byte[] image){
+        return bookDao.addBookImage(book,image);
+    }
+
+    public boolean addTag(int bookId,String bookTag){
+        bookDao.addBookTag(bookId,bookTag);
+        return true;
+    }
+
 //    public List<Book> loadBookByName(String bookName) {
 //        String name = "%" + bookName + "%";
 //        return bookDao.findBookByName(name);

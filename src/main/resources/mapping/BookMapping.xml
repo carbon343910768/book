@@ -13,6 +13,17 @@
         <result column="book_price" jdbcType="DECIMAL" property="bookPrice"/>
     </resultMap>
 
+    <parameterMap id="bookMap" type="edu.bjtu.xxq.model.Book">
+        <parameter  resultMap="bookMap" property="bookId"/>
+        <parameter  resultMap="bookMap" property="bookName"/>
+        <parameter  resultMap="bookMap" property="bookDescription"/>
+        <parameter  resultMap="bookMap" property="bookAuthor"/>
+        <parameter  resultMap="bookMap" property="bookPublisher"/>
+        <parameter  resultMap="bookMap" property="bookPublished"/>
+        <parameter  resultMap="bookMap" property="bookISBN"/>
+        <parameter  resultMap="bookMap" property="bookPrice"/>
+    </parameterMap>
+
     <select id="findBooksByTag" resultType="integer">
         SELECT book.book_id
         FROM book, book_tag
@@ -32,16 +43,42 @@
         SELECT *
         FROM book
         WHERE book_id IN
-        <foreach collection="List" open="(" separator="," close=")" item="id">
+        <foreach collection="list" open="(" separator="," close=")" item="id">
             #{id}
         </foreach>
     </select>
 
     <select id="findBookImages" resultType="integer">
-        SELECT book_id
-        FROM book
+        SELECT image_id
+        FROM book_image
+        WHERE book_id = #{id} ORDER BY sequence
+    </select>
+
+    <select id="findBookTags" resultType="string">
+        SELECT tag_name
+        FROM book_tag
         WHERE book_id = #{id}
     </select>
+
+    <insert id="addBook" parameterMap="bookMap">
+        INSERT INTO book(book_id,book_name,book_description,book_author,book_publisher,book_published,book_isbn,book_price)
+        VALUES (#{bookId},#{bookName},#{bookDescription},#{bookAuthor},#{bookPublisher},#{bookPublished},#{bookISBN},#{bookPrice})
+    </insert>
+    <!--
+    <insert id="addBookImage">
+        <selectKey keyColumn="image_id" order="AFTER" resultType="integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO image(image_content) VALUES (#{image});
+
+        INSERT INTO book_image(book_id,sequence) VALUES (#{book},1);
+    </insert>
+    -->
+    <insert id="addBookTag" >
+        INSERT INTO book_tag(book_id,tag_name) VALUES (#{book},#{tag})
+    </insert>
+
+
 
 
 </mapper>
