@@ -3,6 +3,7 @@ package edu.bjtu.xxq.service;
 import edu.bjtu.xxq.dao.BookDao;
 import edu.bjtu.xxq.dao.ImageDao;
 import edu.bjtu.xxq.model.Book;
+import edu.bjtu.xxq.model.Image;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,17 +39,18 @@ public class BookService {
     }
 
     public int addBook(Book book) {
-        return bookDao.addBook(book);
+        bookDao.addBook(book);
+        return book.getId();
     }
 
     public void addBookImage(int bookId, byte[] image) {
-        int imageId = imageDao.addImage(image);
-        bookDao.addBookImage(bookId, imageId);
+        Image img = new Image().setContent(image);
+        imageDao.addImage(img);
+        bookDao.addBookImage(bookId, img.getId());
     }
 
-    public boolean addTag(int bookId, String bookTag) {
+    public void addTag(int bookId, String bookTag) {
         bookDao.addBookTag(bookId, bookTag);
-        return true;
     }
 
 //    public List<Book> loadBookByName(String bookName) {

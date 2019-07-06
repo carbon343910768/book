@@ -18,8 +18,7 @@ public interface BookDao {
 
     List<String> findBookTags(int id);
 
-    // 返回book生成的id
-    int addBook(Book book);
+    void addBook(Book book);
 
     void addBookImage(int bookId, int imageId);
 
