@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderService {
@@ -25,15 +26,12 @@ public class OrderService {
         return orderDao.findOrdersById(idList);
     }
 
-    public List<Book> getAllBooksInOrder(int id ){return orderDao.findAllBooksInOrder(id);}
+    public List<Integer> getAllBooksInOrder(int id ){return orderDao.findAllBooksInOrder(id);}
 
     public Integer bookNumber(int orderId,int bookId){return orderDao.findBookNumberInOrder(orderId,bookId);}
 
-    public boolean addOrder(Order order){
-        orderDao.addOrder(order);
-        for(Book book:order.getBook()){
-            orderDao.addOrderBook(order.getOrderId(),book.getBookId(),1);
-        }
+    public boolean addOrder(Order order, Map<Integer,Integer> books){
+        orderDao.addOrder(order,books);
         return true;
     }
 

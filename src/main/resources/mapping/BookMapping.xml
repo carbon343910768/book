@@ -13,8 +13,8 @@
         <result column="book_price" jdbcType="DECIMAL" property="bookPrice"/>
     </resultMap>
 
-    <select id="findBooksByTag" resultMap="bookMap">
-        SELECT book.*
+    <select id="findBooksByTag" resultType="integer">
+        SELECT book.book_id
         FROM book, book_tag
         WHERE book.book_id = book_tag.book_id
         AND book_tag.tag_name = #{param1}
@@ -22,13 +22,13 @@
         <!-- 多参数根据0,1,2赋值 -->
     </select>
 
-    <select id="findBookById" resultType="edu.bjtu.xxq.model.Book">
+    <select id="findBookById" resultMap="bookMap">
         SELECT *
         FROM book
         WHERE book_id = #{id}
     </select>
 
-    <select id="findBooksById" resultType="edu.bjtu.xxq.model.Book">
+    <select id="findBooksById" resultMap="bookMap">
         SELECT *
         FROM book
         WHERE book_id IN
@@ -37,16 +37,11 @@
         </foreach>
     </select>
 
-    <select id="findBookImages" resultType="edu.bjtu.xxq.model.Book">
-        SELECT *
+    <select id="findBookImages" resultType="integer">
+        SELECT book_id
         FROM book
         WHERE book_id = #{id}
     </select>
 
-    <select id="findBookByName" resultType="edu.bjtu.xxq.model.Book">
-        SELECT *
-        FROM book
-        WHERE book_name LIKE #{name}
-    </select>
 
 </mapper>

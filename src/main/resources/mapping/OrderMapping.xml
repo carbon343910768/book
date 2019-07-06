@@ -8,6 +8,7 @@
         <result column="order_time" jdbcType="DATE" property="orderTime"/>
         <result column="order_state" jdbcType="BOOLEAN" property="orderState"/>
         <result column="order_price" jdbcType="DECIMAL" property="orderPrice"/>
+        <!--
         <collection property="book" ofType="edu.bjtu.xxq.model.Book">
             <result column="book_id" jdbcType="INTEGER" property="bookId"/>
             <result column="book_name" jdbcType="VARCHAR" property="bookName"/>
@@ -18,22 +19,19 @@
             <result column="book_isbn" jdbcType="VARCHAR" property="bookISBN"/>
             <result column="book_price" jdbcType="DECIMAL" property="bookPrice"/>
         </collection>
+        -->
     </resultMap>
     <select id="findOrderById" resultMap="BaseResultMap">
         SELECT
-        co.*,
-        b.*
-        FROM book AS b JOIN order_book AS ob ON ob.book_id = b.book_id
-        JOIN customer_order AS co ON co.order_id = ob.order_id
+        co.*
+        FROM  customer_order AS co
         WHERE  co.order_id = #{id}
     </select>
 
     <select id="findOrdersById" resultMap="BaseResultMap" parameterType="java.util.List">
         SELECT
-        co.*,
-        b.*
-        FROM book AS b JOIN order_book AS ob ON ob.book_id = b.book_id
-        JOIN customer_order AS co ON co.order_id = ob.order_id
+        co.*
+        FROM customer_order AS co
         WHERE  co.order_id IN (
         <foreach collection="list" item="id" index="index" separator =",">
             #{id}
@@ -42,19 +40,12 @@
     </select>
 
 
-    <select id="findAllBooksInOrder" resultType="edu.bjtu.xxq.model.Book">
-        SELECT book.book_id bookId,
-        book.book_name bookName,
-        book.book_description bookContent,
-        book.book_author bookAuthor,
-        book.book_publisher bookPublisher,
-        book.book_published bookPublished,
-        book.book_isbn bookISBN,
-        book.book_price bookPrice
+    <select id="findAllBooksInOrder" resultType="integer">
+        SELECT book.book_id
         FROM book,order_book WHERE order_book.book_id = book.book_id AND order_book.order_id = #{id}
     </select>
 
-    <select id="findBookNumberInOrder" resultType="int">
+    <select id="findBookNumberInOrder" resultType="integer">
         SELECT order_book.book_number
         FROM order_book
         WHERE order_book.book_id = #{bookId}
@@ -62,14 +53,14 @@
     </select>
 
     <insert id="addOrder" >
-        INSERT INTO customer_order (order_id, user_id, order_time, order_state)
-        VALUES (#{orderId}, #{orderOwner}, #{orderTime}, #{orderState})
+        INSERT INTO customer_order (order_id, user_id, order_time, order_price, order_state)
+        VALUES (#{order.orderId}, #{order.orderOwner}, #{order.orderTime}, #{order.orderPrice}, #{order.orderState});
+        INSERT INTO order_book (order_id, book_id, book_number)
+        VALUES
+        <foreach collection="books" index="key" item="value" open="" separator="," close=" ">
+            (#{order.orderId},#{key},#{value})
+        </foreach>
+
     </insert>
-
-    <insert id="addOrderBook" >
-        INSERT INTO order_book (order_id, book_id, book_number) VALUES (#{orderId}, #{bookId}, #{bookNumber} )
-    </insert>
-
-
 
 </mapper>
