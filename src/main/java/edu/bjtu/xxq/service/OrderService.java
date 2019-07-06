@@ -12,24 +12,26 @@ import java.util.Map;
 public class OrderService {
     @Autowired
     private OrderDao orderDao;
-    /*
-        返回订单书籍
-    */
+
     public Order getOne(int id) {
         return orderDao.findOrderById(id);
     }
 
-    public List<Order> getMany(List<Integer> idList){
+    public List<Order> getMany(List<Integer> idList) {
         return orderDao.findOrdersById(idList);
     }
 
-    public List<Integer> getAllBooksInOrder(int id ){return orderDao.findAllBooksInOrder(id);}
+    public List<Integer> getAllBooksInOrder(int id) {
+        return orderDao.findAllBooksInOrder(id);
+    }
 
-    public Integer getBookNumber(int orderId,int bookId){return orderDao.findBookNumberInOrder(orderId,bookId);}
+    public Integer getBookNumber(int orderId, int bookId) {
+        return orderDao.findBookNumberInOrder(orderId, bookId);
+    }
 
-    public int addOrder(Order order, Map<Integer,Integer> books){
-        orderDao.addOrder(order);
-        orderDao.addBook(order.getId(),books);
-        return order.getId();
+    public int addOrder(Order order, Map<Integer, Integer> books) {
+        int id = orderDao.addOrder(order);
+        orderDao.addBook(id, books);
+        return id;
     }
 }
