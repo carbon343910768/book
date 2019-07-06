@@ -34,17 +34,17 @@ public class BookService {
         return bookDao.findBookTags(id);
     }
 
-    public boolean addBook(Book book){
+    public int addBook(Book book) {
         bookDao.addBook(book);
-        return true;
+        return 1;
     }
 
-    public Integer addBookImage(int book,byte[] image){
-        return bookDao.addBookImage(book,image);
+    public Integer addBookImage(int book, byte[] image) {
+        return bookDao.addBookImage(book, image);
     }
 
-    public boolean addTag(int bookId,String bookTag){
-        bookDao.addBookTag(bookId,bookTag);
+    public boolean addTag(int bookId, String bookTag) {
+        bookDao.addBookTag(bookId, bookTag);
         return true;
     }
 

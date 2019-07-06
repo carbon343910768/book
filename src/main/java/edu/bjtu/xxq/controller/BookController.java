@@ -1,6 +1,9 @@
 package edu.bjtu.xxq.controller;
 
 import com.google.gson.Gson;
+import edu.bjtu.xxq.model.Book;
+import edu.bjtu.xxq.model.ResponseCode;
+import edu.bjtu.xxq.model.ResponseJson;
 import edu.bjtu.xxq.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -40,7 +43,15 @@ public class BookController {
             @RequestParam("ISBN") String ISBN,
             @RequestParam("price") String price
     ) {
-        return null;
+        int id = bookService.addBook(new Book()
+                .setName(name)
+                .setDescription(description)
+                .setAuthor(author)
+                .setPublisher(publisher)
+                .setPublished(published)
+                .setISBN(ISBN)
+                .setPrice(price));
+        return gson.toJson(new ResponseJson(ResponseCode.ADD_BOOK_SUCCESS, id));
     }
 //    /*
 //    返回指定tag的图书
