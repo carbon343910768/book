@@ -14,7 +14,7 @@ public class BookService {
     @Autowired
     private BookDao bookDao;
 
-    public List<Integer> loadBooksByTag(String tag, int start, int limit) {
+    public List<Integer> getBooksByTag(String tag, int start, int limit) {
         return bookDao.findBooksByTag(tag, start, limit);
     }
 

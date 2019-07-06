@@ -17,7 +17,8 @@ public interface CartDao {
 
     Integer findBookNumberInCart(int cartId, int bookId);
 
-    void addCart(Cart cart);
+    // 返回cart生成的id
+    int addCart(Cart cart);
 
     void addBook(int cartId, int bookId, int number);
 

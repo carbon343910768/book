@@ -18,6 +18,7 @@ public interface BookDao {
 
     List<String> findBookTags(int id);
 
+    // 返回book生成的id
     void addBook(Book book);
 
     // 返回image生成的id，图片顺序sequence也是+1

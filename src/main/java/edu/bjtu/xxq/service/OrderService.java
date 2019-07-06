@@ -28,7 +28,7 @@ public class OrderService {
 
     public List<Integer> getAllBooksInOrder(int id ){return orderDao.findAllBooksInOrder(id);}
 
-    public Integer bookNumber(int orderId,int bookId){return orderDao.findBookNumberInOrder(orderId,bookId);}
+    public Integer getBookNumber(int orderId,int bookId){return orderDao.findBookNumberInOrder(orderId,bookId);}
 
     public boolean addOrder(Order order, Map<Integer,Integer> books){
         orderDao.addOrder(order,books);
