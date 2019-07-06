@@ -7,84 +7,84 @@ import java.util.List;
  */
 public class Book {
 
-    private int bookId;
-    private String bookName;
-    private String bookDescription;
-    private String bookAuthor;
-    private String bookPublisher;
-    private String bookPublished;
-    private String bookISBN;
-    private String bookPrice;
+    private int id;
+    private String name;
+    private String description;
+    private String author;
+    private String publisher;
+    private String published;
+    private String ISBN;
+    private String price;
 
-    public int getBookId() {
-        return bookId;
+    public int getId() {
+        return id;
     }
 
-    public Book setBookId(int bookId) {
-        this.bookId = bookId;
+    public Book setId(int id) {
+        this.id = id;
         return this;
     }
 
-    public String getBookName() {
-        return bookName;
+    public String getName() {
+        return name;
     }
 
-    public Book setBookName(String bookName) {
-        this.bookName = bookName;
+    public Book setName(String name) {
+        this.name = name;
         return this;
     }
 
-    public String getBookDescription() {
-        return bookDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public Book setBookDescription(String bookDescription) {
-        this.bookDescription = bookDescription;
+    public Book setDescription(String description) {
+        this.description = description;
         return this;
     }
 
-    public String getBookAuthor() {
-        return bookAuthor;
+    public String getAuthor() {
+        return author;
     }
 
-    public Book setBookAuthor(String bookAuthor) {
-        this.bookAuthor = bookAuthor;
+    public Book setAuthor(String author) {
+        this.author = author;
         return this;
     }
 
-    public String getBookPublisher() {
-        return bookPublisher;
+    public String getPublisher() {
+        return publisher;
     }
 
-    public Book setBookPublisher(String bookPublisher) {
-        this.bookPublisher = bookPublisher;
+    public Book setPublisher(String publisher) {
+        this.publisher = publisher;
         return this;
     }
 
-    public String getBookPublished() {
-        return bookPublished;
+    public String getPublished() {
+        return published;
     }
 
-    public Book setBookPublished(String bookPublished) {
-        this.bookPublished = bookPublished;
+    public Book setPublished(String published) {
+        this.published = published;
         return this;
     }
 
-    public String getBookISBN() {
-        return bookISBN;
+    public String getISBN() {
+        return ISBN;
     }
 
-    public Book setBookISBN(String bookISBN) {
-        this.bookISBN = bookISBN;
+    public Book setISBN(String ISBN) {
+        this.ISBN = ISBN;
         return this;
     }
 
-    public String getBookPrice() {
-        return bookPrice;
+    public String getPrice() {
+        return price;
     }
 
-    public Book setBookPrice(String bookPrice) {
-        this.bookPrice = bookPrice;
+    public Book setPrice(String price) {
+        this.price = price;
         return this;
     }
 }

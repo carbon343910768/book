@@ -3,25 +3,25 @@
 <mapper namespace="edu.bjtu.xxq.dao.BookDao">
 
     <resultMap id="bookMap" type="edu.bjtu.xxq.model.Book">
-        <result column="book_id" jdbcType="INTEGER" property="bookId"/>
-        <result column="book_name" jdbcType="VARCHAR" property="bookName"/>
-        <result column="book_description" jdbcType="VARCHAR" property="bookDescription"/>
-        <result column="book_author" jdbcType="VARCHAR" property="bookAuthor"/>
-        <result column="book_publisher" jdbcType="VARCHAR" property="bookPublisher"/>
-        <result column="book_published" jdbcType="DATE" property="bookPublished"/>
-        <result column="book_isbn" jdbcType="VARCHAR" property="bookISBN"/>
-        <result column="book_price" jdbcType="DECIMAL" property="bookPrice"/>
+        <result column="book_id" jdbcType="INTEGER" property="id"/>
+        <result column="book_name" jdbcType="VARCHAR" property="name"/>
+        <result column="book_description" jdbcType="VARCHAR" property="description"/>
+        <result column="book_author" jdbcType="VARCHAR" property="author"/>
+        <result column="book_publisher" jdbcType="VARCHAR" property="publisher"/>
+        <result column="book_published" jdbcType="DATE" property="published"/>
+        <result column="book_isbn" jdbcType="VARCHAR" property="ISBN"/>
+        <result column="book_price" jdbcType="DECIMAL" property="price"/>
     </resultMap>
 
     <parameterMap id="bookMap" type="edu.bjtu.xxq.model.Book">
-        <parameter  resultMap="bookMap" property="bookId"/>
-        <parameter  resultMap="bookMap" property="bookName"/>
-        <parameter  resultMap="bookMap" property="bookDescription"/>
-        <parameter  resultMap="bookMap" property="bookAuthor"/>
-        <parameter  resultMap="bookMap" property="bookPublisher"/>
-        <parameter  resultMap="bookMap" property="bookPublished"/>
-        <parameter  resultMap="bookMap" property="bookISBN"/>
-        <parameter  resultMap="bookMap" property="bookPrice"/>
+        <parameter  resultMap="bookMap" property="id"/>
+        <parameter  resultMap="bookMap" property="name"/>
+        <parameter  resultMap="bookMap" property="description"/>
+        <parameter  resultMap="bookMap" property="author"/>
+        <parameter  resultMap="bookMap" property="publisher"/>
+        <parameter  resultMap="bookMap" property="published"/>
+        <parameter  resultMap="bookMap" property="ISBN"/>
+        <parameter  resultMap="bookMap" property="price"/>
     </parameterMap>
 
     <select id="findBooksByTag" resultType="integer">

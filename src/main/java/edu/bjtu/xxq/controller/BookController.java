@@ -4,10 +4,7 @@ import com.google.gson.Gson;
 import edu.bjtu.xxq.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/book")
 @RestController
@@ -33,6 +30,18 @@ public class BookController {
         return gson.toJson(bookService.getBookImages(id));
     }
 
+    @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String post(
+            @RequestParam("name") String name,
+            @RequestParam("description") String description,
+            @RequestParam("author") String author,
+            @RequestParam("publisher") String publisher,
+            @RequestParam("published") String published,
+            @RequestParam("ISBN") String ISBN,
+            @RequestParam("price") String price
+    ) {
+        return null;
+    }
 //    /*
 //    返回指定tag的图书
 //    参数：String tag 图书的标签，path
