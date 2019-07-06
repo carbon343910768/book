@@ -30,7 +30,7 @@ public class BookController {
 
     @GetMapping(value = "/image", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String image(@RequestParam("id") int id) {
-        return gson.toJson(bookService.getBookPhotos(id));
+        return gson.toJson(bookService.getBookImages(id));
     }
 
 //    /*

@@ -26,7 +26,7 @@ public class BookService {
         return bookDao.findBooksById(Arrays.asList(id));
     }
 
-    public List<Integer> getBookPhotos(int id) {
+    public List<Integer> getBookImages(int id) {
         return bookDao.findBookImages(id);
     }
 

@@ -5,7 +5,7 @@
     <resultMap id="bookMap" type="edu.bjtu.xxq.model.Book">
         <result column="book_id" jdbcType="INTEGER" property="bookId"/>
         <result column="book_name" jdbcType="VARCHAR" property="bookName"/>
-        <result column="book_description" jdbcType="VARCHAR" property="bookContent"/>
+        <result column="book_description" jdbcType="VARCHAR" property="bookDescription"/>
         <result column="book_author" jdbcType="VARCHAR" property="bookAuthor"/>
         <result column="book_publisher" jdbcType="VARCHAR" property="bookPublisher"/>
         <result column="book_published" jdbcType="DATE" property="bookPublished"/>

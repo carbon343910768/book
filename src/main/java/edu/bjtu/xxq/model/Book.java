@@ -9,12 +9,12 @@ public class Book {
 
     private int bookId;
     private String bookName;
-    private String bookContent;
+    private String bookDescription;
     private String bookAuthor;
     private String bookPublisher;
     private String bookPublished;
     private String bookISBN;
-    private float bookPrice;
+    private String bookPrice;
 
     public int getBookId() {
         return bookId;
@@ -34,12 +34,12 @@ public class Book {
         return this;
     }
 
-    public String getBookContent() {
-        return bookContent;
+    public String getBookDescription() {
+        return bookDescription;
     }
 
-    public Book setBookContent(String bookContent) {
-        this.bookContent = bookContent;
+    public Book setBookDescription(String bookDescription) {
+        this.bookDescription = bookDescription;
         return this;
     }
 
@@ -79,11 +79,11 @@ public class Book {
         return this;
     }
 
-    public float getBookPrice() {
+    public String getBookPrice() {
         return bookPrice;
     }
 
-    public Book setBookPrice(float bookPrice) {
+    public Book setBookPrice(String bookPrice) {
         this.bookPrice = bookPrice;
         return this;
     }
