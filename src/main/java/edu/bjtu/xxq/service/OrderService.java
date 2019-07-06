@@ -18,7 +18,28 @@ public class OrderService {
         返回订单书籍
     */
     public Order getOne(int id) {
-        return orderDao.findOrderById(id);
+        return orderDao.findOrderById(id).setBook(getAllBooksInOrder(id));
+    }
+
+    public List<Order> getMany(List<Integer> idList){
+        List<Order> orderList = new ArrayList<Order>();
+        for (Integer id:idList){
+            orderList.add(getOne(id));
+        }
+        return orderList;
+        //return orderDao.findOrdersById(id);
+    }
+
+    public List<Book> getAllBooksInOrder(int id ){return orderDao.findAllBooksInOrder(id);}
+
+    public Integer bookNumber(int orderId,int bookId){return orderDao.findBookNumberInOrder(orderId,bookId);}
+
+    public boolean addOrder(Order order){
+        orderDao.addOrder(order);
+        for(Book book:order.getBook()){
+            orderDao.addOrderBook(order.getOrderId(),book.getBookId(),book.getBookNum());
+        }
+        return true;
     }
 
     /*
