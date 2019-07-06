@@ -14,7 +14,7 @@
     </select>
 
     <select id="findById" resultType="edu.bjtu.xxq.model.User">
-        SELECT * FROM user WHERE id = #{id}
+        SELECT * FROM user WHERE user_id = #{id}
     </select>
 
     <insert id="addUser">

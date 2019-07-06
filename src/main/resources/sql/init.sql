@@ -39,7 +39,7 @@ CREATE TABLE image
 CREATE TABLE book_image
 (
     book_id  int unsigned not null,
-    image_id int unsigned not null  auto_increment,
+    image_id int unsigned not null,
     sequence int unsigned not null,
     index book_index (image_id asc),
     primary key (book_id, image_id)

@@ -13,6 +13,8 @@ public enum ResponseCode {
 
     ADD_BOOK_SUCCESS("add book success"),
     ADD_BOOK_FAIL("add book fail"),
+    ADD_TAG_SUCCESS("add tag success"),
+    ADD_TAG_FAIL("add tag fail"),
 
     ADD_TO_CART_SUCCESS("add to cart success"),
     ADD_TO_CART_FAIL("add to cart fail"),

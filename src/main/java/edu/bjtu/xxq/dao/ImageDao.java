@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 public interface ImageDao {
 
     byte[] findImageById(int id);
+
+    // 生成image自增id
+    int addImage(byte[] content);
 }

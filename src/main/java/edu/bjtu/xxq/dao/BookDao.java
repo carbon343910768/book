@@ -19,10 +19,9 @@ public interface BookDao {
     List<String> findBookTags(int id);
 
     // 返回book生成的id
-    void addBook(Book book);
+    int addBook(Book book);
 
-    // 返回image生成的id，图片顺序sequence也是+1
-    int addBookImage(int book, byte[] image);
+    void addBookImage(int bookId, int imageId);
 
     void addBookTag(int book, String tag);
 

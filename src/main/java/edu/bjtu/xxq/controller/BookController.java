@@ -5,9 +5,17 @@ import edu.bjtu.xxq.model.Book;
 import edu.bjtu.xxq.model.ResponseCode;
 import edu.bjtu.xxq.model.ResponseJson;
 import edu.bjtu.xxq.service.BookService;
+import edu.bjtu.xxq.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 @RequestMapping("/book")
 @RestController
@@ -15,6 +23,8 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+    @Autowired
+    private ImageService imageService;
 
     private Gson gson = new Gson();
 
@@ -34,7 +44,7 @@ public class BookController {
     }
 
     @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String post(
+    public String add(
             @RequestParam("name") String name,
             @RequestParam("description") String description,
             @RequestParam("author") String author,
@@ -54,41 +64,21 @@ public class BookController {
         return gson.toJson(new ResponseJson(ResponseCode.ADD_BOOK_SUCCESS, id));
     }
 
+    @PostMapping(value = "/tag", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String addTag(
+            @RequestParam("bookId") int bookId,
+            @RequestParam("tag") String tag
+    ) {
+        bookService.addTag(bookId, tag);
+        return gson.toJson(new ResponseJson(ResponseCode.ADD_TAG_SUCCESS));
+    }
 
-//    /*
-//    返回指定tag的图书
-//    参数：String tag 图书的标签，path
-//    返回：{"message":"register illegal password",
-//    "data":[
-//    {"bookId":"110001","bookName":"煞笔","bookAuthor":"吃撑","bookPublisher":"阿萨德","bookPublished":"1111-01-01","bookPages":123,"bookISBN":"123123","bookPrice":14}
-//    ]
-//    }
-//     */
-//    @RequestMapping(value = "/book/tag/{tag}",method = RequestMethod.GET)
-//    public String loadBookByTag(@PathVariable("tag") String tag){
-//        return gson.toJson(new ResponseJson(ResponseCode.REGISTER_ILLEGAL_PASSWORD,bookService.loadBookByTag(tag)));
-//    }
-//    /*
-//    根据name返回图书，没有推荐算法，就是个模糊搜索
-//    结果：
-//    {
-//    "message":"register illegal password",
-//    "data":[
-//        {
-//            "bookId":"110003",
-//            "bookName":"煞",
-//            "bookAuthor":"阿萨德",
-//            "bookPublisher":"阿萨德",
-//            "bookPublished":"1111-01-01",
-//            "bookPages":11,
-//            "bookISBN":"12",
-//            "bookPrice":1
-//        },
-//    ]
-//}
-//     */
-//    @RequestMapping(value = "/book/name/{name}",method = RequestMethod.GET)
-//    public String loadBookByName(@PathVariable("name") String name){
-//        return gson.toJson(new ResponseJson(ResponseCode.REGISTER_ILLEGAL_PASSWORD,bookService.loadBookByName(name)));
-//    }
+    @PostMapping(value = "/image", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String addImage(
+            @RequestParam("image") MultipartFile image
+    ) {
+//        bookService.addBookImage(bookId, image.getBytes());
+        return gson.toJson(new ResponseJson(ResponseCode.ADD_TAG_SUCCESS));
+    }
+
 }
