@@ -26,7 +26,9 @@ public enum ResponseCode {
 
     LOAD_ORDER_SUCCESS("load success"),
     LOAD_ORDER_WARN("load fail"),
-    ADD_ORDER_SUCCESS("add order success");
+    ADD_ORDER_SUCCESS("add order success"),
+
+    LOAD_USER_SUCCESS("load user success");
 
     private String message;
 
