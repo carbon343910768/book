@@ -25,7 +25,7 @@
         )
     </select>
 
-    <select id="findCartByUser" resultType="integer">
+    <select id="findCartsByUser" resultType="integer">
         SELECT ca.cart_id
         FROM customer_cart AS ca
         WHERE ca.user_id = #{id}
