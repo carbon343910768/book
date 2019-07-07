@@ -20,11 +20,11 @@ public interface BookDao {
 
     List<Integer> findBooksByTag(String tag, int start, int limit);
 
-    List<Integer> findBooksByOneTerm(String name);
+    List<Integer> search1(String name);
 
-    List<HashMap<Integer,Integer>> findBooksByTwoTerm(String name, String author);
+    List<Integer> search2(String name, String author);
 
-    List<HashMap<Integer,Integer>> findBooksByThreeTerm(String name, String author, String publisher);
+    List<Integer> search3(String name, String author, String publisher);
 
     void addBook(Book book);
 

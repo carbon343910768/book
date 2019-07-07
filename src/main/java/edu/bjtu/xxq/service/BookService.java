@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,8 +39,8 @@ public class BookService {
         return bookDao.findBookTags(id);
     }
 
-    public List<HashMap<Integer,Integer>> getBookByManyTags(String name, String author, String publisher){
-        return bookDao.findBooksByThreeTerm(name,author,publisher);
+    public List<Integer> getBookByManyTags(String name, String author, String publisher) {
+        return bookDao.search3(name, author, publisher);
     }
 
     public int addBook(Book book) {
@@ -58,10 +57,5 @@ public class BookService {
     public void addTag(int bookId, String bookTag) {
         bookDao.addBookTag(bookId, bookTag);
     }
-
-//    public List<Book> loadBookByName(String bookName) {
-//        String name = "%" + bookName + "%";
-//        return bookDao.findBookByName(name);
-//    }
 
 }
