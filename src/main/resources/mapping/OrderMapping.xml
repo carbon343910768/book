@@ -29,11 +29,9 @@
 
 
     <select id="findAllBooksInOrder" resultType="integer">
-        SELECT book.book_id
-        FROM book,
-             order_book
-        WHERE order_book.book_id = book.book_id
-          AND order_book.order_id = #{id}
+        SELECT book_id
+        FROM order_book
+        WHERE order_book.order_id = #{id}
     </select>
 
     <select id="findBookNumberInOrder" resultType="integer">

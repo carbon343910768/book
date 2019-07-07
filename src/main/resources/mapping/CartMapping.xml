@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.bjtu.xxq.dao.CartDao">
+
+    <resultMap id="orderMap" type="edu.bjtu.xxq.model.Cart">
+        <result column="cart_id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="owner"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+    </resultMap>
+
+    <select id="findCartById" resultMap="orderMap">
+        SELECT ca.*
+        FROM customer_cart AS ca
+        WHERE ca.cart_id = #{id}
+    </select>
+
+    <select id="findCartsById" resultMap="orderMap" parameterType="java.util.List">
+        SELECT
+        ca.*
+        FROM customer_cart AS ca
+        WHERE ca.cart_id IN (
+        <foreach collection="list" item="id" index="index" separator=",">
+            #{id}
+        </foreach>
+        )
+    </select>
+
+
+    <select id="findAllBooksInCart" resultType="integer">
+        SELECT book_id
+        FROM cart_book
+        WHERE cart_book.cart_id = #{id}
+    </select>
+
+    <select id="findBookNumberInCart" resultType="integer">
+        SELECT cart_book.book_number
+        FROM cart_book
+        WHERE cart_book.book_id = #{bookId}
+          AND cart_book.cart_id = #{cartId}
+    </select>
+
+    <insert id="addCart" >
+        <selectKey keyColumn="cart_id" keyProperty="id" order="AFTER" resultType="integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO
+        customer_cart (
+        user_id,
+        address
+        )
+        VALUES (
+        #{owner},
+        #{address}
+        );
+
+    </insert>
+    <insert id="addBook">
+        INSERT INTO cart_book (cart_id,
+        book_id,
+        book_number)
+        VALUES(#{cartId},#{bookId},#{number})
+    </insert>
+
+</mapper>
