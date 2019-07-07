@@ -83,11 +83,23 @@ public class AdminController {
     public String queryOrder(
             @RequestParam(value = "orderId", required = false) Integer orderId,
             @RequestParam(value = "userId", required = false) Integer userId,
-            @RequestParam(value = "date", required = false) String date,
             @RequestParam(value = "from", required = false) String from,
             @RequestParam(value = "to", required = false) String to,
-            @RequestParam(value = "page") Integer page
+            @RequestParam(value = "page", required = false) Integer page
     ) {
+        if (orderId != null)
+            return gson.toJson(orderService.getOne(orderId));
+        if (page == null) page = 0;
+        else page--;
+        if (userId != null)
+            return gson.toJson(orderService.getByUser(userId, page));
+        if (from != null) {
+            if (to != null)
+                return gson.toJson(orderService.getBetweenDate(from, to, page));
+            return gson.toJson(orderService.getByDate(from, page));
+        }
+        if (to != null)
+            return gson.toJson(orderService.getByDate(to, page));
         return "";
     }
 
