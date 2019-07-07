@@ -39,8 +39,8 @@ public class CartController {
 
     @PostMapping(value = "/book", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String addBook(
-            @RequestParam("cartId") String cartId,
-            @RequestParam("bookId") String bookId,
+            @RequestParam("cartId") int cartId,
+            @RequestParam("bookId") int bookId,
             @RequestParam("number") int number
     ) {
         return gson.toJson(new ResponseJson(ResponseCode.ADD_TO_CART_SUCCESS));

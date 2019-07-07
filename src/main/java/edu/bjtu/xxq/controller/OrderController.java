@@ -1,13 +1,12 @@
 package edu.bjtu.xxq.controller;
 
 import com.google.gson.Gson;
+import edu.bjtu.xxq.model.ResponseCode;
+import edu.bjtu.xxq.model.ResponseJson;
 import edu.bjtu.xxq.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/order")
 @RestController
@@ -28,9 +27,20 @@ public class OrderController {
         return gson.toJson(orderService.getList(id));
     }
 
-    @GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String queryByUser(@RequestParam("id") int id) {
-        return gson.toJson(orderService.getListByUser(id));
+    @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String all(@RequestParam("page") int page) {
+        return "";
+    }
+
+    @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String add(
+            @RequestParam("bookId") Integer[] bookId,
+            @RequestParam("number") Integer[] number,
+            @RequestParam(value = "cartId", required = false) int cartId,
+            @RequestParam(value = "address", required = false) String address,
+            @RequestParam(value = "phone", required = false) String phone
+    ) {
+        return gson.toJson(new ResponseJson(ResponseCode.ADD_TO_CART_SUCCESS));
     }
 //    /*
 //    添加订单
