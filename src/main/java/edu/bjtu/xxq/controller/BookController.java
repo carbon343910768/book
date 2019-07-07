@@ -36,43 +36,4 @@ public class BookController {
         return gson.toJson(bookService.getBookImages(id));
     }
 
-    @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String add(
-            @RequestParam("name") String name,
-            @RequestParam("description") String description,
-            @RequestParam("author") String author,
-            @RequestParam("publisher") String publisher,
-            @RequestParam("published") String published,
-            @RequestParam("ISBN") String ISBN,
-            @RequestParam("price") String price
-    ) {
-        int id = bookService.addBook(new Book()
-                .setName(name)
-                .setDescription(description)
-                .setAuthor(author)
-                .setPublisher(publisher)
-                .setPublished(published)
-                .setISBN(ISBN)
-                .setPrice(price));
-        return gson.toJson(new ResponseJson(ResponseCode.ADD_BOOK_SUCCESS, id));
-    }
-
-    @PostMapping(value = "/tag", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String addTag(
-            @RequestParam("bookId") int bookId,
-            @RequestParam("tag") String tag
-    ) {
-        bookService.addTag(bookId, tag);
-        return gson.toJson(new ResponseJson(ResponseCode.ADD_TAG_SUCCESS));
-    }
-
-    @PostMapping(value = "/image", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String addImage(
-            @RequestParam("bookId") int bookId,
-            @RequestParam("image") MultipartFile image
-    ) throws IOException {
-        bookService.addBookImage(bookId, image.getBytes());
-        return gson.toJson(new ResponseJson(ResponseCode.ADD_TAG_SUCCESS));
-    }
-
 }
