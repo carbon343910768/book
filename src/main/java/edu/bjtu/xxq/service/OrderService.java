@@ -23,7 +23,7 @@ public class OrderService {
         return orderDao.findOrdersById(Arrays.asList(id));
     }
 
-    public List<Order> getListByUser(int id) {
+    public List<Integer> getListByUser(int id) {
         return orderDao.findOrdersByUser(id);
     }
 
