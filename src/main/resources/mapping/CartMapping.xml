@@ -25,6 +25,12 @@
         )
     </select>
 
+    <select id="findCartByUser" resultType="integer">
+        SELECT ca.cart_id
+        FROM customer_cart AS ca
+        WHERE ca.user_id = #{id}
+    </select>
+
 
     <select id="findAllBooksInCart" resultType="integer">
         SELECT book_id

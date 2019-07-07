@@ -27,11 +27,11 @@
         )
     </select>
 
-    <select id="findOrdersByUser" resultMap="orderMap">
-        SELECT co.*
-        FROM customer_order AS co
-        WHERE co.user_id = #{id}
-        ORDER BY co.order_time;
+    <select id="findOrdersByUser" resultType="integer">
+        SELECT order_id
+        FROM customer_order
+        WHERE user_id = #{id}
+        ORDER BY order_time;
     </select>
 
 
