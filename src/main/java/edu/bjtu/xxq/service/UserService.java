@@ -7,6 +7,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Service
 public class UserService implements UserDetailsService {
 
@@ -18,13 +21,23 @@ public class UserService implements UserDetailsService {
         this.encoder = encoder;
     }
 
+    private static final int PAGE_SIZE = 10;
+
     @Override
     public User loadUserByUsername(String username) {
         return userDao.findByUsername(username);
     }
 
-    public User loadUserById(int id) {
+    public User getUserById(int id) {
         return userDao.findById(id);
+    }
+
+    public List<User> getUsersById(Integer[] id) {
+        return userDao.findUsersById(Arrays.asList(id));
+    }
+
+    public List<Integer> getAllUsers(int page) {
+        return userDao.findAll(page * PAGE_SIZE, PAGE_SIZE);
     }
 
     public boolean addUser(String username, String password) {

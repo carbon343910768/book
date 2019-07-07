@@ -36,8 +36,8 @@ public class AdminController {
         if (StringUtils.hasLength(username))
             return gson.toJson(userService.loadUserByUsername(username));
         if (page != null)
-            return gson.toJson(userService);
-        return gson.toJson(userService);
+            return gson.toJson(userService.getAllUsers(page - 1));
+        return gson.toJson(userService.getAllUsers(0));
     }
 
     @PostMapping(value = "/book", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
