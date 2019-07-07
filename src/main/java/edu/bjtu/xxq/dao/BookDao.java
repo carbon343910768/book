@@ -3,7 +3,9 @@ package edu.bjtu.xxq.dao;
 import edu.bjtu.xxq.model.Book;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface BookDao {
@@ -17,6 +19,8 @@ public interface BookDao {
     List<String> findBookTags(int id);
 
     List<Integer> findBooksByTag(String tag, int start, int limit);
+
+    List<HashMap<Integer,Integer>> findBooksByManyTag(String name, String author, String publisher);
 
     void addBook(Book book);
 
