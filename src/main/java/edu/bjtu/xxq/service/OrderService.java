@@ -34,6 +34,6 @@ public class OrderService {
     public int addOrder(Order order, Map<Integer, Integer> books) {
         int id = orderDao.addOrder(order);
         orderDao.addBook(id, books);
-        return id;
+        return order.getId();
     }
 }

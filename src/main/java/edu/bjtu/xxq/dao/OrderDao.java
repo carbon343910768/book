@@ -1,6 +1,5 @@
 package edu.bjtu.xxq.dao;
 
-import edu.bjtu.xxq.model.Book;
 import edu.bjtu.xxq.model.Order;
 import org.springframework.stereotype.Repository;
 
