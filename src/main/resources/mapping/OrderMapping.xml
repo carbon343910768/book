@@ -31,7 +31,24 @@
         SELECT order_id
         FROM customer_order
         WHERE user_id = #{id}
-        ORDER BY order_time;
+        ORDER BY order_time
+        LIMIT #{start}, #{limit};
+    </select>
+
+    <select id="findOrdersByDate" resultType="integer">
+        SELECT order_id
+        FROM customer_order
+        WHERE DATE_FORMAT(order_time,'%Y-%m-%d' )= #{date}
+        ORDER BY order_time
+        LIMIT #{start}, #{limit};
+    </select>
+
+    <select id="findOrdersBetweenDate" resultType="integer">
+        SELECT order_id
+        FROM customer_order
+        WHERE DATE_FORMAT(order_time,'%Y-%m-%d' ) BETWEEN #{from} AND #{to}
+        ORDER BY order_time
+        LIMIT #{start}, #{limit};
     </select>
 
 

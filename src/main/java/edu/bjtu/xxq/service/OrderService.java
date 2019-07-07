@@ -23,8 +23,16 @@ public class OrderService {
         return orderDao.findOrdersById(Arrays.asList(id));
     }
 
-    public List<Integer> getListByUser(int id) {
-        return orderDao.findOrdersByUser(id);
+    public List<Integer> getListByUser(int id,int start,int limit) {
+        return orderDao.findOrdersByUser(id,start,limit);
+    }
+
+    public List<Integer> getListByDate(String date,int start,int limit) {
+        return orderDao.findOrdersByDate(date,start,limit);
+    }
+
+    public List<Integer> getListBetweenDate(String from,String to,int start,int limit) {
+        return orderDao.findOrdersBetweenDate(from,to,start,limit);
     }
 
     public List<Integer> getAllBooksInOrder(int id) {
