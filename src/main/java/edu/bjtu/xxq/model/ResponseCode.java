@@ -16,6 +16,8 @@ public enum ResponseCode {
     ADD_TAG_SUCCESS("add tag success"),
     ADD_TAG_FAIL("add tag fail"),
 
+    ADD_CART_SUCCESS("add cart success"),
+    ADD_CART_FAIL("add cart fail"),
     ADD_TO_CART_SUCCESS("add to cart success"),
     ADD_TO_CART_FAIL("add to cart fail"),
 

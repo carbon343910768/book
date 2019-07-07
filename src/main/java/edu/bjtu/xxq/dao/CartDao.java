@@ -13,6 +13,8 @@ public interface CartDao {
 
     List<Cart> findCartsById(List<Integer> id);
 
+    List<Integer> findCartsByUser(int id);
+
     List<Integer> findAllBooksInCart(int id);
 
     Integer findBookNumberInCart(int cartId, int bookId);
