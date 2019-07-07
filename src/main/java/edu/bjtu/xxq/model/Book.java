@@ -87,4 +87,15 @@ public class Book {
         this.price = price;
         return this;
     }
+
+    private List<String> tags;
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public Book setTags(List<String> tags) {
+        this.tags = tags;
+        return this;
+    }
 }
