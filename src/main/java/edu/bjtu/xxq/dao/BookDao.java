@@ -20,7 +20,7 @@ public interface BookDao {
 
     List<Integer> findBooksByTag(String tag, int start, int limit);
 
-    List<HashMap<Integer,Integer>> findBooksByManyTag(String name, String author, String publisher);
+    List<Map<Integer,Integer>> findBooksByManyTag(String name, String author, String publisher);
 
     void addBook(Book book);
 

@@ -40,7 +40,7 @@ public class BookService {
         return bookDao.findBookTags(id);
     }
 
-    public List<HashMap<Integer,Integer>> getBookByManyTags(String name, String author, String publisher){
+    public List<Map<Integer,Integer>> getBookByManyTags(String name, String author, String publisher){
         return bookDao.findBooksByManyTag(name,author,publisher);
     }
 
