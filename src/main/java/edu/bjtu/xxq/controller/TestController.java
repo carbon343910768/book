@@ -57,7 +57,11 @@ public class TestController {
        /* Integer[] id = {1,3,2};
         return gson.toJson(orderService.getList(id));*/
 
-        return gson.toJson(orderService.getListByUser(1));
+      //  return gson.toJson(orderService.getListByUser(1,1,3));
+
+        //return gson.toJson(orderService.getListByDate("1111-01-01",0,5));
+
+        return gson.toJson(orderService.getListBetweenDate("1111-01-01","1111-01-02",0,5));
 
 //        return gson.toJson(orderService.getAllBooksInOrder(1));
 

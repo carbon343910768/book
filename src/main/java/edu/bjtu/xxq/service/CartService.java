@@ -1,5 +1,6 @@
 package edu.bjtu.xxq.service;
 
+import com.sun.imageio.plugins.common.I18N;
 import edu.bjtu.xxq.dao.CartDao;
 import edu.bjtu.xxq.model.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class CartService {
     public List<Cart> getList(List<Integer> id) {
         return cartDao.findCartsById(id);
     }
+
+    public List<Integer> getCartsByUser(int id){return cartDao.findCartsByUser(id);}
 
     public List<Integer> getAllBooksInCart(int id) {
         return cartDao.findAllBooksInCart(id);
