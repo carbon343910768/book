@@ -2,6 +2,9 @@ package edu.bjtu.xxq.model;
 
 public enum ResponseCode {
 
+    SUCCESS("success"),
+    FAIL("fail"),
+
     LOGIN_SUCCESS("login success"),
     LOGIN_FAIL("login fail"),
 
@@ -22,7 +25,7 @@ public enum ResponseCode {
     ADD_TO_CART_FAIL("add to cart fail"),
 
     ORDER_SUCCESS("order success"),
-    ORDER_FAIL( "order fail"),
+    ORDER_FAIL("order fail"),
 
     LOAD_ALL_BOOK_SUCCESS("load all book success"),
 

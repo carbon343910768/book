@@ -27,11 +27,6 @@ public class OrderController {
         return gson.toJson(orderService.getList(id));
     }
 
-    @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String all(@RequestParam("page") int page) {
-        return "";
-    }
-
     @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String add(
             @RequestParam("bookId") Integer[] bookId,

@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequestMapping("/customer")
 @RestController
 public class UserController {
 
@@ -59,5 +61,15 @@ public class UserController {
             if (!Character.isLetterOrDigit(c))
                 return false;
         return true;
+    }
+
+    @PostMapping(value = "/detail", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String detail(
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "phone", required = false) String phone,
+            @RequestParam(value = "email", required = false) String email
+    ) {
+        userService.change(name, phone, email);
+        return gson.toJson(new ResponseJson(ResponseCode.SUCCESS));
     }
 }

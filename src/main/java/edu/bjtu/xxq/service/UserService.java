@@ -53,4 +53,11 @@ public class UserService implements UserDetailsService {
         userDao.addUser(user);
         return true;
     }
+
+    public void change(String name, String phone, String email) {
+        if (name == null) name = "";
+        if (phone == null) phone = "";
+        if (email == null) email = "";
+        userDao.changeDetail(name, phone, email);
+    }
 }
