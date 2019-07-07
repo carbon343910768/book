@@ -4,8 +4,17 @@ CREATE TABLE user
     username varchar(255) not null,
     password varchar(255) not null,
     role     varchar(45)  not null,
-    primary key (user_id),
-    unique index username_unique (username asc)
+    unique index username_unique (username asc),
+    primary key (user_id)
+);
+
+CREATE TABLE customer
+(
+    user_id int unsigned not null,
+    name    text,
+    phone   text,
+    email   text,
+    primary key (user_id)
 );
 
 /*==============================================================*/
@@ -73,6 +82,7 @@ CREATE TABLE customer_cart
     cart_id      int unsigned not null auto_increment,
     user_id      int unsigned not null,
     cart_address text         not null,
+    cart_phone   text         not null,
     index user_index (user_id asc),
     primary key (cart_id)
 );

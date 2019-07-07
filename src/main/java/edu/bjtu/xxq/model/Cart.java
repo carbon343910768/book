@@ -4,6 +4,7 @@ public class Cart {
     private int id;
     private int owner;
     private String address;
+    private String phone;
 
     public int getId() {
         return id;
@@ -29,6 +30,15 @@ public class Cart {
 
     public Cart setAddress(String address) {
         this.address = address;
+        return this;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public Cart setPhone(String phone) {
+        this.phone = phone;
         return this;
     }
 }

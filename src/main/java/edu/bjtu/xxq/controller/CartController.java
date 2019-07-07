@@ -20,16 +20,30 @@ public class CartController {
     private final Gson gson = new Gson();
 
     @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String add(@RequestParam("address") String address) {
+    public String add(
+            @RequestParam("address") String address,
+            @RequestParam("phone") String phone
+    ) {
         if (!StringUtils.isEmpty(address))
             return gson.toJson(new ResponseJson(ResponseCode.ADD_CART_FAIL));
         Integer userId = UserUtil.getUserId();
         if (userId == null)
             return gson.toJson(new ResponseJson(ResponseCode.ADD_CART_FAIL));
-        cartService.addCart(new Cart()
+        int id = cartService.addCart(new Cart()
                 .setOwner(userId)
-                .setAddress(address));
-        return gson.toJson(new ResponseJson(ResponseCode.ADD_CART_SUCCESS));
+                .setAddress(address)
+                .setPhone(phone)
+        );
+        return gson.toJson(new ResponseJson(ResponseCode.ADD_CART_SUCCESS, id));
+    }
+
+    @PostMapping(value = "/book", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String addBook(
+            @RequestParam("cartId") String cartId,
+            @RequestParam("bookId") String bookId,
+            @RequestParam("number") int number
+    ) {
+        return gson.toJson(new ResponseJson(ResponseCode.ADD_TO_CART_SUCCESS));
     }
 //   /*
 //   返回购物车内容

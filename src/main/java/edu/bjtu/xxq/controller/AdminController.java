@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/admin")
 @RestController
 public class AdminController {
-    //dingdan yonghu
 
     @Autowired
     private UserService userService;
@@ -29,9 +28,14 @@ public class AdminController {
 
     @GetMapping(value = "/order", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String queryOrder(
-            @RequestParam(value = "id", required = false) Integer id
-    ) {
-        return gson.toJson(orderService.getOne(id));
+            @RequestParam(value = "orderId", required = false) Integer orderId,
+            @RequestParam(value = "userId", required = false) Integer userId,
+            @RequestParam(value = "date", required = false) String date,
+            @RequestParam(value = "from", required = false) String from,
+            @RequestParam(value = "to", required = false) String to,
+            @RequestParam(value = "page") Integer page
+            ) {
+        return "";
     }
 
     @GetMapping(value = "/orders", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -39,21 +43,6 @@ public class AdminController {
             @RequestParam(value = "id", required = false) Integer[] id
     ) {
         return gson.toJson(orderService.getList(id));
-    }
-
-
-    @GetMapping(value = "/user/id", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String queryUserById(
-            @RequestParam(value = "id", required = false) Integer id
-    ) {
-        return gson.toJson(userService.loadUserById(id));
-    }
-
-    @GetMapping(value = "/user/name", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String queryUserByName(
-            @RequestParam(value = "username", required = false) String username
-    ) {
-        return gson.toJson(userService.loadUserByUsername(username));
     }
 
 }

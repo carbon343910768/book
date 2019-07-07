@@ -29,7 +29,7 @@ public class OrderController {
     }
 
     @GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String queryByUser(@RequestParam("user") int id) {
+    public String queryByUser(@RequestParam("id") int id) {
         return gson.toJson(orderService.getListByUser(id));
     }
 //    /*

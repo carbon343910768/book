@@ -15,6 +15,10 @@ public interface OrderDao {
 
     List<Order> findOrdersByUser(int id);
 
+    List<Integer> findOrdersByDate(String date, int start, int limit);
+
+    List<Integer> findOrdersBetweenDate(String from, String to, int start, int limit);
+
     List<Integer> findAllBooksInOrder(int id);
 
     Integer findBookNumberInOrder(int orderId, int bookId);

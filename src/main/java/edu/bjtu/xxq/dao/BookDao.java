@@ -8,8 +8,6 @@ import java.util.List;
 @Repository
 public interface BookDao {
 
-    List<Integer> findBooksByTag(String tag, int start, int limit);
-
     Book findBookById(int id);
 
     List<Book> findBooksById(List<Integer> id);
@@ -17,6 +15,8 @@ public interface BookDao {
     List<Integer> findBookImages(int id);
 
     List<String> findBookTags(int id);
+
+    List<Integer> findBooksByTag(String tag, int start, int limit);
 
     void addBook(Book book);
 

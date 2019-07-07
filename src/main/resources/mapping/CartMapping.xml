@@ -5,7 +5,8 @@
     <resultMap id="orderMap" type="edu.bjtu.xxq.model.Cart">
         <result column="cart_id" jdbcType="INTEGER" property="id"/>
         <result column="user_id" jdbcType="INTEGER" property="owner"/>
-        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="cart_address" jdbcType="VARCHAR" property="address"/>
+        <result column="cart_phone" jdbcType="VARCHAR" property="phone"/>
     </resultMap>
 
     <select id="findCartById" resultMap="orderMap">
