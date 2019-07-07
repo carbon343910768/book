@@ -165,6 +165,25 @@ CREATE TABLE store_book
 );
 
 /*==============================================================*/
+/* Recommend                                                    */
+/*==============================================================*/
+CREATE TABLE user_recommend
+(
+    user_id int unsigned not null,
+    book_id int unsigned not null,
+    value   float,
+    index user_index (user_id, value)
+);
+
+CREATE TABLE book_recommend
+(
+    book_1 int unsigned not null,
+    book_2 int unsigned not null,
+    value  float,
+    index book_index (book_1, value)
+);
+
+/*==============================================================*/
 /* Log                                                          */
 /*==============================================================*/
 CREATE TABLE log
@@ -178,11 +197,18 @@ CREATE TABLE log
     user_id int unsigned
 );
 
-
 CREATE TABLE weighted_record
 (
     user_id int unsigned not null,
     book_id int unsigned not null,
     weight  int
 );
+
+CREATE TABLE transfer_record
+(
+    user_id int unsigned not null,
+    book_id int unsigned not null,
+    action  int
+);
+
 
