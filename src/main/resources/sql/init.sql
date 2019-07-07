@@ -8,7 +8,7 @@ CREATE TABLE user
     primary key (user_id)
 );
 
-CREATE TABLE customer
+CREATE TABLE customer_detail
 (
     user_id int unsigned not null,
     name    text,
