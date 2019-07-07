@@ -23,7 +23,7 @@ public class BookService {
     }
 
     public Book getOne(int id) {
-        return bookDao.findBookById(id);
+        return bookDao.findBookById(id).setTags(bookDao.findBookTags(id));
     }
 
     public List<Book> getList(Integer[] id) {
