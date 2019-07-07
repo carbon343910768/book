@@ -2,9 +2,6 @@ package edu.bjtu.xxq.controller;
 
 import com.google.gson.Gson;
 import edu.bjtu.xxq.model.Book;
-import edu.bjtu.xxq.model.Cart;
-import edu.bjtu.xxq.model.Image;
-import edu.bjtu.xxq.model.Order;
 import edu.bjtu.xxq.service.BookService;
 import edu.bjtu.xxq.service.CartService;
 import edu.bjtu.xxq.service.ImageService;
@@ -12,11 +9,6 @@ import edu.bjtu.xxq.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/test")
@@ -57,11 +49,11 @@ public class TestController {
        /* Integer[] id = {1,3,2};
         return gson.toJson(orderService.getList(id));*/
 
-      //  return gson.toJson(orderService.getListByUser(1,1,3));
+      //  return gson.toJson(orderService.getByUser(1,1,3));
 
         //return gson.toJson(orderService.getListByDate("1111-01-01",0,5));
 
-        return gson.toJson(orderService.getListBetweenDate("1111-01-01","1111-01-02",0,5));
+        return gson.toJson(orderService.getBetweenDate("1111-01-01","1111-01-02",0,5));
 
 //        return gson.toJson(orderService.getAllBooksInOrder(1));
 

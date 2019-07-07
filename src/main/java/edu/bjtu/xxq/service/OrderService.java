@@ -25,15 +25,15 @@ public class OrderService {
 
     private static final int PAGE_SIZE = 10;
 
-    public List<Integer> getListByUser(int id, int page) {
+    public List<Integer> getByUser(int id, int page) {
         return orderDao.findOrdersByUser(id, page * PAGE_SIZE, PAGE_SIZE);
     }
 
-    public List<Integer> getListByDate(String date, int page) {
+    public List<Integer> getByDate(String date, int page) {
         return orderDao.findOrdersByDate(date, page * PAGE_SIZE, PAGE_SIZE);
     }
 
-    public List<Integer> getListBetweenDate(String from, String to, int page) {
+    public List<Integer> getBetweenDate(String from, String to, int page) {
         return orderDao.findOrdersBetweenDate(from, to, page * PAGE_SIZE, PAGE_SIZE);
     }
 
