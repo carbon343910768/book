@@ -27,6 +27,13 @@
         )
     </select>
 
+    <select id="findOrdersByUser" resultMap="orderMap">
+        SELECT co.*
+        FROM customer_order AS co
+        WHERE co.user_id = #{id}
+        ORDER BY co.order_time;
+    </select>
+
 
     <select id="findAllBooksInOrder" resultType="integer">
         SELECT book_id

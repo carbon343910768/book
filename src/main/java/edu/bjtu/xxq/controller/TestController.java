@@ -54,12 +54,14 @@ public class TestController {
 
         //return gson.toJson(orderService.getOne(1));
 
-/*        Integer[] id = {1,2};
+       /* Integer[] id = {1,3,2};
         return gson.toJson(orderService.getList(id));*/
+
+        return gson.toJson(orderService.getListByUser(1));
 
 //        return gson.toJson(orderService.getAllBooksInOrder(1));
 
-        return gson.toJson(orderService.getBookNumber(1,1));
+//        return gson.toJson(orderService.getBookNumber(1,1));
     }
 
     @RequestMapping("/cart")

@@ -31,14 +31,14 @@ public class AdminController {
     public String queryOrder(
             @RequestParam(value = "id", required = false) Integer id
     ) {
-        return gson.toJson(new ResponseJson(ResponseCode.LOAD_ORDER_SUCCESS,orderService.getOne(id)));
+        return gson.toJson(orderService.getOne(id));
     }
 
     @GetMapping(value = "/orders", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String queryOrders(
             @RequestParam(value = "id", required = false) Integer[] id
     ) {
-        return gson.toJson(new ResponseJson(ResponseCode.LOAD_ORDER_SUCCESS,orderService.getList(id)));
+        return gson.toJson(orderService.getList(id));
     }
 
 
@@ -46,14 +46,14 @@ public class AdminController {
     public String queryUserById(
             @RequestParam(value = "id", required = false) Integer id
     ) {
-        return gson.toJson(new ResponseJson(ResponseCode.LOAD_USER_SUCCESS,userService.loadUserById(id)));
+        return gson.toJson(userService.loadUserById(id));
     }
 
     @GetMapping(value = "/user/name", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String queryUserByName(
             @RequestParam(value = "username", required = false) String username
     ) {
-        return gson.toJson(new ResponseJson(ResponseCode.LOAD_USER_SUCCESS,userService.loadUserByUsername(username)));
+        return gson.toJson(userService.loadUserByUsername(username));
     }
 
 }

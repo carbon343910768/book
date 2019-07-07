@@ -23,6 +23,10 @@ public class OrderService {
         return orderDao.findOrdersById(Arrays.asList(id));
     }
 
+    public List<Order> getListByUser(int id) {
+        return orderDao.findOrdersByUser(id);
+    }
+
     public List<Integer> getAllBooksInOrder(int id) {
         return orderDao.findAllBooksInOrder(id);
     }

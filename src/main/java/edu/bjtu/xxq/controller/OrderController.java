@@ -27,6 +27,11 @@ public class OrderController {
     public String query(@RequestParam("id") Integer[] id) {
         return gson.toJson(orderService.getList(id));
     }
+
+    @GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String queryByUser(@RequestParam("user") int id) {
+        return gson.toJson(orderService.getListByUser(id));
+    }
 //    /*
 //    添加订单
 //    请求格式：
