@@ -19,9 +19,7 @@ public class StoreController {
     private OrderService orderService;
     @Autowired
     private BookService bookService;
-    /*
-    我的商店
-     */
+
     @RequestMapping("/store")
     public String myStore(@RequestParam("username") String username){
         Gson gson = new Gson();

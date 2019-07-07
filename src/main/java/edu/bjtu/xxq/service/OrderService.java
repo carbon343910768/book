@@ -5,11 +5,13 @@ import edu.bjtu.xxq.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 @Service
 public class OrderService {
+
     @Autowired
     private OrderDao orderDao;
 
@@ -17,8 +19,8 @@ public class OrderService {
         return orderDao.findOrderById(id);
     }
 
-    public List<Order> getMany(List<Integer> idList) {
-        return orderDao.findOrdersById(idList);
+    public List<Order> getList(Integer[] id) {
+        return orderDao.findOrdersById(Arrays.asList(id));
     }
 
     public List<Integer> getAllBooksInOrder(int id) {

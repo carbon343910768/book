@@ -1,13 +1,15 @@
 package edu.bjtu.xxq.controller;
 
 import com.google.gson.Gson;
-import edu.bjtu.xxq.model.Order;
-import edu.bjtu.xxq.model.ResponseCode;
-import edu.bjtu.xxq.model.ResponseJson;
 import edu.bjtu.xxq.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+@RequestMapping("/order")
 @RestController
 public class OrderController {
 
@@ -16,9 +18,14 @@ public class OrderController {
 
     private Gson gson = new Gson();
 
-    @GetMapping(value = "/order", produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/one", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String query(@RequestParam("id") int id) {
         return gson.toJson(orderService.getOne(id));
+    }
+
+    @GetMapping(value = "/batch", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String query(@RequestParam("id") Integer[] id) {
+        return gson.toJson(orderService.getList(id));
     }
 //    /*
 //    添加订单

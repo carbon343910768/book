@@ -11,6 +11,6 @@ public class ImageService {
     private ImageDao imageDao;
 
     public byte[] getImage(int id) {
-        return imageDao.findImageById(id);
+        return imageDao.findImageById(id).getContent();
     }
 }
