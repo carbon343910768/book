@@ -63,7 +63,7 @@ public class TestController {
 
         //return gson.toJson(orderService.getListBetweenDate("1111-01-01","1111-01-02",0));
 
-        return gson.toJson(bookService.getBookByManyTags("asd","asd","asd"));
+        return gson.toJson(bookService.getBookByManyTags("asd",null,"asd"));
 
 //        return gson.toJson(orderService.getAllBooksInOrder(1));
 
