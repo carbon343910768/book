@@ -61,6 +61,18 @@
         WHERE book_id = #{id}
     </select>
 
+    <select id="findBooksByManyTag" resultType="java.util.HashMap">
+        SELECT book_id,
+               (IF(LOCATE(#{name},book.book_name),1,0) +
+                IF(LOCATE(#{author},book.book_author) , 9, 0) +
+                IF(LOCATE(#{publisher},book.book_publisher) , 9, 0)) AS weight
+        FROM book
+        WHERE book_name LIKE  CONCAT('%',#{name},'%')
+          AND book_author LIKE CONCAT('%',#{author},'%')
+          AND book_publisher LIKE CONCAT('%',#{publisher},'%');
+        <!-- 多参数根据0,1,2赋值 -->
+    </select>
+
     <insert id="addBook" parameterMap="bookMap">
         INSERT INTO book(book_name,
                          book_description,
