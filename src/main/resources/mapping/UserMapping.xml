@@ -9,12 +9,26 @@
         <result column="role" jdbcType="VARCHAR" property="role"/>
     </resultMap>
 
+    <select id="findAll" resultType="integer">
+        SELECT user_id FROM user LIMIT #{start},#{limit};
+    </select>
+
     <select id="findByUsername" resultType="edu.bjtu.xxq.model.User">
         SELECT * FROM user WHERE username = #{username}
     </select>
 
     <select id="findById" resultType="edu.bjtu.xxq.model.User">
         SELECT * FROM user WHERE user_id = #{id}
+    </select>
+
+    <select id="findUsersById" resultMap="BaseResultMap" parameterType="java.util.List">
+        SELECT.*
+        FROM user
+        WHERE user_id IN (
+        <foreach collection="list" item="id" index="index" separator=",">
+            #{id}
+        </foreach>
+        )
     </select>
 
     <insert id="addUser">

@@ -14,7 +14,8 @@ public interface UserDao {
 
     User findById(int id);
 
-    List<User> findById(List<Integer> id);
+    //你这个和上面的重名了
+    List<User> findUsersById(List<Integer> id);
 
     void addUser(User user);
 }
