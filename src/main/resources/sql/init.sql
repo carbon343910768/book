@@ -52,8 +52,7 @@ CREATE TABLE book_image
     sequence int unsigned not null,
     index book_index (image_id asc),
     primary key (book_id, image_id)
-) ENGINE = MyISAM
-  DEFAULT CHARSET = latin1;
+);
 
 /*==============================================================*/
 /* Tag                                                          */
