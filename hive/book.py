@@ -1,28 +1,50 @@
 # run after server started
 
-import os
-
 import requests
 import xlrd
 
-data = xlrd.open_workbook('get_books.xlsx')
-table = data.sheet_by_index(0)
-head = table.row_values(0)
+book = 'book.xlsx'
+book_image = 'book_image.xlsx'
+book_tag = 'book_tag.xlsx'
 
-files = []
+book = xlrd.open_workbook(book).sheet_by_index(0)
+book_image = xlrd.open_workbook(book_image).sheet_by_index(0)
+book_tag = xlrd.open_workbook(book_tag).sheet_by_index(0)
 
-for main, subdir, file_name_list in os.walk('images'):
-    for filename in file_name_list:
-        files.append(os.path.join(main, filename))
+attr = book.row_values(0)
+attr_max = book.ncols
+image_count = 1
+image_max = book_image.nrows
+tag_count = 1
+tag_max = book_tag.nrows
 
-for i in range(1, table.nrows):
+post = True
+
+for i in range(1, book.nrows):
     params = {}
-    row = table.row_values(i)
-    for j in range(0, table.ncols):
-        params[head[j]] = row[j]
-    book = requests.post("http://localhost:8080/admin/book", params).json()
+    row = book.row_values(i)
+    for j in range(0, attr_max):
+        params[attr[j]] = row[j]
     print(params)
-    for filename in files:
-        if params['name'] in filename:
-            file = {'image': (filename, open(filename, 'rb'), 'image/jpg')}
-            requests.post("http://localhost:8080/admin/book/image", data={'bookId': book['data']}, files=file)
+    if post:
+        book_id = requests.post("http://localhost:8080/admin/book", data=params).json()['data']
+
+    while image_count < image_max:
+        image = book_image.row_values(image_count)
+        if image[0] != params['name']:
+            break
+        print(image)
+        image = requests.get(image[1])
+        file = {'image': ('image', image.content, 'image/jpg')}
+        if post:
+            requests.post("http://localhost:8080/admin/book/image", data={'bookId': book_id}, files=file)
+        image_count += 1
+    while tag_count < tag_max:
+        tag = book_tag.row_values(tag_count)
+        if tag[0] != params['name']:
+            break
+        print(tag)
+        tag = tag[1]
+        if post:
+            requests.post("http://localhost:8080/admin/book/image", data={'bookId': book_id, 'tag': tag})
+        tag_count += 1
