@@ -1,6 +1,7 @@
 package edu.bjtu.xxq.controller;
 
 import com.google.gson.Gson;
+import edu.bjtu.xxq.model.Cart;
 import edu.bjtu.xxq.model.Order;
 import edu.bjtu.xxq.model.ResponseCode;
 import edu.bjtu.xxq.model.ResponseJson;
@@ -57,10 +58,14 @@ public class OrderController {
         Map<Integer, Integer> bookMap
                 = IntStream.range(0, bookId.length).boxed()
                 .collect(Collectors.toMap(j -> bookId[j], j -> number[j]));
-        if (cartId != null)
+        if (cartId != null) {
             cartService.updateCart(cartId, bookMap);
+            Cart cart = cartService.getOne(cartId);
+            address = cart.getAddress();
+            phone = cart.getPhone();
+        }
         Integer userId = UserUtil.getUserId();
-        if (userId == null)
+        if (userId == null || address == null || phone == null)
             return gson.toJson(new ResponseJson(ResponseCode.ORDER_FAIL));
         Order order = new Order()
                 .setAddress(address)
