@@ -1,6 +1,7 @@
 package edu.bjtu.xxq.controller;
 
 import com.google.gson.Gson;
+import com.sun.xml.internal.bind.v2.TODO;
 import edu.bjtu.xxq.model.Cart;
 import edu.bjtu.xxq.model.ResponseCode;
 import edu.bjtu.xxq.model.ResponseJson;
@@ -24,8 +25,10 @@ public class CartController {
             @RequestParam("address") String address,
             @RequestParam("phone") String phone
     ) {
-        if (!StringUtils.isEmpty(address))
+        //if (!StringUtils.isEmpty(address))不为空就报错还行
+        if (StringUtils.isEmpty(address))
             return gson.toJson(new ResponseJson(ResponseCode.ADD_CART_FAIL));
+        //TODO Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NumberFormatException: null] with root cause
         Integer userId = UserUtil.getUserId();
         if (userId == null)
             return gson.toJson(new ResponseJson(ResponseCode.ADD_CART_FAIL));
@@ -43,6 +46,8 @@ public class CartController {
             @RequestParam("bookId") int bookId,
             @RequestParam("number") int number
     ) {
+        //TODO 原本此处只有返回
+        cartService.addBook(cartId,bookId,number);
         return gson.toJson(new ResponseJson(ResponseCode.ADD_TO_CART_SUCCESS));
     }
 //   /*

@@ -10,6 +10,16 @@ public class Order {
     private String price;
     private boolean state;
 
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public Order setPhone(String phone) {
+        this.phone = phone;
+        return this;
+    }
+
     public int getId() {
         return id;
     }

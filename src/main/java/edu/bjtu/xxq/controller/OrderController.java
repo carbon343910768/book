@@ -1,12 +1,18 @@
 package edu.bjtu.xxq.controller;
 
 import com.google.gson.Gson;
+import edu.bjtu.xxq.model.Order;
 import edu.bjtu.xxq.model.ResponseCode;
 import edu.bjtu.xxq.model.ResponseJson;
 import edu.bjtu.xxq.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.InputStream;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @RequestMapping("/order")
 @RestController
@@ -35,6 +41,10 @@ public class OrderController {
             @RequestParam(value = "address", required = false) String address,
             @RequestParam(value = "phone", required = false) String phone
     ) {
+        //TODO 这里参数设计的很奇怪，先按你的参数实现了一下
+        Map<Integer,Integer> bookMap = IntStream.range(0, bookId.length).boxed().collect(Collectors.toMap(j -> bookId[j], j -> number[j]));
+        Order order = new Order().setAddress(address).setPhone(phone);
+        orderService.addOrder(order,bookMap);
         return gson.toJson(new ResponseJson(ResponseCode.ADD_TO_CART_SUCCESS));
     }
 //    /*

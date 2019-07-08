@@ -5,6 +5,8 @@
     <resultMap id="orderMap" type="edu.bjtu.xxq.model.Order">
         <result column="order_id" jdbcType="INTEGER" property="id"/>
         <result column="user_id" jdbcType="INTEGER" property="customer"/>
+        <result column="order_address" jdbcType="VARCHAR" property="address"/>
+        <result column="order_phone" jdbcType="VARCHAR" property="phone"/>
         <result column="order_time" jdbcType="DATE" property="time"/>
         <result column="order_price" jdbcType="DECIMAL" property="price"/>
         <result column="order_state" jdbcType="BOOLEAN" property="state"/>
@@ -72,12 +74,16 @@
         INSERT INTO
         customer_order (
         user_id,
+        order_address,
+        order_phone,
         order_time,
         order_price,
         order_state
         )
         VALUES (
         #{customer},
+        #{address},
+        #{phone},
         #{time},
         #{price},
         #{state}
