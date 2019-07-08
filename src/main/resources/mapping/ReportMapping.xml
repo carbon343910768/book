@@ -16,11 +16,9 @@
     </select>
 
     <select id="findBetweenDate" resultType="reportMap">
-        SELECT book2
-        FROM book_recommend
-        WHERE book1 = #{id}
-        ORDER BY book_recommend.value desc
-        LIMIT #{count}
+        SELECT *
+        FROM report
+        WHERE DATE_FORMAT(reporrt_date,'%Y-%m-%d' ) BETWEEN #{from} AND #{to}
     </select>
 
 </mapper>
