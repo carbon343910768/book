@@ -40,7 +40,7 @@
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
+                <![endif]-->
 
     </head>
     <body>
@@ -49,7 +49,7 @@
         <div id="loader"></div>
 
         <div class="body">
-        <!-- TOPBAR -->
+      <!-- TOPBAR -->
     <div class="top_bar">
         <div class="container">
             <div class="row">
@@ -146,19 +146,19 @@
                                     </form>
                                 </div>
                             </div>
-                         <!-- Navmenu -->
-                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <!-- Navmenu -->
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="dropdown">
-                                    <a href="index.html" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-expanded="false">Home</a>
-                                    <ul class="dropdown-menu submenu" role="menu">
-                                    
-                                    </ul>
-                        </li>
-               
-                    </ul>
-                </div>
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li class="dropdown">
+                                                <a href="index.html" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-expanded="false">Home</a>
+                                                <ul class="dropdown-menu submenu" role="menu">
+                                                
+                                                </ul>
+                                    </li>
+                           
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </nav>
@@ -182,45 +182,43 @@
                     <div class="row">
                         <div class="col-md-9 col-sm-8">
                             <!-- HTML -->
-                            <div id="accordion">
-                                <h4 class="accordion-toggle"><span>01</span>账户</h4>
-                                <div class="accordion-content default">                                    
-                                    <div class="details-box">
-                                        <ul>
-                                            <li>                                                
-                                                <a href="account-information.html"> <i class="fa fa-edit"></i> 编辑您的账户信息</a>
+                            <div id="account-id">
+                                <h4 class="account-title"><span class="fa fa-chevron-right"></span>修改你的个人信息</h4>                                                                  
+                                <div class="account-form">
+                                    <form id="shipping-zip-form">                                           
+                                        <ul class="form-list row">
+                                            <li class="col-md-6 col-sm-6">
+                                                <label >姓 <em>*</em></label>
+                                                <input required type="text" class="input-text">
                                             </li>
-                                            <li>                                               
-                                                <a href="cng-pw.html"> <i class="fa fa-edit"></i>修改密码</a>
+                                            <li class="col-md-6 col-sm-6">
+                                                <label >名 <em>*</em></label>
+                                                <input required type="text" class="input-text">
                                             </li>
-                                            <li>                                              
-                                                <a href="address-book.html"> <i class="fa fa-edit"></i> 修改图书运送地址</a>
+                                            <li class="col-md-6 col-sm-6">
+                                                <label >邮箱 <em>*</em></label>
+                                                <input required type="text" class="input-text">
+                                            </li>                                                
+                                            <li class="col-md-6 col-sm-6">
+                                                <label >电话号码 <em>*</em></label>
+                                                <input required type="text" class="input-text">
                                             </li>
+                                         
                                         </ul>
-                                    </div>                                    
-                                </div>
-                                <div class="clearfix"></div>
-                                <h4 class="accordion-toggle"><span>02</span>订单与历史记录</h4>
-                                <div class="accordion-content">                                    
-                                    <div class="details-box">
-                                        <ul>
-                                            <li>
-                                                <a href="order-history.html"> <i class="fa fa-edit"></i> 查看订单历史</a>
-                                            </li>
-                                          
-                                        </ul>
-                                    </div>                                    
-                                </div>
-                                                    
+                                        <div class="buttons-set">
+                                            <button class="btn-black" type="submit"><span><span>更新</span></span></button>
+                                        </div>
+                                    </form>
+                                </div>                                
                             </div>
                         </div>
 
                         <div class="col-md-3 col-sm-4 checkout-steps">
-                            <h6>我的账户</h6>
+                            <h6>账户信息</h6>
                             <div>
                                 <ul class="account-list">
-                                    <li><a href="account-information.html"> <i class="fa fa-edit"></i> 账户信息 </a></li>
-                                    <li class="active"><a href="my-account.html"> <i class="fa fa-edit"></i> 我的账户</a></li>                                        
+                                    <li class="active"><a href="account-information.html"> <i class="fa fa-edit"></i> 账户信息 </a></li>
+                                    <li><a href="my-account.html"> <i class="fa fa-edit"></i> 我的账户</a></li>                                        
                                     <li><a href="cng-pw.html"> <i class="fa fa-edit"></i> 修改密码</a></li>
                                     <li><a href="address-book.html"> <i class="fa fa-edit"></i> 运送地址</a></li>
                                     <li><a href="order-history.html"> <i class="fa fa-edit"></i> 订单历史</a></li>
@@ -231,81 +229,79 @@
                 </div>
             </div>
             <div class="clearfix space20"></div>
-              <!-- FOOTER -->
-            <footer>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-3 widget-footer">
-                            <h5>关于我们</h5>
-                            <img src="images/basic/logo-lite.png" class="img-responsive space10" alt=""/>
-                            <p>红凤凰，粉凤凰，粉红凤凰。来到凤凰网，你的精神食粮应有尽有。来到粉红凤凰网，找寻最真实的自己!</p>
-                            <div class="clearfix"></div>
-                        
-                        </div>
-                        <div class="col-md-3 col-sm-3 widget-footer">
-                            <h5>红粉凤凰，倾力打造</h5>
-                       
-                        </div>
-                        <div class="col-md-3 col-sm-3 widget-footer">
-                            <h5>产品特色</h5>
-                            <ul class="widget-tags">
-                                <li><a href="categories-grid.html">活力</a></li>
-                                <li><a href="categories-grid.html">青春</a></li>
-                                <li><a href="categories-grid.html">文艺</a></li>
-                                <li><a href="categories-grid.html">忧伤</a></li>
-                                <li><a href="categories-grid.html">青涩</a></li>
-                                <li><a href="categories-grid.html">自由</a></li>
-                                <li><a href="categories-grid.html">想象</a></li>
-                                <li><a href="categories-grid.html">励志</a></li>
-                                <li><a href="categories-grid.html">爱情</a></li>
-                                <li><a href="categories-grid.html">友情</a></li>
-                                <li><a href="categories-grid.html">真理</a></li>
-                                <li><a href="categories-grid.html">奥秘</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-3 col-sm-3 widget-footer">
-                            <h5>给我们建议!</h5>
-                            <p>登录并给我们建议吧，有精美的狗哥相送</p>
-                            <form class="newsletter">
-                                <input type="text" placeholder="在这里留言">
-                                <button type="submit">提交</button>
-                            </form>
-                        </div>
-                    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-3 widget-footer">
+                    <h5>关于我们</h5>
+                    <img src="images/basic/logo-lite.png" class="img-responsive space10" alt=""/>
+                    <p>红凤凰，粉凤凰，粉红凤凰。来到凤凰网，你的精神食粮应有尽有。来到粉红凤凰网，找寻最真实的自己!</p>
+                    <div class="clearfix"></div>
+                
                 </div>
-            </footer>
+                <div class="col-md-3 col-sm-3 widget-footer">
+                    <h5>红粉凤凰，倾力打造</h5>
+               
+                </div>
+                <div class="col-md-3 col-sm-3 widget-footer">
+                    <h5>产品特色</h5>
+                    <ul class="widget-tags">
+                        <li><a href="categories-grid.html">活力</a></li>
+                        <li><a href="categories-grid.html">青春</a></li>
+                        <li><a href="categories-grid.html">文艺</a></li>
+                        <li><a href="categories-grid.html">忧伤</a></li>
+                        <li><a href="categories-grid.html">青涩</a></li>
+                        <li><a href="categories-grid.html">自由</a></li>
+                        <li><a href="categories-grid.html">想象</a></li>
+                        <li><a href="categories-grid.html">励志</a></li>
+                        <li><a href="categories-grid.html">爱情</a></li>
+                        <li><a href="categories-grid.html">友情</a></li>
+                        <li><a href="categories-grid.html">真理</a></li>
+                        <li><a href="categories-grid.html">奥秘</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-3 widget-footer">
+                    <h5>给我们建议!</h5>
+                    <p>登录并给我们建议吧，有精美的狗哥相送</p>
+                    <form class="newsletter">
+                        <input type="text" placeholder="在这里留言">
+                        <button type="submit">提交</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 
         </div>
 
- 
-   
-        <div id="backtotop"><i class="fa fa-chevron-up"></i></div>
 
 
+        <!-- Javascript -->
+        <script src="js/jquery.js"></script>
 
-		<!-- Javascript -->
-		<script src="js/jquery.js"></script>
-	
-		<!-- ADDTHIS -->
-		<script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-557a95e76b3e51d9" async="async"></script>
-		<script type="text/javascript">
-			// Call this function once the rest of the document is loaded
-			function loadAddThis() {
-				addthis.init()
-			}
-		</script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/bs-navbar.js"></script>
-		<script src="js/vendors/isotope/isotope.pkgd.js"></script>
-		<script src="js/vendors/slick/slick.min.js"></script>
-		<script src="js/vendors/tweets/tweecool.min.js"></script>
-		<script src="js/vendors/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-		<script src="js/vendors/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-		<script src="js/jquery.sticky.js"></script>
-		<script src="js/jquery.subscribe-better.js"></script>
-		<script src="js/jquery-ui.min.js"></script>
-		<script src="js/vendors/select/jquery.selectBoxIt.min.js"></script>
-		<script src="js/main.js"></script>
+        <!-- ADDTHIS -->
+        <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-557a95e76b3e51d9" async="async"></script>
+        <script type="text/javascript">
+            // Call this function once the rest of the document is loaded
+            function loadAddThis() {
+                addthis.init()
+            }
+        </script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bs-navbar.js"></script>
+        <script src="js/vendors/isotope/isotope.pkgd.js"></script>
+        <script src="js/vendors/slick/slick.min.js"></script>
+        <script src="js/vendors/tweets/tweecool.min.js"></script>
+        <script src="js/vendors/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+        <script src="js/vendors/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+        <script src="js/jquery.sticky.js"></script>
+        <script src="js/jquery.subscribe-better.js"></script>
+        <script src="js/jquery-ui.min.js"></script>
+        <script src="js/vendors/select/jquery.selectBoxIt.min.js"></script>
+        <script src="js/main.js"></script>
 
     </body>
 </html>

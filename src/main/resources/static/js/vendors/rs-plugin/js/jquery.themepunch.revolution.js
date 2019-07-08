@@ -2262,7 +2262,7 @@
 
 			opt.transition = 1;
 			opt.videoplaying = false;
-			//konsole.util("VideoPlay set to False due swapSlideProgress");
+			//konsole.log("VideoPlay set to False due swapSlideProgress");
 
 			try{
 				var actli = container.find('>ul:first-child >li:eq('+opt.act+')');
@@ -4615,8 +4615,8 @@
 									if (nextcaption.data('x')=="right" || nextcaption.data('xright')=='right') {
 										nextcaption.data('xright','right');
 										nextcaption.data('x',((crw - nextcaption.outerWidth(true))+hofs)/xbw);
-										//konsole.util("crw:"+crw+"  width:"+nextcaption.outerWidth(true)+"  xbw:"+xbw);
-										//konsole.util("x-pos:"+nextcaption.data('x'))
+										//konsole.log("crw:"+crw+"  width:"+nextcaption.outerWidth(true)+"  xbw:"+xbw);
+										//konsole.log("x-pos:"+nextcaption.data('x'))
 									}
 
 
@@ -5039,7 +5039,7 @@
 
 										},30);
 
-										//konsole.util(nc.data('maxwidth')+"  "+nc.data('maxheight'));
+										//konsole.log(nc.data('maxwidth')+"  "+nc.data('maxheight'));
 										if (nc.data('maxheight')!='none')
 											nc.css({'maxHeight':(nc.data('maxheight') * opt.bh) + "px"});
 

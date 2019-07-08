@@ -662,7 +662,7 @@
                 }
                 break;
 
-            case 'templates.index':
+            case 'index':
                 var index = event.data.index === 0 ? 0 :
                     event.data.index || $(event.target).parent().index() * _.options.slidesToScroll;
 
@@ -1066,7 +1066,7 @@
 
         _.changeSlide({
             data: {
-                message: 'templates.index',
+                message: 'index',
                 index: parseInt(slide)
             }
         }, dontAnimate);
@@ -1115,7 +1115,7 @@
 
         if (_.options.dots === true && _.slideCount > _.options.slidesToShow) {
             $('li', _.$dots).on('click.slick', {
-                message: 'templates.index'
+                message: 'index'
             }, _.changeSlide);
         }
 
@@ -1414,7 +1414,7 @@
 
         _.changeSlide({
             data: {
-                message: 'templates.index',
+                message: 'index',
                 index: currentSlide
             }
         }, false);
