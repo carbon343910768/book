@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 管理员权限
                 .and()
                 .authorizeRequests()
-                .antMatchers("/admin/**")
+                .antMatchers("/admin**","/admin/**")
                 .hasRole(UserRole.ADMIN)
 
                 // 任何请求,登录后可以访问
@@ -70,7 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers(
                 "/css/**",
                 "/images/**", "/js/**",
-                "/plugin/**", "/*.html"
+                "/plugin/**"
         );
     }
 }
