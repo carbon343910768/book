@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CartService {
@@ -30,6 +31,11 @@ public class CartService {
 
     public Integer getBookNumber(int cartId, int bookId) {
         return cartDao.findBookNumberInCart(cartId, bookId);
+    }
+
+    public void updateCart(int cartId, Map<Integer, Integer> books){
+        cartDao.updateCart(cartId,books);
+        cartDao.delete();
     }
 
     public int addCart(Cart cart) {

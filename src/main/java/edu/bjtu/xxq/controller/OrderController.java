@@ -4,7 +4,9 @@ import com.google.gson.Gson;
 import edu.bjtu.xxq.model.Order;
 import edu.bjtu.xxq.model.ResponseCode;
 import edu.bjtu.xxq.model.ResponseJson;
+import edu.bjtu.xxq.service.CartService;
 import edu.bjtu.xxq.service.OrderService;
+import edu.bjtu.xxq.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,9 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private CartService cartService;
 
     private Gson gson = new Gson();
 
@@ -42,7 +47,11 @@ public class OrderController {
             @RequestParam(value = "phone", required = false) String phone
     ) {
         Map<Integer,Integer> bookMap = IntStream.range(0, bookId.length).boxed().collect(Collectors.toMap(j -> bookId[j], j -> number[j]));
-        Order order = new Order().setAddress(address).setPhone(phone);
+        cartService.updateCart(cartId,bookMap);
+        Integer userId = UserUtil.getUserId();
+/*        if (userId == null)
+            return gson.toJson(new ResponseJson(ResponseCode.ADD_ORDER_SUCCESS));*/
+        Order order = new Order().setAddress(address).setPhone(phone).setCustomer(userId).setState(false);
         orderService.addOrder(order,bookMap);
         return gson.toJson(new ResponseJson(ResponseCode.ADD_TO_CART_SUCCESS));
     }

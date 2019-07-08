@@ -53,11 +53,13 @@
         INSERT INTO
         customer_cart (
         user_id,
-        address
+        cart_address,
+        cart_phone
         )
         VALUES (
         #{owner},
-        #{address}
+        #{address},
+        #{phone}
         );
 
     </insert>
@@ -67,5 +69,16 @@
         book_number)
         VALUES(#{cartId},#{bookId},#{number})
     </insert>
+
+    <update id="updateCart" >
+
+        <foreach collection="books" index="key" item="value" open="" separator=";" close=" ">
+            UPDATE cart_book SET book_number= book_number#{value} WHERE cart_id=#{cartId} AND book_id=#{key}
+        </foreach>
+    </update>
+
+    <delete id="delete">
+        DELETE FROM cart_book WHERE book_number &lt;= 0;
+    </delete>
 
 </mapper>
