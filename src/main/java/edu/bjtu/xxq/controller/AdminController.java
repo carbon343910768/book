@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @RequestMapping("/admin")
 @RestController
@@ -31,7 +32,7 @@ public class AdminController {
     @GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String queryOrders(
             @RequestParam(value = "username", required = false) String username,
-            
+
             @RequestParam(value = "page", required = false) Integer page
     ) {
         if (StringUtils.hasLength(username))
@@ -92,15 +93,16 @@ public class AdminController {
             return gson.toJson(orderService.getOne(orderId));
         if (page == null) page = 0;
         else page--;
-        if (userId != null)
-            return gson.toJson(orderService.getByUser(userId, page));
+        if (userId != null){
+            return gson.toJson(orderService.getList(orderService.getByUser(userId, page).toArray(new Integer[0]))) ;
+        }
         if (from != null) {
             if (to != null)
-                return gson.toJson(orderService.getBetweenDate(from, to, page));
-            return gson.toJson(orderService.getByDate(from, page));
+                return gson.toJson(orderService.getList(orderService.getBetweenDate(from, to, page).toArray(new Integer[0])));
+            return gson.toJson(orderService.getList(orderService.getByDate(from, page).toArray(new Integer[0])));
         }
         if (to != null)
-            return gson.toJson(orderService.getByDate(to, page));
+            return gson.toJson(orderService.getList(orderService.getByDate(to, page).toArray(new Integer[0])));
         return "";
     }
 
