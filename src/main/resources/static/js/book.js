@@ -1,4 +1,4 @@
-function getBookInfo(book) {
+function getBookInfo(book, refresh) {
     $.ajax({
         type: "GET",
         url: "/book/one",
@@ -14,12 +14,12 @@ function getBookInfo(book) {
             book.publisher = result.publisher;
             book.ISBN = result.ISBN;
             book.price = result.price;
-            checkAndLoad(book);
+            refresh(book);
         }
     });
 }
 
-function getBookImages(book) {
+function getBookImages(book, refresh) {
     $.ajax({
         type: "GET",
         url: "/book/image",
@@ -30,7 +30,7 @@ function getBookImages(book) {
             if (typeof result == 'string')
                 result = JSON.parse(result);
             book.images = result;
-            checkAndLoad(book)
+            refresh(book)
         }
     });
 }

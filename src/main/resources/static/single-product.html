@@ -574,16 +574,16 @@
         }
     }
 
-    var b = {
+    var book = {
         id: 0,
         success: 0
     };
     var url = location.search;
     if (url.indexOf("?") !== -1) {
-        b.id = url.split("=")[1];
+        book.id = url.split("=")[1];
     }
-    getBookInfo(b);
-    getBookCover(b);
+    getBookInfo(book, checkAndLoad); // result[i]
+    getBookImages(book, checkAndLoad);
 
 </script>
 

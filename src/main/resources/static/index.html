@@ -1667,7 +1667,6 @@
     function checkAndLoad(book) {
         book.success++;
         if (book.success < 2) return;
-        console.log(book);
         var content =
             '<div class="isotope-item clothing" id="book' + book.id + '">' +
             '<div class="product-item">' +
@@ -1702,8 +1701,8 @@
                     success: 0
                 };
 
-                getBookInfo(book); // result[i]
-                getBookCover(book);
+                getBookInfo(book, checkAndLoad); // result[i]
+                getBookImages(book, checkAndLoad);
             }
         }
     });
@@ -1716,8 +1715,8 @@
             success: 0
         };
 
-        getBookInfo(book); // result[i]
-        getBookImages(book);
+        getBookInfo(book, checkAndLoad); // result[i]
+        getBookImages(book, checkAndLoad);
     }
 </script>
 
