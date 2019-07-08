@@ -31,6 +31,7 @@ public class AdminController {
     @GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String queryOrders(
             @RequestParam(value = "username", required = false) String username,
+            
             @RequestParam(value = "page", required = false) Integer page
     ) {
         if (StringUtils.hasLength(username))
