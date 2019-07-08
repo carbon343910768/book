@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.InputStream;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -36,6 +35,15 @@ public class OrderController {
     @GetMapping(value = "/batch", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String query(@RequestParam("id") Integer[] id) {
         return gson.toJson(orderService.getList(id));
+    }
+
+    @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String queryAll(@RequestParam(value = "page",required = false) Integer page) {
+        if(page==null)page=0;
+        else page--;
+        Integer userId= UserUtil.getUserId();
+        if(userId==null)return "";
+        return gson.toJson(orderService.getByUser(userId,page));
     }
 
     @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

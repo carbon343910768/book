@@ -28,7 +28,6 @@ public class CartController {
         //if (!StringUtils.isEmpty(address))不为空就报错还行
         if (StringUtils.isEmpty(address))
             return gson.toJson(new ResponseJson(ResponseCode.ADD_CART_FAIL));
-        //TODO Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NumberFormatException: null] with root cause
         Integer userId = UserUtil.getUserId();
         if (userId == null)
             return gson.toJson(new ResponseJson(ResponseCode.ADD_CART_FAIL));
@@ -46,7 +45,6 @@ public class CartController {
             @RequestParam("bookId") int bookId,
             @RequestParam("number") int number
     ) {
-        //TODO 原本此处只有返回
         cartService.addBook(cartId,bookId,number);
         return gson.toJson(new ResponseJson(ResponseCode.ADD_TO_CART_SUCCESS));
     }
