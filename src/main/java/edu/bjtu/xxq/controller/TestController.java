@@ -85,7 +85,7 @@ public class TestController {
 
     @RequestMapping("/book")
     public String testBook() {
-        return gson.toJson(bookService.getBookBy2("asd","asd"));
+        return gson.toJson(bookService.search("asd asd"));
     }
 
     @RequestMapping("/image")

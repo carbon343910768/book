@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -41,16 +42,18 @@ public class BookService {
         return bookDao.findBookTags(id);
     }
 
-    public List<Integer> getBookBy3(String name, String author, String publisher) {
-        return bookDao.search3(name, author, publisher);
-    }
-
-    public List<Integer> getBookBy2(String name, String author) {
-        return bookDao.search2(name, author);
-    }
-
-    public List<Integer> getBookBy1(String name) {
-        return bookDao.search1(name);
+    public List<Integer> search(String search) {
+        String[] keys = search.split("[ ]+");
+        switch (keys.length) {
+            case 0:
+                return new LinkedList<>();
+            case 1:
+                return bookDao.search1(keys[0]);
+            case 2:
+                return bookDao.search2(keys[0], keys[1]);
+            default:
+                return bookDao.search3(keys[0], keys[1], keys[2]);
+        }
     }
 
     public int addBook(Book book) {
