@@ -12,6 +12,6 @@ public class LoggerService {
     private LoggerDao loggerDao;
 
     public void saveLog(RequestLog log){
-        loggerDao.save(log);
+//        loggerDao.save(log);
     }
 }
