@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,7 +37,15 @@ public class UserService implements UserDetailsService {
         return userDao.findUsersById(Arrays.asList(id));
     }
 
-    public List<Integer> getAllUsers(int page) {
+    public List<User> getAllUsers(int page) {
+        List<User> list = new ArrayList<User>();
+        for ( Integer i: userDao.findAll(page * PAGE_SIZE, PAGE_SIZE)){
+            list.add(getUserById(i));
+        }
+        return list;
+    }
+
+    public List<Integer> getAllUsersId(int page) {
         return userDao.findAll(page * PAGE_SIZE, PAGE_SIZE);
     }
 

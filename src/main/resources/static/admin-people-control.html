@@ -364,5 +364,31 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <!--//scrolling js-->
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.js"></script>
+
+<!-- ZDF -->
+<script type="text/javascript">
+
+    var content = '<div class="inbox-row widget-shadow">'
+
+
+    function getUserList(page) {
+        $.ajax({
+            type: "GET",
+            url: "/admin/user",
+            data:{
+                page:page
+            },
+            success:function (result) {
+                console.log(result);
+                for(i in result){
+                    console.log(result[i].username);
+                }
+
+            }
+        })
+    }
+
+    window.onload = getUserList(1);
+</script>
 </body>
 </html>
