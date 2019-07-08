@@ -3,9 +3,7 @@ package edu.bjtu.xxq.dao;
 import edu.bjtu.xxq.model.Book;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public interface BookDao {
