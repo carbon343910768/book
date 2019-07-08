@@ -38,95 +38,36 @@ public class OrderController {
     }
 
     @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String queryAll(@RequestParam(value = "page",required = false) Integer page) {
-        if(page==null)page=0;
+    public String queryAll(@RequestParam(value = "page", required = false) Integer page) {
+        if (page == null) page = 0;
         else page--;
-        Integer userId= UserUtil.getUserId();
-        if(userId==null)return "";
-        return gson.toJson(orderService.getByUser(userId,page));
+        Integer userId = UserUtil.getUserId();
+        if (userId == null) return "";
+        return gson.toJson(orderService.getByUser(userId, page));
     }
 
     @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String add(
             @RequestParam("bookId") Integer[] bookId,
             @RequestParam("number") Integer[] number,
-            @RequestParam(value = "cartId", required = false) int cartId,
+            @RequestParam(value = "cartId", required = false) Integer cartId,
             @RequestParam(value = "address", required = false) String address,
             @RequestParam(value = "phone", required = false) String phone
     ) {
-        Map<Integer,Integer> bookMap = IntStream.range(0, bookId.length).boxed().collect(Collectors.toMap(j -> bookId[j], j -> number[j]));
-        cartService.updateCart(cartId,bookMap);
+        Map<Integer, Integer> bookMap
+                = IntStream.range(0, bookId.length).boxed()
+                .collect(Collectors.toMap(j -> bookId[j], j -> number[j]));
+        if (cartId != null)
+            cartService.updateCart(cartId, bookMap);
         Integer userId = UserUtil.getUserId();
-/*        if (userId == null)
-            return gson.toJson(new ResponseJson(ResponseCode.ADD_ORDER_SUCCESS));*/
-        Order order = new Order().setAddress(address).setPhone(phone).setCustomer(userId).setState(false);
-        orderService.addOrder(order,bookMap);
-        return gson.toJson(new ResponseJson(ResponseCode.ADD_TO_CART_SUCCESS));
+        if (userId == null)
+            return gson.toJson(new ResponseJson(ResponseCode.ORDER_FAIL));
+        Order order = new Order()
+                .setAddress(address)
+                .setPhone(phone)
+                .setCustomer(userId)
+                .setState(true);
+        orderService.addOrder(order, bookMap);
+        return gson.toJson(new ResponseJson(ResponseCode.ORDER_SUCCESS));
     }
-//    /*
-//    添加订单
-//    请求格式：
-//    {"orderOwner":"","book":[{"bookid":"110001"},{"bookid":"110002"}]}
-//     */
-//    @RequestMapping(value = "/addOrder",method = RequestMethod.POST)
-//    @ResponseBody
-//    public String addOrder(@RequestBody String json){
-//        Order order = gson.fromJson(json, Order.class);
-//        orderService.addOrder(order);
-//        return gson.toJson(new ResponseJson(ResponseCode.ADD_ORDER_SUCCESS));
-//    }
-//
-//    /*
-//    请求订单
-//    请求：methods：查询的方式: user用户id查询，id订单id查询
-//          term：查询条件
-//    返回
-//    {
-//    "message":"loda all order success",
-//    "data":[
-//        {
-//            "orderId":"150001",
-//            "orderOwner":"1",
-//            "orderTime":"Jan 1, 1111 8:00:00 AM",
-//            "book":[
-//                {
-//                    "bookId":"110001",
-//                    "bookName":"煞笔",
-//                    "bookAuthor":"阿萨德",
-//                    "bookPublisher":"阿萨德",
-//                    "bookPublished":"1111-01-01",
-//                    "bookPages":123,
-//                    "bookISBN":"123123",
-//                    "bookPrice":14
-//                }
-//            ]
-//        }
-//    ]
-//}
-//     */
-//    @RequestMapping(value = "/loadOrder",method = RequestMethod.GET)
-//    public String loadOrder(@RequestParam("methods") String methods ,@RequestParam("term") String term){
-//        switch (methods){
-//            case "id":
-//                return gson.toJson(new ResponseJson(ResponseCode.LOAD_ORDER_SUCCESS,orderService.orderList("order_id",term)));
-//            case "user":
-//                return gson.toJson(new ResponseJson(ResponseCode.LOAD_ORDER_SUCCESS,orderService.orderList("user_id",term)));
-//            default:
-//                return gson.toJson(new ResponseJson(ResponseCode.LOAD_ORDER_WARN));
-//        }
-//    }
-//
-//    @RequestMapping(value = "/loadOrderByTime",method = RequestMethod.GET)
-//    public String loadOrderByTime(@RequestParam("methods") String methods ,@RequestParam("time") String time){
-//        switch (methods){
-//            case "day":
-//                return gson.toJson(new ResponseJson(ResponseCode.LOAD_ORDER_SUCCESS,orderService.orderListByTime("'%Y-%m-%d'",time)));
-//            case "mouth":
-//                return gson.toJson(new ResponseJson(ResponseCode.LOAD_ORDER_SUCCESS,orderService.orderListByTime("'%Y-%m'",time)));
-//            case "year":
-//                return gson.toJson(new ResponseJson(ResponseCode.LOAD_ORDER_SUCCESS,orderService.orderListByTime("'%Y'",time)));
-//            default:
-//                return gson.toJson(new ResponseJson(ResponseCode.LOAD_ORDER_WARN));
-//        }
-//    }
 }

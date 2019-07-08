@@ -1,6 +1,5 @@
 package edu.bjtu.xxq.service;
 
-import com.sun.imageio.plugins.common.I18N;
 import edu.bjtu.xxq.dao.CartDao;
 import edu.bjtu.xxq.model.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,7 @@ public class CartService {
 
     public void updateCart(int cartId, Map<Integer, Integer> books){
         cartDao.updateCart(cartId,books);
-        cartDao.delete();
+        cartDao.clear();
     }
 
     public int addCart(Cart cart) {

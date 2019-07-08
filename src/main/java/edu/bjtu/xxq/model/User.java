@@ -83,7 +83,7 @@ public class User implements UserDetails {
     public User setRole(String role) {
         this.role.clear();
         if (StringUtils.hasText(role))
-            this.role.add(new SimpleGrantedAuthority("ROLE_"+role));
+            this.role.add(new SimpleGrantedAuthority("ROLE_" + role));
         return this;
     }
 }

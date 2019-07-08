@@ -22,9 +22,8 @@ public interface CartDao {
 
     void updateCart(int cartId, Map<Integer, Integer> books);
 
-    void delete();
+    void clear();
 
-    // 返回cart生成的id
     void addCart(Cart cart);
 
     void addBook(int cartId, int bookId, int number);
