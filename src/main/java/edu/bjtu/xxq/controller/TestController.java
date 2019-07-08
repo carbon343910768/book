@@ -80,6 +80,12 @@ public class TestController {
         //return gson.toJson(cartService.getAllBooksInCart(1));
 
         return gson.toJson(cartService.getBookNumber(1, 111));
+
+    }
+
+    @RequestMapping("/book")
+    public String testBook() {
+        return gson.toJson(bookService.getBookBy2("asd","asd"));
     }
 
     @RequestMapping("/image")
