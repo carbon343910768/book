@@ -73,7 +73,7 @@
     <update id="updateCart" >
 
         <foreach collection="books" index="key" item="value" open="" separator=";" close=" ">
-            UPDATE cart_book SET book_number= book_number#{value} WHERE cart_id=#{cartId} AND book_id=#{key}
+            UPDATE cart_book SET book_number= book_number-#{value} WHERE cart_id=#{cartId} AND book_id=#{key}
         </foreach>
     </update>
 
