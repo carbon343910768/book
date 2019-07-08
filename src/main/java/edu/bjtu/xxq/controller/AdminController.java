@@ -33,7 +33,7 @@ public class AdminController {
     private final Gson gson = new Gson();
 
     @GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String queryOrders(
+    public String queryOrder(
             @RequestParam(value = "id", required = false) Integer id,
             @RequestParam(value = "username", required = false) String username,
             @RequestParam(value = "page", required = false) Integer page
@@ -179,5 +179,21 @@ public class AdminController {
 //    ) {
 //        return gson.toJson(new ResponseJson(ResponseCode.SUCCESS));
 //    }
-
+//
+//    @GetMapping(value = "/report", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+//    public String queryReport(
+//            @RequestParam(value = "name", required = false) String name,
+//            @RequestParam(value = "type", required = false) String type,
+//            @RequestParam(value = "from", required = false) String from,
+//            @RequestParam(value = "to", required = false) String to
+//    ) {
+//        if (from != null) {
+//            if (to != null)
+//                return gson.toJson();
+//            return gson.toJson();
+//        }
+//        if (to != null)
+//            return gson.toJson();
+//        return gson.toJson();
+//    }
 }
