@@ -2,6 +2,7 @@ package edu.bjtu.xxq.service;
 
 import edu.bjtu.xxq.dao.OrderDao;
 import edu.bjtu.xxq.model.Order;
+import edu.bjtu.xxq.util.WeightUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ public class OrderService {
 
     @Autowired
     private OrderDao orderDao;
+    @Autowired
+    private LoggerService loggerService;
 
     public Order getOne(int id) {
         return orderDao.findOrderById(id);
@@ -48,6 +51,7 @@ public class OrderService {
     public int addOrder(Order order, Map<Integer, Integer> books) {
         int id = orderDao.addOrder(order);
         orderDao.addBook(id, books);
+        loggerService.actions(books.values().toArray(new Integer[0]), WeightUtil.ORDER);
         return order.getId();
     }
 }

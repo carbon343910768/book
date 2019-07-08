@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 public interface LoggerDao {
 
     void save(RequestLog requestLog);
+
+    void record(int userId, Integer[] books, int action, int weight);
 }
