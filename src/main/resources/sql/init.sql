@@ -212,4 +212,10 @@ CREATE TABLE transfer_record
     action  int
 );
 
-
+CREATE TABLE report
+(
+    report_name varchar(255) not null,
+    report_type varchar(255) not null,
+    content     text         not null,
+    index name_index (report_name)
+);
