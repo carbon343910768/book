@@ -63,6 +63,19 @@ public class AdminController {
         return gson.toJson(new ResponseJson(ResponseCode.ADD_BOOK_SUCCESS, id));
     }
 
+    @GetMapping(value = "/book" , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String getBook( @RequestParam(value = "bookId",required = false) Integer bookId,
+                           @RequestParam(value = "tag",required = false) String tag,
+                           @RequestParam(value = "page", required = false) Integer page){
+        if(bookId != null)
+            return gson.toJson(bookService.getOne(bookId));
+        if (page == null) page = 0;
+        else page--;
+        if (tag != null)
+            return gson.toJson(bookService.getList(bookService.getBooksByTag(tag,page,10).toArray(new Integer[0]))) ;
+        return "";
+    }
+
     @PostMapping(value = "/book/tag", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String addTag(
             @RequestParam("bookId") int bookId,
