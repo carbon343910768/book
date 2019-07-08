@@ -519,7 +519,7 @@
 <script src="js/jquery.subscribe-better.js"></script>
 <script src="js/vendors/select/jquery.selectBoxIt.min.js"></script>
 <script src="js/main.js"></script>
-
+<script src="js/book.js"></script>
 <script type="text/javascript">
 
     function checkAndLoad(book) {
@@ -572,41 +572,6 @@
             });
 
         }
-    }
-
-    function getBookInfo(book) {
-        $.ajax({
-            type: "GET",
-            url: "/book/one",
-            data: {
-                id: book.id,
-            },
-            success: function (result) {
-                if (typeof result == 'string')
-                    result = JSON.parse(result);
-                console.log(result);
-                book.name = result.name;
-                book.price = result.price;
-                book.description = result.description;
-                checkAndLoad(book);
-            }
-        });
-    }
-
-    function getBookCover(book) {
-        $.ajax({
-            type: "GET",
-            url: "/book/image",
-            data: {
-                id: book.id,
-            },
-            success: function (result) {
-                if (typeof result == 'string')
-                    result = JSON.parse(result);
-                book.images = result;
-                checkAndLoad(book)
-            }
-        });
     }
 
     var b = {
