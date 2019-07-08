@@ -3,6 +3,7 @@ package edu.bjtu.xxq.model;
 public class CustomerDetail {
 
     private int id;
+    private String username;
     private String name;
     private String phone;
     private String email;
@@ -13,6 +14,15 @@ public class CustomerDetail {
 
     public CustomerDetail setId(int id) {
         this.id = id;
+        return this;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public CustomerDetail setUsername(String username) {
+        this.username = username;
         return this;
     }
 
