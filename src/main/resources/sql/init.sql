@@ -41,7 +41,7 @@ CREATE TABLE book
 CREATE TABLE image
 (
     image_id      int unsigned not null auto_increment,
-    image_content longblob         not null,
+    image_content longblob     not null,
     primary key (image_id)
 );
 
@@ -216,6 +216,8 @@ CREATE TABLE report
 (
     report_name varchar(255) not null,
     report_type varchar(255) not null,
+    report_date date         not null,
     content     text         not null,
-    index name_index (report_name)
+    index name_index (report_name),
+    index date_index (report_date)
 );
