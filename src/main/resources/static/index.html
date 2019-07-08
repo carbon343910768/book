@@ -1661,6 +1661,7 @@
 <script src="js/jquery-ui.min.js"></script>
 <script src="js/vendors/select/jquery.selectBoxIt.min.js"></script>
 <script src="js/main.js"></script>
+<script src="js/book.js"></script>
 <script type="text/javascript">
 
     function checkAndLoad(book) {
@@ -1672,7 +1673,7 @@
             '<div class="product-item">' +
             '<div class="item-thumb">' +
             '<div class="badge new">New</div>' +
-            '<img src="/image/' + book.cover + '" class="img-responsive" alt=""/>' +
+            '<img src="/image/' + book.images[0] + '" class="img-responsive" alt=""/>' +
             '<a href="single-product.html?id=' + book.id + '" class="overlay-rmore fa fa-search quickview"/a>' +
             '</div>' +
             '<div class="product-info">' +
@@ -1682,41 +1683,6 @@
             '<span class="product-price">￥' + book.price + '</span>' +
             '</div></div></div>';
         $("#isotope").prepend(content);
-        console.log(content);
-    }
-
-    function getBookInfo(book) {
-        $.ajax({
-            type: "GET",
-            url: "/book/one",
-            data: {
-                id: book.id,
-            },
-            success: function (result) {
-                if (typeof result == 'string')
-                    result = JSON.parse(result);
-                console.log(result);
-                book.name = result.name;
-                book.price = result.price;
-                checkAndLoad(book);
-            }
-        });
-    }
-
-    function getBookCover(book) {
-        $.ajax({
-            type: "GET",
-            url: "/book/image",
-            data: {
-                id: book.id,
-            },
-            success: function (result) {
-                if (typeof result == 'string')
-                    result = JSON.parse(result);
-                book.cover = result[0];
-                checkAndLoad(book)
-            }
-        });
     }
 
     $.ajax({
@@ -1733,9 +1699,6 @@
             for (var i = 1; i < 20; i++) {
                 var book = {
                     id: i,
-                    name: "",
-                    price: "",
-                    cover: "",
                     success: 0
                 };
 
@@ -1754,7 +1717,7 @@
         };
 
         getBookInfo(book); // result[i]
-        getBookCover(book);
+        getBookImages(book);
     }
 </script>
 
