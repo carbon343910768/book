@@ -153,11 +153,12 @@
                             <div class="owl-carousel prod-slider sync1" id="large">
                                 <div class="item">
                                     <img src="images/products/single/1-small.jpg" alt="">
-                                    <a href="images/products/single/1.jpg" rel="prettyPhoto[gallery2]" title="Product" class="caption-link"><i class="fa fa-arrows-alt"></i></a>
+                                    <a href="images/products/single/1.jpg" rel="prettyPhoto[gallery2]" title="Product"
+                                       class="caption-link"><i class="fa fa-arrows-alt"></i></a>
                                 </div>
                             </div>
                             <div class="owl-carousel sync2" id="small">
-                                <div class="item"> <img src="images/products/single/1.jpg" alt=""> </div>
+                                <div class="item"><img src="images/products/single/1.jpg" alt=""></div>
                             </div>
                         </div>
                         <div class="col-md-7 col-sm-6">
@@ -524,46 +525,32 @@
     var book = {
         name: "",
         price: "",
-        cover: "",
+        images: [],
         success: 0
     };
 
     function checkAndLoad() {
         book.success++;
         if (book.success === 2) {
-            var large =
-                '<div class="item">' +
-                '<img src="/images/products/single/' + book.cover + '.jpg" alt="">' +
-                '<a href="/images/products/single/' + book.cover + '.jpg" rel="prettyPhoto[gallery2]" title="Product" class="caption-link">' +
-                '<i class="fa fa-arrows-alt"></i></a>' +
-                '</div>';
-            var small =
-                '<div class="item"><img src="images/products/single/' + book.cover + '.jpg" alt=""></div>';
-            // $('.slider').html("");
-            // for(var i = 0; i < images.length; i++){
-            //     $('.slider').append('<img src="'+images[i]['MEDIUM']+'"/>');
-            // }
-            // $('.slider').data("owlCarousel").reinit({
-            //     items: 1,
-            //     autoPlay: true,
-            // });
-            $("#large").html("");
-            $("#small").html("");
-            $("#large").prepend(large);
-            $("#large").prepend(large);
-            $("#large").prepend(large);
-            $("#large").prepend(large);
-            $("#small").prepend(small);
-            $("#small").prepend(small);
-            $("#small").prepend(small);
-            $("#small").prepend(small);
-            $("#large").data("owlCarousel").reinit({
+            var large = $("#large");
+            var small = $("#small");
+            large.html("");
+            small.html("");
+            for (var i = 0; i < book.images.length; i++) {
+                large.prepend(
+                    '<div class="item"><img src="/image/' + book.images[i] + '" alt="">' +
+                    '<a href="/image' + book.images[i] + '" rel="prettyPhoto[gallery2]" title="Product" class="caption-link">' +
+                    '<i class="fa fa-arrows-alt"></i></a></div>'
+                );
+                small.prepend(
+                    '<div class="item"><img src="/image/' + book.images[i] + '" alt=""></div>'
+                );
+            }
+            large.data("owlCarousel").reinit({
                 items: 1,
                 autoPlay: true
             });
-            $("#small").data("owlCarousel").reinit();
-            console.log(large);
-            console.log(small);
+            small.data("owlCarousel").reinit();
         }
     }
 
@@ -578,8 +565,8 @@
                 if (typeof result == 'string')
                     result = JSON.parse(result);
                 console.log(result);
-                book.name = "test";
-                book.price = "101";
+                book.name = result.name;
+                book.price = result.price;
                 checkAndLoad();
             }
         });
@@ -595,15 +582,19 @@
             success: function (result) {
                 if (typeof result == 'string')
                     result = JSON.parse(result);
-                book.cover = 1;
-                console.log(result);
+                book.cover = result;
                 checkAndLoad()
             }
         });
     }
 
-    getBookInfo(1);
-    getBookCover(1);
+    var url = location.search;
+    var bookId = 0;
+    if (url.indexOf("?") !== -1) {
+        bookId = url.split("=");
+    }
+    getBookInfo(bookId);
+    getBookCover(bookId);
 </script>
 
 </body>
