@@ -100,51 +100,7 @@
                         <!-- Logo -->
                         <a class="navbar-brand" href="index.html"><img src="images/basic/logo.png" class="img-responsive" alt=""/></a>
                     </div>
-                    <!-- Cart & Search -->
-                    <div class="header-xtra pull-right">
-                        <div class="topcart">
-                            <span><i class="fa fa-shopping-cart"></i></span>
-                            <div class="cart-info">
-                                <small>You have <em class="highlight">3 item(s)</em> in your shopping bag</small>
-                                <div class="ci-item">
-                                    <img src="images/products/fashion/8.jpg" width="80" alt=""/>
-                                    <div class="ci-item-info">
-                                        <h5><a href="single-product.html">Product fashion</a></h5>
-                                        <p>2 x $250.00</p>
-                                        <div class="ci-edit">
-                                            <a href="#" class="edit fa fa-edit"></a>
-                                            <a href="#" class="edit fa fa-trash"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ci-item">
-                                    <img src="images/products/fashion/15.jpg" width="80" alt=""/>
-                                    <div class="ci-item-info">
-                                        <h5><a href="single-product.html">Product fashion</a></h5>
-                                        <p>2 x $250.00</p>
-                                        <div class="ci-edit">
-                                            <a href="#" class="edit fa fa-edit"></a>
-                                            <a href="#" class="edit fa fa-trash"></a>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="ci-total">Subtotal: $750.00</div>
-                                <div class="cart-btn">
-                                    <a href="#">View Bag</a>
-                                    <a href="#">Checkout</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="topsearch">
-                            <span>
-                                <i class="fa fa-search"></i>
-                            </span>
-                            <form class="searchtop">
-                                <input type="text" placeholder="Search entire store here.">
-                            </form>
-                        </div>
-                    </div>
                <!-- Navmenu -->
                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                
@@ -184,6 +140,7 @@
                                 <h4 class="account-title"><span class="fa fa-chevron-right"></span>我的购物车</h4>                                                                    
                                 <div class="order-history">
                                     <table class="cart-table">
+                                        <tbody id="table">
                                         <tr>                                                
                                             <th>封面</th>                                                                                             
                                             <th>数量</th>  
@@ -193,39 +150,15 @@
                                             <th>预计送达时间</th>
                                             <th></th>
                                         </tr>
-                                        <tr>                                              
-                                            <td><img src="images/products/fashion/5.jpg" class="img-responsive" alt=""/></td>                                                                                               
-                                            <td> <select>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                </select></td>
-                                            <td>
-                                                <h4><a href="single-product.html">Product fashion</a></h4>
-                                                <p>Size: M</p>
-                                                <p>Color: White</p>
-                                            </td>
-                                            <td>
-                                                <div class="item-price">$ 99.00</div>
-                                            </td> 
-                                            <td> OD31207</td>
-                                            <td> 12th Dec'13 </td>
-                                            <td>
-                                               
-                                                <a href="#" class="btn-black">结算</a>
-                                            </td>
-                                        </tr> 
-                                        <tr>                                              
-                                            <td><img src="images/products/fashion/5.jpg" class="img-responsive" alt=""/></td>                                                                                               
+                                        <tr>
+                                            <td><img src="images/products/fashion/5.jpg" class="img-responsive" alt=""/></td>
                                             <td><select>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                </select></td>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select></td>
                                             <td>
                                                 <h4><a href="single-product.html">Product fashion</a></h4>
                                                 <p>Size: M</p>
@@ -233,36 +166,14 @@
                                             </td>
                                             <td>
                                                 <div class="item-price">$ 99.00</div>
-                                            </td> 
+                                            </td>
                                             <td> OD31207</td>
                                             <td> 12th Dec'13 </td>
                                             <td>
                                                 <a href="#" class="btn-black">结算</a>
                                             </td>
-                                        </tr> 
-                                        <tr>                                              
-                                            <td><img src="images/products/fashion/5.jpg" class="img-responsive" alt=""/></td>                                                                                               
-                                            <td><select>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                </select></td>
-                                            <td>
-                                                <h4><a href="single-product.html">Product fashion</a></h4>
-                                                <p>Size: M</p>
-                                                <p>Color: White</p>
-                                            </td>
-                                            <td>
-                                                <div class="item-price">$ 99.00</div>
-                                            </td> 
-                                            <td> OD31207</td>
-                                            <td> 12th Dec'13 </td>
-                                            <td>
-                                                <a href="#" class="btn-black">结算</a>
-                                            </td>
-                                        </tr> 
+                                        </tr>
+                                        </tbody>
                                     </table>
 
                                     <div class="table-btn">
@@ -349,6 +260,104 @@
 		<script src="js/jquery-ui.min.js"></script>
 		<script src="js/vendors/select/jquery.selectBoxIt.min.js"></script>
 		<script src="js/main.js"></script>
+        <script  type="text/javascript">
+             var url = location.search; //获取url中"?"符后的字串
+              var bookId;
+              if (url.indexOf("?") != -1) {    //判断是否有参数
+                 var str = url.substr(1); //从第一个字符开始 因为第0个是?号 获取所有除问号的所有符串
+                 strs = str.split("=");
+                 alert(strs[1]) ; //用等号进行分隔 （因为知道只有一个参数 所以直接用等号进分隔 如果有多个参数 要用&号分隔 再用等号进行分隔
+                 console.log(strs[1]);
+                 bookId=strs[1];
+              }
 
+
+             var book = {
+                 name: "",
+                 price: "",
+                 cover: "",
+                 success: 0
+             };
+
+             function checkAndLoad() {
+                 book.success++;
+                 if (book.success === 2) {
+                     // var content =
+                     //     '<div class="item">'+
+                     //     '<img src="/image/'+book.cover+'" alt="">'+
+                     //     '<a href="/image/'+book.cover+'" rel="prettyPhoto[gallery2]" title="Product" class="caption-link">'+
+                     //     '<i class="fa fa-arrows-alt"></i></a>'+
+                     //     '</div>';
+                     // $("#single").prepend(content);
+                     // console.log(content);
+                     var content = '<tr> <td><img src="/image/'+book.cover+'" alt=""/></td> '   +
+                         ' <td> <select>'+
+                         ' <option>1</option>'+
+                         '<option>2</option>'+
+                         '<option>3</option>'+
+                         ' <option>4</option>'+
+                         '<option>5</option>'+
+                         '</select></td>'+
+                         '<td>'+
+                         '<h4>'+book.name+'</h4>' +
+                         '<p>测试用</p>'+
+                         '<p>测试用</p>'+
+                         '</td>'+
+                         '<td>'+
+                         '<div class="item-price">￥'+book.price+'</div>'+
+                         '</td>' +
+                         '<td>'+bookId+'</td>'+
+                         '<td> 12th </td>'+
+                         '<td>'+
+                         '<a href="#" class="btn-black">结算</a>'+
+                         '</td>'+
+                         ' </tr>'
+
+                     $("#table").after(content);
+                     console.log(content);
+                 }
+             }
+
+             function getBookInfo(id) {
+                 $.ajax({
+                     type: "GET",
+                     url: "/book/one",
+                     data: {
+                         id: id,
+                     },
+                     success: function (result) {
+                         if (typeof result == 'string')
+                             result = JSON.parse(result);
+                         console.log(result);
+                         book.name = result.name;
+                         book.price = result.price;
+                         checkAndLoad();
+                     }
+                 });
+             }
+
+             function getBookCover(id) {
+                 $.ajax({
+                     type: "GET",
+                     url: "/book/image",
+                     data: {
+                         id: id,
+                     },
+                     success: function (result) {
+                         if (typeof result == 'string')
+                             result = JSON.parse(result);
+                         book.cover = result[0];
+                         console.log(result);
+                         checkAndLoad()
+                     }
+                 });
+             }
+
+             getBookInfo(bookId);
+             getBookCover(bookId);
+
+
+
+        </script>
     </body>
 </html>
