@@ -9,6 +9,13 @@
         <result column="role" jdbcType="VARCHAR" property="role"/>
     </resultMap>
 
+    <resultMap id="customerMap" type="edu.bjtu.xxq.model.CustomerDetail">
+        <result column="user_id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+    </resultMap>
+
     <select id="findAll" resultType="integer">
         SELECT user_id FROM user LIMIT #{start},#{limit};
     </select>
