@@ -370,7 +370,7 @@
                             <div class="item-thumb">
                                 <div class="badge new">New</div>
                                 <img src="images/products/fashion/1.jpg" class="img-responsive" alt=""/>
-                                <a href="#" class="overlay-rmore fa fa-search quickview" id="test"></a>
+                                <a href="#" class="overlay-rmore fa fa-search quickview"></a>
                                 <div class="product-overlay">
                                     <a href="#" class="addcart fa fa-shopping-cart"></a>
                                     <a href="#" class="compare fa fa-signal"></a>
@@ -1663,44 +1663,34 @@
 <script src="js/main.js"></script>
 <script type="text/javascript">
 
-    var book = {
-        name: "",
-        price: "",
-        cover: "",
-        success: 0
-    };
-
-    function checkAndLoad() {
+    function checkAndLoad(book) {
         book.success++;
-        if (book.success === 2) {
-            for (let i = 0; i < 10; i++) {
-                var content =
-                    '<div class="isotope-item clothing" id="single">' +
-                    '<div class="product-item">' +
-                    '<div class="item-thumb">' +
-                    '<div class="badge new">New</div>' +
-                    '<img src="/image/' + book.cover + '" class="img-responsive" alt=""/>' +
-                    '<a href="single-product.html" class="overlay-rmore fa fa-search quickview">' + '</a>' +
-                    '</div>' +
-                    '<div class="product-info">' +
-                    '<h4 class="product-title">' + '<a href="single-product.html">'
-                    + book.name +
-                    '</a></h4>' +
-                    '<span class="product-price">￥' + book.price + '</span>' +
-                    '</div></div></div>';
-                $("#isotope").prepend(content);
-                console.log(content);
-            }
-
-        }
+        if (book.success < 2) return;
+        console.log(book);
+        var content =
+            '<div class="isotope-item clothing" id="book' + book.id + '">' +
+            '<div class="product-item">' +
+            '<div class="item-thumb">' +
+            '<div class="badge new">New</div>' +
+            '<img src="/image/' + book.cover + '" class="img-responsive" alt=""/>' +
+            '<a href="single-product.html?id=' + book.id + '" class="overlay-rmore fa fa-search quickview"/a>' +
+            '</div>' +
+            '<div class="product-info">' +
+            '<h4 class="product-title"><a href="single-product.html?id=' + book.id + '">'
+            + book.name +
+            '</a></h4>' +
+            '<span class="product-price">￥' + book.price + '</span>' +
+            '</div></div></div>';
+        $("#isotope").prepend(content);
+        console.log(content);
     }
 
-    function getBookInfo(id) {
+    function getBookInfo(book) {
         $.ajax({
             type: "GET",
             url: "/book/one",
             data: {
-                id: id,
+                id: book.id,
             },
             success: function (result) {
                 if (typeof result == 'string')
@@ -1708,36 +1698,64 @@
                 console.log(result);
                 book.name = result.name;
                 book.price = result.price;
-                checkAndLoad();
+                checkAndLoad(book);
             }
         });
     }
 
-    function getBookCover(id) {
+    function getBookCover(book) {
         $.ajax({
             type: "GET",
             url: "/book/image",
             data: {
-                id: id,
+                id: book.id,
             },
             success: function (result) {
                 if (typeof result == 'string')
                     result = JSON.parse(result);
                 book.cover = result[0];
-                console.log(result);
-                checkAndLoad()
+                checkAndLoad(book)
             }
         });
     }
 
-    getBookInfo(1);
-    getBookCover(1);
+    $.ajax({
+        type: "GET",
+        url: "/recommend",
+        data: {
+            count: 20
+        },
+        success: function (result) {
+            if (typeof result == 'string')
+                result = JSON.parse(result);
 
-    var index = "1";
-    var url = "single-product.html?index="+index;
-    $("#test").click(function(){
-        window.location.href=url
+            //result = [1,3,5,6] 推荐结果
+            for (var i = 1; i < 20; i++) {
+                var book = {
+                    id: i,
+                    name: "",
+                    price: "",
+                    cover: "",
+                    success: 0
+                };
+
+                getBookInfo(book); // result[i]
+                getBookCover(book);
+            }
+        }
     });
+
+    // test
+    //result = [1,3,5,6] 推荐结果
+    for (var i = 1; i < 20; i++) {
+        var book = {
+            id: i,
+            success: 0
+        };
+
+        getBookInfo(book); // result[i]
+        getBookCover(book);
+    }
 </script>
 
 </body>

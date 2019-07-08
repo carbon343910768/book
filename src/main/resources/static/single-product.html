@@ -162,9 +162,9 @@
                             </div>
                         </div>
                         <div class="col-md-7 col-sm-6">
-                            <div class="product-single">
+                            <div class="product-single" id="rightContent">
                                 <div class="ps-header">
-                                    <span class="badge offer">-50%</span>
+                                    <!-- <span class="badge offer">-50%</span>
                                     <h3>锁凝心</h3>
                                     <div class="ratings-wrap">
                                         <div class="ratings">
@@ -175,13 +175,13 @@
                                         </div>
                                         <em>(6 reviews)</em>
                                     </div>
-                                    <div class="ps-price"><span>$ 200.00</span> $ 99.00</div>
+                                    <div class="ps-price"><span>$ 200.00</span> $ 99.00</div> -->
                                 </div>
-                                <p>唐太宗《三藏圣教序》：“凝心内境，悲正法之陵迟；栖虑玄门，慨深文之讹谬。”
+                                <!-- <p>唐太宗《三藏圣教序》：“凝心内境，悲正法之陵迟；栖虑玄门，慨深文之讹谬。”
                                     唐 韩愈 《谢自然诗》：“凝心感魑魅，慌惚难具言。”
                                     《云笈七签》卷一○四：“太清真人 宋伦 ，字 德玄 ， 洛阳 人也。以 厉王 甲辰岁入道。於是凝心寝景，抱一冲和，不交人事，日诵五千文数遍。”
                                     《儿女英雄传》第二四回：“无奈他此时是凝心静气，聚精会神，生怕错过了节儿。” [1]
-                                    叶圣陶 《线下·平常的故事》：“现在她正把鞋面同鞋底联缀起来；这很容易缀得歪斜，所以她凝心壹志地工作，几乎把一切都忘了。”</p>
+                                    叶圣陶 《线下·平常的故事》：“现在她正把鞋面同鞋底联缀起来；这很容易缀得歪斜，所以她凝心壹志地工作，几乎把一切都忘了。”</p> -->
                                 <div class="sep"></div>
 
                                 <div class="space10"></div>
@@ -202,7 +202,7 @@
 
                                 <div class="space20"></div>
                                 <div class="sep"></div>
-                                <a class="addtobag" href="checkout.html" id="shopping-cart">加入购物车</a>
+                                <a class="addtobag" id="shopping-cart">加入购物车</a>
                             </div>
                         </div>
                     </div>
@@ -522,16 +522,10 @@
 
 <script type="text/javascript">
 
-    var book = {
-        name: "",
-        price: "",
-        images: [],
-        success: 0
-    };
-
-    function checkAndLoad() {
+    function checkAndLoad(book) {
         book.success++;
         if (book.success === 2) {
+            console.log(book);
             var large = $("#large");
             var small = $("#small");
             large.html("");
@@ -551,15 +545,41 @@
                 autoPlay: true
             });
             small.data("owlCarousel").reinit();
+
+            var rightContent =
+                '<div class="ps-header">' +
+                '<span class="badge offer">-50%</span>' +
+                '<h3>' + book.name + '</h3>' +
+                '<div class="ratings-wrap">' +
+                '<div class="ratings">' +
+                '<span class="act fa fa-star"></span>' +
+                '<span class="act fa fa-star"></span>' +
+                '<span class="act fa fa-star"></span>' +
+                '<span class="act fa fa-star"></span>' +
+                '</div>' +
+                '<em>(2 reviews)</em>' +
+                '</div>' +
+                '<div class="ps-price"><span>￥ 200.00</span>￥ ' + book.price + '</div>' +
+                '</div>' +
+                '<p>' + book.description + '</p>';
+            $("#rightContent").prepend(rightContent);
+            console.log(rightContent);
+
+            //传递给结算页面
+            var url = "checkout.html?id=" + book.id;
+            $("#shopping-cart").click(function () {
+                window.location.href = url
+            });
+
         }
     }
 
-    function getBookInfo(id) {
+    function getBookInfo(book) {
         $.ajax({
             type: "GET",
             url: "/book/one",
             data: {
-                id: id
+                id: book.id,
             },
             success: function (result) {
                 if (typeof result == 'string')
@@ -567,34 +587,39 @@
                 console.log(result);
                 book.name = result.name;
                 book.price = result.price;
-                checkAndLoad();
+                book.description = result.description;
+                checkAndLoad(book);
             }
         });
     }
 
-    function getBookCover(id) {
+    function getBookCover(book) {
         $.ajax({
             type: "GET",
             url: "/book/image",
             data: {
-                id: id
+                id: book.id,
             },
             success: function (result) {
                 if (typeof result == 'string')
                     result = JSON.parse(result);
-                book.cover = result;
-                checkAndLoad()
+                book.images = result;
+                checkAndLoad(book)
             }
         });
     }
 
+    var b = {
+        id: 0,
+        success: 0
+    };
     var url = location.search;
-    var bookId = 0;
     if (url.indexOf("?") !== -1) {
-        bookId = url.split("=");
+        b.id = url.split("=")[1];
     }
-    getBookInfo(bookId);
-    getBookCover(bookId);
+    getBookInfo(b);
+    getBookCover(b);
+
 </script>
 
 </body>
