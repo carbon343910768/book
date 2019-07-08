@@ -242,6 +242,36 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.js"> </script>
+	<!-- ZDF -->
+	<script type="text/javascript">
+		function getBook(bookId,tag,page) {
+			$.ajax({
+				type: "GET",
+				url: "/admin/book",
+				data:{
+					bookId:bookId,
+					tag:tag,
+					page:page
+				},
+				success:function (result) {
+					//{id: 4, customer: 1, address: "bjtu", phone: "1566262665", state: false}
+					console.log(result);
+					for(i in result){
+						var ISBN = result[i].ISBN;
+						var author = result[i].author;
+						var description = result[i].description;
+						var id = result[i].id;
+						var name = result[i].name;
+						var price = result[i].price;
+						var published = result[i].published;
+						var publisher = result[i].publisher;
+						var tags = result[i].tags;
+					}
+				}
+			})
+		}
+	window.onload(getBook(1,"",1));
+	</script>
 </body>
 
 </html>

@@ -405,4 +405,35 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 </script>
 </body>
 
+<!-- ZDF -->
+<script type="text/javascript">
+    function getOrder(orderId,userId,from,to,page) {
+        $.ajax({
+            type: "GET",
+            url: "/admin/order",
+            data:{
+                orderId:orderId,
+                userId:userId,
+                from:from,
+                to:to,
+                page:page
+            },
+            success:function (result) {
+                //{id: 4, customer: 1, address: "bjtu", phone: "1566262665", state: false}
+                console.log(result);
+                for(i in result){
+                    var id = result[i].id;
+                    var address = result[i].address;
+                    var customer = result[i].customer;
+                    var time = result[i].time;
+                    var price = result[i].price;
+                    var state = result[i].state;
+                    var phone = result[i].phone;
+                }
+            }
+        })
+    }
+
+</script>
+
 </html>

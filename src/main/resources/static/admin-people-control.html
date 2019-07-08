@@ -238,9 +238,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <!-- ZDF -->
 <script type="text/javascript">
 
-    var content = '<div class="inbox-row widget-shadow">'
-
-
     function getUserList(page) {
         $.ajax({
             type: "GET",
@@ -251,9 +248,13 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             success:function (result) {
                 console.log(result);
                 for(i in result){
-                    console.log(result[i].username);
+                    var username = result[i].username;
+                    var role;
+                    if(result[i].role[0].role == 'ROLE_CUSTOMER')
+                        role = '普通用户';
+                    else
+                        role = '管理员';
                 }
-
             }
         })
     }
