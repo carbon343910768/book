@@ -77,7 +77,7 @@
         </foreach>
     </update>
 
-    <delete id="delete">
+    <delete id="clear">
         DELETE FROM cart_book WHERE book_number &lt;= 0;
     </delete>
 

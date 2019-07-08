@@ -63,7 +63,7 @@ public class UserController {
         return true;
     }
 
-    @PostMapping(value = "/detail", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/customer", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String detail(
             @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "phone", required = false) String phone,
