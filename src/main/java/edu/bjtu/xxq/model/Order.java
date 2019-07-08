@@ -5,9 +5,20 @@ public class Order {
     private int id;
     private int customer;
     private String address;
+    private String phone;
     private String time;
     private String price;
     private boolean state;
+
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public Order setPhone(String phone) {
+        this.phone = phone;
+        return this;
+    }
 
     public int getId() {
         return id;

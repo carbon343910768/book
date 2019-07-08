@@ -86,7 +86,7 @@
         ) AS weight
         FROM book
         WHERE book_name LIKE CONCAT('%', #{name}, '%')
-        AND book_author LIKE CONCAT('%', #{author}, '%')
+        AND (book_author LIKE CONCAT('%', #{author}, '%') OR book_publisher LIKE CONCAT('%', #{author}, '%'))
         ORDER BY weight
         ) AS temp;
     </select>

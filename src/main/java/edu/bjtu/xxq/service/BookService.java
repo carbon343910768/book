@@ -41,8 +41,16 @@ public class BookService {
         return bookDao.findBookTags(id);
     }
 
-    public List<Integer> getBookByManyTags(String name, String author, String publisher) {
+    public List<Integer> getBookBy3(String name, String author, String publisher) {
         return bookDao.search3(name, author, publisher);
+    }
+
+    public List<Integer> getBookBy2(String name, String author) {
+        return bookDao.search2(name, author);
+    }
+
+    public List<Integer> getBookBy1(String name) {
+        return bookDao.search1(name);
     }
 
     public int addBook(Book book) {

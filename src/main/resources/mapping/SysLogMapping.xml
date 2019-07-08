@@ -3,14 +3,17 @@
 <mapper namespace="edu.bjtu.xxq.dao.LoggerDao">
 
     <resultMap id="BaseResultMap" type="edu.bjtu.xxq.model.RequestLog">
-        <result column="ip" jdbcType="VARCHAR" property="i"/>
+        <result column="date" jdbcType="VARCHAR" property="date"/>
+        <result column="time" jdbcType="VARCHAR" property="time"/>
+        <result column="ip" jdbcType="VARCHAR" property="ip"/>
         <result column="uri" jdbcType="VARCHAR" property="uri"/>
-        <result column="HTTPMethod" jdbcType="VARCHAR" property="HTTPMethod"/>
-        <result column="result" jdbcType="VARCHAR" property="result"/>
+        <result column="header" jdbcType="VARCHAR" property="header"/>
+        <result column="body" jdbcType="VARCHAR" property="body"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
     </resultMap>
 
     <insert id="save" parameterType="edu.bjtu.xxq.model.RequestLog">
-        INSERT INTO log (ip, uri, HTTPMethod, result) VALUES (#{ip}, #{uri}, #{HTTPMethod}, #{result})
+        INSERT INTO log (date,time,ip, uri, header, body,user_id) VALUES (#{date},#{time},#{ip}, #{uri}, #{header}, #{body},#{userId})
     </insert>
 
 </mapper>

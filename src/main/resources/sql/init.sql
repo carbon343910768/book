@@ -103,6 +103,7 @@ CREATE TABLE customer_order
     order_id      int unsigned not null auto_increment,
     user_id       int unsigned not null,
     order_address text,
+    order_phone   varchar(11),
     order_time    datetime,
     order_price   decimal(9, 2),
     order_state   bool,
