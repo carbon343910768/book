@@ -5,6 +5,7 @@ public class Order {
     private int id;
     private int customer;
     private String address;
+    private String phone;
     private String time;
     private String price;
     private boolean state;
