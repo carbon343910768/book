@@ -41,7 +41,7 @@ CREATE TABLE book
 CREATE TABLE image
 (
     image_id      int unsigned not null auto_increment,
-    image_content blob         not null,
+    image_content longblob         not null,
     primary key (image_id)
 );
 

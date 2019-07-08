@@ -260,6 +260,38 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
     window.onload = getUserList(1);
 </script>
+
+<!-- ZDF -->
+<script type="text/javascript">
+
+    function getUserList(page) {
+        $.ajax({
+            type: "GET",
+            url: "/admin/user",
+            data:{
+                page:page
+            },
+            success:function (result) {
+                console.log(result);
+                for(i in result){
+                    var username = result[i].username;
+                    var role;
+                    if(result[i].role[0].role == 'ROLE_CUSTOMER')
+                        role = '普通用户';
+                    else
+                        role = '管理员';
+                }
+            }
+        })
+    }
+
+    window.onload = getUserList(1);
+
+
+    
+</script>
+
+
 </body>
 
 </html>
