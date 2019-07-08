@@ -39,7 +39,7 @@ public class UserService implements UserDetailsService {
 
     public List<User> getAllUsers(int page) {
         List<User> list = new ArrayList<User>();
-        for ( Integer i: userDao.findAll(page * PAGE_SIZE, PAGE_SIZE)){
+        for (Integer i : userDao.findAll(page * PAGE_SIZE, PAGE_SIZE)) {
             list.add(getUserById(i));
         }
         return list;
@@ -63,10 +63,10 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-    public void change(String name, String phone, String email) {
+    public void change(int userId, String name, String phone, String email) {
         if (name == null) name = "";
         if (phone == null) phone = "";
         if (email == null) email = "";
-        userDao.changeDetail(name, phone, email);
+        userDao.changeDetail(userId, name, phone, email);
     }
 }

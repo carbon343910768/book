@@ -23,9 +23,7 @@ public interface UserDao {
 
     List<CustomerDetail> findCustomer(int start, int limit);
 
-
-
     void addUser(User user);
 
-    void changeDetail(String name, String phone, String email);
+    void changeDetail(int userId, String name, String phone, String email);
 }

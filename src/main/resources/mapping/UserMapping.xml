@@ -83,7 +83,15 @@
 
     <insert id="addUser">
         INSERT INTO user (username, password, role)
-        VALUES (#{username}, #{password}, #{role})
+        VALUES (#{username}, #{password}, #{role});
+    </insert>
+
+    <insert id="changeDetail">
+        INSERT INTO customer_detail (user_id, name, phone, email)
+        VALUES (#{userId}, #{name}, #{phone}, #{email})
+        ON DUPLICATE KEY UPDATE name = #{name},
+                                phone=#{phone},
+                                email= #{email};
     </insert>
 
 </mapper>
