@@ -3,11 +3,19 @@
 <mapper namespace="edu.bjtu.xxq.dao.RecommendDao">
 
     <select id="recommendByUser" resultType="integer">
-        SELECT book_id FROM user_recommend WHERE user_id = #{id} ORDER BY user_recommend.value desc LIMIT #{count};
+        SELECT book_id
+        FROM user_recommend
+        WHERE user_id = #{id}
+        ORDER BY user_recommend.value desc
+        LIMIT #{count};
     </select>
 
     <select id="recommendByBook" resultType="integer">
-        SELECT book2 FROM book_recommend WHERE book1 = #{id} ORDER BY book_recommend.value desc LIMIT #{count}
+        SELECT book2
+        FROM book_recommend
+        WHERE book1 = #{id}
+        ORDER BY book_recommend.value desc
+        LIMIT #{count}
     </select>
 
 </mapper>

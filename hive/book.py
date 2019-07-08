@@ -1,3 +1,5 @@
+# run after server started
+
 import os
 
 import requests

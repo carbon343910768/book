@@ -12,11 +12,11 @@ public class RecommendService {
     @Autowired
     private RecommendDao recommendDao;
 
-    List<Integer> recommendByUser(int id, int count){
-        return recommendDao.recommendByUser(id,count);
+    public List<Integer> recommendByUser(int id, int count) {
+        return recommendDao.recommendByUser(id, count);
     }
 
-    List<Integer> recommendByBook(int id, int count){
-        return recommendDao.recommendByBook(id,count);
+    public List<Integer> recommendByBook(int id, int count) {
+        return recommendDao.recommendByBook(id, count);
     }
 }
