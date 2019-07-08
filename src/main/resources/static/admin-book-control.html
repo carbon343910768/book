@@ -134,10 +134,10 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							<div class="form-body" data-example-id="simple-form-inline">
 								<form class="form-inline">
 									<div class="form-group"> <label for="exampleInputName2">图书编号</label> <input type="text"
-											class="form-control" id="exampleInputName2" placeholder="请输入订单号"> </div>
-									<div class="form-group"> <label for="exampleInputEmail2">图书分类</label> <input
+											class="form-control" id="exampleInputName2" placeholder="请输入图书编号"> </div>
+									<div class="form-group"> <label for="exampleInputEmail2">图书名称</label> <input
 											type="email" class="form-control" id="exampleInputEmail2"
-											placeholder="输入购买人姓名"> </div> <button type="submit"
+											placeholder="请输入图书名称"> </div> <button type="submit"
 										class="btn btn-default">查询</button>
 								</form>
 							</div>
@@ -150,54 +150,13 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 								<tr>
 									<th>#</th>
 									<th>图书编号</th>
-									<th>库存量</th>
-									<th>月销量</th>
+									<th>图书名称</th>
+									<th>价格</th>
 									<th>分类</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<th scope="row">1</th>
-									<td>Table cell</td>
-									<td>Table cell</td>
-									<td>Table cell</td>
-									<td>Table cell</td>
-								</tr>
-								<tr>
-									<th scope="row">2</th>
-									<td>Table cell</td>
-									<td>Table cell</td>
-									<td>Table cell</td>
-									<td>Table cell</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Table cell</td>
-									<td>Table cell</td>
-									<td>Table cell</td>
-									<td>Table cell</td>
-								</tr>
-								<tr>
-										<th scope="row">3</th>
-										<td>Table cell</td>
-										<td>Table cell</td>
-										<td>Table cell</td>
-										<td>Table cell</td>
-								</tr>
-								<tr>
-											<th scope="row">3</th>
-											<td>Table cell</td>
-											<td>Table cell</td>
-											<td>Table cell</td>
-											<td>Table cell</td>
-									</tr>
-									<tr>
-												<th scope="row">3</th>
-												<td>Table cell</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-										</tr>
+							<tbody id="book-list">
+							
 							</tbody>
 						</table>
 						<nav>
@@ -242,6 +201,51 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.js"> </script>
+
+	<!-- ZDF -->
+		<script type="text/javascript">
+			function getBook(bookId,tag,page) {
+				$.ajax({
+					type: "GET",
+					url: "/admin/book",
+					data:{
+						bookId:bookId,
+						tag:tag,
+						page:page
+					},
+					success:function (result) {
+						//{id: 4, customer: 1, address: "bjtu", phone: "1566262665", state: false}
+						console.log(result);
+						for(i in result){
+							var ISBN = result[i].ISBN;
+							var author = result[i].author;
+							var description = result[i].description;
+							var id = result[i].id;
+							var name = result[i].name;
+							var price = result[i].price;
+							var published = result[i].published;
+							var publisher = result[i].publisher;
+							var tags = result[i].tags;
+							var content ='<tr>'+
+							'<th scope="row">'+1+'</th>'+
+									'<td>'+id+'</td>'+
+									'<td>'+name+'</td>'+
+									'<td>'+price+'</td>'+
+									'<td>'+description+'</td>'+
+								'</tr>';
+			                $("#book-list").append(content);
+			               console.log(content);
+						}
+
+						
+					}
+				})
+
+
+			}
+		window.onload(getBook(1,"",1));
+		</script>
+	
 </body>
 
 </html>
