@@ -9,16 +9,30 @@
         <result column="role" jdbcType="VARCHAR" property="role"/>
     </resultMap>
 
+    <resultMap id="customerMap" type="edu.bjtu.xxq.model.CustomerDetail">
+        <result column="user_id" jdbcType="INTEGER" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+    </resultMap>
+
     <select id="findAll" resultType="integer">
-        SELECT user_id FROM user LIMIT #{start},#{limit};
+        SELECT user_id
+        FROM user
+        LIMIT #{start},#{limit};
     </select>
 
     <select id="findByUsername" resultMap="userMap">
-        SELECT * FROM user WHERE username = #{username}
+        SELECT *
+        FROM user
+        WHERE username = #{username}
     </select>
 
     <select id="findById" resultMap="userMap">
-        SELECT * FROM user WHERE user_id = #{id}
+        SELECT *
+        FROM user
+        WHERE user_id = #{id}
     </select>
 
     <select id="findUsersById" resultMap="userMap" parameterType="java.util.List">
@@ -31,8 +45,45 @@
         )
     </select>
 
+    <select id="findCustomerById" resultMap="customerMap">
+        SELECT c.user_id,
+               u.username,
+               c.name,
+               c.phone,
+               c.email
+        FROM customer_detail AS c,
+             user            AS u
+        WHERE c.user_id = u.user_id
+          AND u.user_id = #{id}
+    </select>
+
+    <select id="findCustomerByUsername" resultMap="customerMap">
+        SELECT c.user_id,
+               u.username,
+               c.name,
+               c.phone,
+               c.email
+        FROM customer_detail AS c,
+             user            AS u
+        WHERE c.user_id = u.user_id
+          AND u.username = #{username}
+    </select>
+
+    <select id="findCustomer" resultMap="customerMap">
+        SELECT c.user_id,
+               u.username,
+               c.name,
+               c.phone,
+               c.email
+        FROM customer_detail AS c,
+             user            AS u
+        WHERE c.user_id = u.user_id
+        LIMIT #{start},#{limit};
+    </select>
+
     <insert id="addUser">
-        INSERT INTO user (username, password, role) VALUES (#{username}, #{password}, #{role})
+        INSERT INTO user (username, password, role)
+        VALUES (#{username}, #{password}, #{role})
     </insert>
 
 </mapper>
