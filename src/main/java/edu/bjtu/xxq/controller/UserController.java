@@ -4,11 +4,11 @@ import com.google.gson.Gson;
 import edu.bjtu.xxq.model.ResponseCode;
 import edu.bjtu.xxq.model.ResponseJson;
 import edu.bjtu.xxq.service.UserService;
+import edu.bjtu.xxq.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -69,7 +69,10 @@ public class UserController {
             @RequestParam(value = "phone", required = false) String phone,
             @RequestParam(value = "email", required = false) String email
     ) {
-        userService.change(name, phone, email);
+        Integer userId = UserUtil.getUserId();
+        if (userId == null)
+            return gson.toJson(new ResponseJson(ResponseCode.FAIL));
+        userService.change(userId, name, phone, email);
         return gson.toJson(new ResponseJson(ResponseCode.SUCCESS));
     }
 }
