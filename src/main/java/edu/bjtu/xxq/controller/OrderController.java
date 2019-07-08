@@ -41,7 +41,6 @@ public class OrderController {
             @RequestParam(value = "address", required = false) String address,
             @RequestParam(value = "phone", required = false) String phone
     ) {
-        //TODO 这里参数设计的很奇怪，先按你的参数实现了一下
         Map<Integer,Integer> bookMap = IntStream.range(0, bookId.length).boxed().collect(Collectors.toMap(j -> bookId[j], j -> number[j]));
         Order order = new Order().setAddress(address).setPhone(phone);
         orderService.addOrder(order,bookMap);

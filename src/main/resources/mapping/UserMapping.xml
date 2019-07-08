@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.bjtu.xxq.dao.UserDao">
 
-    <resultMap id="BaseResultMap" type="edu.bjtu.xxq.model.User">
-        <result column="id" jdbcType="INTEGER" property="id"/>
+    <resultMap id="userMap" type="edu.bjtu.xxq.model.User">
+        <result column="user_id" jdbcType="INTEGER" property="id"/>
         <result column="username" jdbcType="VARCHAR" property="username"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="role" jdbcType="VARCHAR" property="role"/>
@@ -13,15 +13,15 @@
         SELECT user_id FROM user LIMIT #{start},#{limit};
     </select>
 
-    <select id="findByUsername" resultType="edu.bjtu.xxq.model.User">
+    <select id="findByUsername" resultMap="userMap">
         SELECT * FROM user WHERE username = #{username}
     </select>
 
-    <select id="findById" resultType="edu.bjtu.xxq.model.User">
+    <select id="findById" resultMap="userMap">
         SELECT * FROM user WHERE user_id = #{id}
     </select>
 
-    <select id="findUsersById" resultMap="BaseResultMap" parameterType="java.util.List">
+    <select id="findUsersById" resultMap="userMap" parameterType="java.util.List">
         SELECT.*
         FROM user
         WHERE user_id IN (
