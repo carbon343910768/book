@@ -24,7 +24,9 @@ public class BookService {
     }
 
     public Book getOne(int id) {
-        return bookDao.findBookById(id).setTags(bookDao.findBookTags(id));
+        Book book = bookDao.findBookById(id);
+        if (book != null) book.setTags(bookDao.findBookTags(id));
+        return book;
     }
 
     public List<Book> getList(Integer[] id) {
