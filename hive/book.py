@@ -20,7 +20,6 @@ for i in range(1, table.nrows):
         params[head[j]] = row[j]
     book = requests.post("http://localhost:8080/admin/book", params).json()
     print(params)
-    print(book)
     for filename in files:
         if params['name'] in filename:
             file = {'image': (filename, open(filename, 'rb'), 'image/jpg')}
