@@ -205,116 +205,148 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 	<script src="js/bootstrap.js"> </script>
 	<!-- ZDF -->
 	<script type="text/javascript">
-		// function getBook(bookId,tag,page) {
-		// 	$.ajax({
-		// 		type: "GET",
-		// 		url: "/admin/book",
-		// 		data:{
-		// 			bookId:bookId,
-		// 			tag:tag,
-		// 			page:page
-		// 		},
-		// 		success:function (result) {
-		// 			//{id: 4, customer: 1, address: "bjtu", phone: "1566262665", state: false}
-		// 			console.log(result);var j=1;
-		// 			for(i in result){
+		function getBook(tag,page) {
+            $.ajax({
+                type: "GET",
+                url: "/admin/book",
+                data:{
+                    tag:tag,
+                    page:page
+                },
+                success:function (result) {
+                    //{id: 4, customer: 1, address: "bjtu", phone: "1566262665", state: false}
+                    console.log(result);var j=1;
+                    for(i in result){
+                        var ISBN = result[i].ISBN;
+                        var author = result[i].author;
+                        var description =result[i].description;
+                        var id = result[i].id;
+                        var name = result[i].name;
+                        var price = result[i].price;
+                        var published =result[i].published;
+                        var publisher =result[i].publisher;
+                        var tags =result[i].tags;
+                        console.log(ISBN);
+                        var content='<tr>'+
+                            '<th scope="row">'+j+'</th>'+
+                            '<td>'+id+'</td>'+
+                            '<td>'+name+'</td>'+
+                            '<td>'+price+'</td>'+
+                            '<td>'+description+'</td>'+
+                            '</tr>';
+                        j++;
+                        $("#book-list").append(content);
+                        console.log(content);
+                    }
+                }
+            })
+        }
 
-		// 				var ISBN = result.ISBN;
-		// 				var author = i.author;
-		// 				var description =i.description;
-		// 				var id = i.id;
-		// 				var name = i.name;
-		// 				var price = i.price;
-		// 				var published =i.published;
-		// 				var publisher =i.publisher;
-		// 				var tags =i.tags;
-		// 				console.log(ISBN);
-		// 			var content='<tr>'+
-		// 							'<th scope="row">'+j+'</th>'+
-		// 							'<td>'+id+'</td>'+
-		// 							'<td>'+name+'</td>'+
-		// 							'<td>'+price+'</td>'+
-		// 							'<td>'+description+'</td>'+
-		// 					'</tr>';
-		//               j++;
-		// 				$("#book-list").append(content);
-		//              console.log(content);
-		// 				}
+        function getBookById(bookId) {
+            $.ajax({
+                type: "GET",
+                url: "/admin/book",
+                data:{
+                    bookId:bookId
+                },
+                success:function (result) {
+                    //{id: 4, customer: 1, address: "bjtu", phone: "1566262665", state: false}
+                    console.log(result);var j=1;
+                    var ISBN = result.ISBN;
+                    var author = i.author;
+                    var description =i.description;
+                    var id = i.id;
+                    var name = i.name;
+                    var price = i.price;
+                    var published =i.published;
+                    var publisher =i.publisher;
+                    var tags =i.tags;
+                    console.log(ISBN);
+                    var content='<tr>'+
+                        '<th scope="row">'+j+'</th>'+
+                        '<td>'+id+'</td>'+
+                        '<td>'+name+'</td>'+
+                        '<td>'+price+'</td>'+
+                        '<td>'+description+'</td>'+
+                        '</tr>';
+                    j++;
+                    $("#book-list").append(content);
+                    console.log(content);
+                }
+            })
+        }
+        window.onload = getBookById(1)
 
 
 
-		// 		}
-		// 	})
-		// }
-
-		function getBatchBook(page) {
-			var book = new Array();
-			for (i = 0; i < 10; i++) {
-				book[i] = i + (page - 1) * 10;
-			}
-			$.ajax({
-				traditional: true,
-				type: "GET",
-				url: "/book/batch",
-				data: {
-					"id": book
-				},
-				success: function (result) {
-					//{id: 4, customer: 1, address: "bjtu", phone: "1566262665", state: false}
-					console.log(result);
-					var j = 1;
-					for (i in result) {
-						var ISBN = result[i].ISBN;
-						var author = result[i].author;
-						var description = result[i].description;
-						var id = result[i].id;
-						var name = result[i].name;
-						var price = result[i].price;
-						var published = result[i].published;
-						var publisher = result[i].publisher;
-						var tags = result[i].tags;
-
-						description = description.substring(0, 100) + '...';
-						var content = '<tr>' +
-							'<th scope="row">' + id + '</th>' +
-							'<td>' + publisher + '</td>' +
-							'<td>' + name + '</td>' +
-							'<td>' + price + '</td>' +
-							'<td>' + description + '</td>' +
-							'</tr>';
-						j++;
-						$("#book-list").append(content);
-						console.log(content);
-					}
-				}
-			})
-		}
-		window.onload = getBatchBook(1);
-		$("#1").click(function () {
-	$('#book-list').html('');
-      window.onload = getBatchBook(1);
-    });
-		
-	$("#2").click(function () {
-		$('#book-list').html('');
-      window.onload = getBatchBook(2);
-	
-    });
-		
-	$("#3").click(function () {
-		$('#book-list').html('');
-      window.onload = getBatchBook(3);
-    });
-		
-	$("#4").click(function () {
-		$('#book-list').html('');
-      window.onload = getBatchBook(4);
-    });
-		
-	$("#5").click(function () {
-		$('#book-list').html('');
-      window.onload = getBatchBook(5);
-    });
+	// 	function getBatchBook(page) {
+	// 		var book = new Array();
+	// 		for (i = 0; i < 10; i++) {
+	// 			book[i] = i + (page - 1) * 10;
+	// 		}
+	// 		$.ajax({
+	// 			traditional: true,
+	// 			type: "GET",
+	// 			url: "/book/batch",
+	// 			data: {
+	// 				"id": book
+	// 			},
+	// 			success: function (result) {
+	// 				//{id: 4, customer: 1, address: "bjtu", phone: "1566262665", state: false}
+	// 				console.log(result);
+	// 				var j = 1;
+	// 				for (i in result) {
+	// 					var ISBN = result[i].ISBN;
+	// 					var author = result[i].author;
+	// 					var description = result[i].description;
+	// 					var id = result[i].id;
+	// 					var name = result[i].name;
+	// 					var price = result[i].price;
+	// 					var published = result[i].published;
+	// 					var publisher = result[i].publisher;
+	// 					var tags = result[i].tags;
+    //
+	// 					description = description.substring(0, 100) + '...';
+	// 					var content = '<tr>' +
+	// 						'<th scope="row">' + id + '</th>' +
+	// 						'<td>' + publisher + '</td>' +
+	// 						'<td>' + name + '</td>' +
+	// 						'<td>' + price + '</td>' +
+	// 						'<td>' + description + '</td>' +
+	// 						'</tr>';
+	// 					j++;
+	// 					$("#book-list").append(content);
+	// 					console.log(content);
+	// 				}
+	// 			}
+	// 		})
+	// 	}
+	// 	window.onload = getBatchBook(1);
+	// 	$("#1").click(function () {
+	// $('#book-list').html('');
+    //   window.onload = getBatchBook(1);
+    // });
+	//
+	// $("#2").click(function () {
+	// 	$('#book-list').html('');
+    //   window.onload = getBatchBook(2);
+	//
+    // });
+	//
+	// $("#3").click(function () {
+	// 	$('#book-list').html('');
+    //   window.onload = getBatchBook(3);
+    // });
+	//
+	// $("#4").click(function () {
+	// 	$('#book-list').html('');
+    //   window.onload = getBatchBook(4);
+    // });
+	//
+	// $("#5").click(function () {
+	// 	$('#book-list').html('');
+    //   window.onload = getBatchBook(5);
+    // });
 	</script>
 
 </body>
