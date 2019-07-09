@@ -35,3 +35,14 @@ function getBookImages(book, refresh) {
         }
     });
 }
+
+function addCart(book,number) {
+    $.ajax({
+        type: "POST",
+        url: "/cart/book",
+        data: {
+            bookId: book.id,
+            number:number
+        }
+    });
+}
