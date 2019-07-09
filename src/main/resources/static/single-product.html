@@ -288,14 +288,14 @@
                                     <ul id="recent-look">
                                         <li><a href="single-product.html"><img src="images/products/fashion/1.jpg"
                                                     class="img-responsive" alt="" /></a></li>
-                                        <!-- <li><a href="single-product.html"><img src="images/products/fashion/2.jpg"
+                                        <li><a href="single-product.html"><img src="images/products/fashion/2.jpg"
                                                                            class="img-responsive" alt=""/></a></li>
                                     <li><a href="single-product.html"><img src="images/products/fashion/3.jpg"
                                                                            class="img-responsive" alt=""/></a></li>
                                     <li><a href="single-product.html"><img src="images/products/fashion/4.jpg"
                                                                            class="img-responsive" alt=""/></a></li>
                                     <li><a href="single-product.html"><img src="images/products/fashion/5.jpg"
-                                                                           class="img-responsive" alt=""/></a></li> -->
+                                                                           class="img-responsive" alt=""/></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -447,18 +447,18 @@
         getBookImages(book, checkAndLoad);
 
 
-        function recentLook(book) {
-            book.success++;
-            if (book.success < 2) return;
-            var content =
-                // <li><a href="single-product.html">
-                // <img src="images/products/fashion/1.jpg" class="img-responsive" alt=""/></a></li>
-
-                $("#recent-look").prepend(content);
-            // console.log(book.tags);
-
-        }
-
+        // function recentLook(book) {
+        //     book.success++;
+        //     if (book.success < 2) return;
+        //     var content =  '<li>'+
+        //         '<a href="single-product.html?id=' + book.id +'/a>' +
+        //             '<img src="/image/' + book.images[0] + '" class="img-responsive" alt=""/>' +
+        //        '</a></li>'
+        //       console.log(content);
+        //         $("#recent-look").prepend(content);
+        //     // console.log(book.tags);
+        //
+        // }
 
         function checkAndLoadLike(book) {
             book.success++;
@@ -502,6 +502,16 @@
                 }
             }
         });
+
+        for (var i = 1; i < 20; i++) {
+            var book = {
+                id: i,
+                success: 0
+            };
+            getBookInfo(book, recentLook); // result[i]
+            getBookImages(book, recentLook);
+        }
+
 
         var number = $("#number").val();
         $("#shopping-cart").click(function () {
