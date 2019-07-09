@@ -6,6 +6,7 @@ import edu.bjtu.xxq.util.WeightUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -49,8 +50,9 @@ public class OrderService {
     }
 
     public int addOrder(Order order, Map<Integer, Integer> books) {
-        int id = orderDao.addOrder(order);
-        orderDao.addBook(id, books);
+//        order.setTime(LocalDateTime.now().toString());
+        orderDao.addOrder(order);
+        orderDao.addBook(order.getId(), books);
         loggerService.actions(books.values().toArray(new Integer[0]), WeightUtil.ORDER);
         return order.getId();
     }
