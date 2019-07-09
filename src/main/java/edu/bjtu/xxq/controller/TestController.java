@@ -7,6 +7,7 @@ import edu.bjtu.xxq.service.CartService;
 import edu.bjtu.xxq.service.ImageService;
 import edu.bjtu.xxq.service.OrderService;
 import edu.bjtu.xxq.util.UserUtil;
+import org.omg.CORBA.DATA_CONVERSION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -82,6 +83,7 @@ public class TestController {
             @RequestParam("bookId") Integer[] bookId,
             @RequestParam("number") Integer[] number,
             @RequestParam("userId") Integer userId,
+            @RequestParam("time") String time,
             @RequestParam("address") String address,
             @RequestParam("phone") String phone
     ) {
@@ -92,10 +94,11 @@ public class TestController {
         Order order = new Order()
                 .setCustomer(userId)
                 .setPhone(phone)
+                .setTime(time)
                 .setAddress(address)
                 .setState(true);
         orderService.addOrder(order, bookMap);
-        System.out.println(order);
+        System.out.println(gson.toJson(order));
         return gson.toJson(new ResponseJson(ResponseCode.ORDER_SUCCESS));
     }
 

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -70,6 +71,7 @@ public class OrderController {
         Order order = new Order()
                 .setAddress(address)
                 .setPhone(phone)
+                .setTime(LocalDateTime.now().toString())
                 .setCustomer(userId)
                 .setState(true);
         orderService.addOrder(order, bookMap);

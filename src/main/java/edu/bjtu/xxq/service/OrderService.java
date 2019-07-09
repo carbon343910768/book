@@ -50,9 +50,9 @@ public class OrderService {
     }
 
     public int addOrder(Order order, Map<Integer, Integer> books) {
-        order.setTime(LocalDateTime.now().toString());
-        int id = orderDao.addOrder(order);
-        orderDao.addBook(id, books);
+//        order.setTime(LocalDateTime.now().toString());
+        orderDao.addOrder(order);
+        orderDao.addBook(order.getId(), books);
         loggerService.actions(books.values().toArray(new Integer[0]), WeightUtil.ORDER);
         return order.getId();
     }

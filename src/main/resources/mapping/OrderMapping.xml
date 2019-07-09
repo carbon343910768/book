@@ -68,9 +68,6 @@
     </select>
 
     <insert id="addOrder">
-        <selectKey keyColumn="order_id" keyProperty="id" order="AFTER" resultType="integer">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
         INSERT INTO
         customer_order (
         user_id,
@@ -88,7 +85,9 @@
         #{price},
         #{state}
         );
-
+        <selectKey keyColumn="order_id" keyProperty="id" order="AFTER" resultType="integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
     <insert id="addBook">
