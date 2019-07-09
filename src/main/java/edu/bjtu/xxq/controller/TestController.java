@@ -1,14 +1,22 @@
 package edu.bjtu.xxq.controller;
 
 import com.google.gson.Gson;
-import edu.bjtu.xxq.model.Book;
+import edu.bjtu.xxq.model.*;
 import edu.bjtu.xxq.service.BookService;
 import edu.bjtu.xxq.service.CartService;
 import edu.bjtu.xxq.service.ImageService;
 import edu.bjtu.xxq.service.OrderService;
+import edu.bjtu.xxq.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @RestController
 @RequestMapping("/test")
@@ -95,6 +103,27 @@ public class TestController {
         return gson.toJson(imageService.addImage(image));*/
 
         return gson.toJson(imageService.getImage(3));
+    }
+
+    @PostMapping(value = "/order", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String add(
+            @RequestParam("bookId") Integer[] bookId,
+            @RequestParam("number") Integer[] number,
+            @RequestParam("userId") Integer userId,
+            @RequestParam("address") String address,
+            @RequestParam("phone") String phone
+    ) {
+        Map<Integer, Integer> bookMap
+                = IntStream.range(0, bookId.length).boxed()
+                .collect(Collectors.toMap(j -> bookId[j], j -> number[j]));
+
+        Order order = new Order()
+                .setAddress(address)
+                .setPhone(phone)
+                .setCustomer(userId)
+                .setState(true);
+        orderService.addOrder(order, bookMap);
+        return gson.toJson(new ResponseJson(ResponseCode.ORDER_SUCCESS));
     }
 
 }
