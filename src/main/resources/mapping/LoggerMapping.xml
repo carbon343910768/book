@@ -12,7 +12,7 @@
         <result column="user_id" jdbcType="VARCHAR" property="userId"/>
     </resultMap>
 
-    <insert id="save" parameterMap="loggerMap">
+    <insert id="save">
         INSERT INTO log (date, time, ip, uri, header, body, user_id)
         VALUES (#{date}, #{time}, #{ip}, #{uri}, #{header}, #{body}, #{userId});
     </insert>
