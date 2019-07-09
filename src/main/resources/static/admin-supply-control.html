@@ -200,7 +200,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="active">
+                        <!-- <tr class="active">
                             <th scope="row">1</th>
                             <td>Column content</td>
                             <td>Column content</td>
@@ -260,7 +260,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
                             <td>Column content</td>
                             <td>Column content</td>
-                        </tr>
+                        </tr> -->
                         <tr class="danger">
                             <th scope="row">9</th>
                             <td>Column content</td>
@@ -349,6 +349,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     var address = result[i].address;
                     var bookId = result[i].bookId;
                     var number = result[i].number;
+
                 }
 
             }
@@ -370,7 +371,21 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 var address = result.address;
                 var bookId = result.bookId;
                 var number = result.number;
+
+                var content = '<tr class="danger">' +
+							'<th scope="row">' + id + '</th>' +
+							'<td>' + company + '</td>' +
+							'<td>' + date+ '</td>' +
+							'<td>' + address + '</td>' +
+							'<td>' + bookId + '</td>' +
+							'</tr>';
+                            
+					$("#book-list").html("");
+					$("#book-list").append(content);
+					console.log(content);
             }
+
+
         })
     }
 
