@@ -25,7 +25,7 @@ public interface OrderDao {
 
     // books: 图书ID -> 数量（在properties文件里，url后面跟上&allowMultiQueries=true，可执行多条插入）
     // 返回order生成的id
-    int addOrder(Order order);
+    void addOrder(Order order);
 
     void addBook(int orderId, Map<Integer, Integer> books);
 

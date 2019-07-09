@@ -10,16 +10,6 @@ public class Order {
     private String price;
     private boolean state;
 
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public Order setPhone(String phone) {
-        this.phone = phone;
-        return this;
-    }
-
     public int getId() {
         return id;
     }
@@ -35,6 +25,15 @@ public class Order {
 
     public Order setCustomer(int customer) {
         this.customer = customer;
+        return this;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public Order setPhone(String phone) {
+        this.phone = phone;
         return this;
     }
 

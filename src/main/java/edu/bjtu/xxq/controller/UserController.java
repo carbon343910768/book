@@ -76,15 +76,10 @@ public class UserController {
         return gson.toJson(new ResponseJson(ResponseCode.SUCCESS));
     }
 
-    @GetMapping(value = "/customer",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String customerDetail(
-            @RequestParam(value = "name", required = false) String name,
-            @RequestParam(value = "page", required = false) Integer page
-    ){
-        if (name!=null)
-            return gson.toJson(userService.findCustomerByUsername(name));
-        if (page == null) page = 0;
-        else page--;
-        return gson.toJson(userService.findCustomer(page));
+    @GetMapping(value = "/customer", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String customerDetail() {
+        Integer userId = UserUtil.getUserId();
+        if (userId == null) return "";
+        return gson.toJson(userService.findCustomerById(userId));
     }
 }

@@ -38,10 +38,10 @@ public class UserService implements UserDetailsService {
         return userDao.findUsersById(Arrays.asList(id));
     }
 
-    public List<User> getAllUsers(int page) {
-        List<User> list = new ArrayList<User>();
+    public List<CustomerDetail> getAllUsers(int page) {
+        List<CustomerDetail> list = new ArrayList<>();
         for (Integer i : userDao.findAll(page * PAGE_SIZE, PAGE_SIZE)) {
-            list.add(getUserById(i));
+            list.add(findCustomerById(i));
         }
         return list;
     }
@@ -71,15 +71,15 @@ public class UserService implements UserDetailsService {
         userDao.changeDetail(userId, name, phone, email);
     }
 
-    public CustomerDetail findCustomerById(int id){
+    public CustomerDetail findCustomerById(int id) {
         return userDao.findCustomerById(id);
     }
 
-    public CustomerDetail findCustomerByUsername(String username){
+    public CustomerDetail findCustomerByUsername(String username) {
         return userDao.findCustomerByUsername(username);
     }
 
-    public List<CustomerDetail> findCustomer(int page){
+    public List<CustomerDetail> findCustomer(int page) {
         return userDao.findCustomer(page * PAGE_SIZE, PAGE_SIZE);
     }
 }
