@@ -14,6 +14,7 @@ function getBookInfo(book, refresh) {
             book.publisher = result.publisher;
             book.ISBN = result.ISBN;
             book.price = result.price;
+            book.tags = result.tags;
             refresh(book);
         }
     });
