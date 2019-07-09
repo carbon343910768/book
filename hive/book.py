@@ -46,5 +46,5 @@ for i in range(1, book.nrows):
         print(tag)
         tag = tag[1]
         if post:
-            requests.post("http://localhost:8080/admin/book/image", data={'bookId': book_id, 'tag': tag})
+            requests.post("http://localhost:8080/admin/book/tag", data={'bookId': book_id, 'tag': tag})
         tag_count += 1
