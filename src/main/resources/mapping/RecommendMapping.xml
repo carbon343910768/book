@@ -5,8 +5,8 @@
     <select id="recommendByUser" resultType="integer">
         SELECT book_id
         FROM user_recommend
-        WHERE user_id = #{id}
-        ORDER BY user_recommend.value desc
+        WHERE user_id IN (#{id}, 0)
+        ORDER BY user_id desc, user_recommend.value desc
         LIMIT #{count};
     </select>
 
