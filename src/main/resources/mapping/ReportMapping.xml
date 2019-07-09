@@ -9,13 +9,13 @@
         <result column="content" jdbcType="VARCHAR" property="content"/>
     </resultMap>
 
-    <select id="findByName" resultType="reportMap">
+    <select id="findByName" resultMap="reportMap">
         SELECT *
         FROM report
         WHERE report_name = #{name};
     </select>
 
-    <select id="findBetweenDate" resultType="reportMap">
+    <select id="findBetweenDate" resultMap="reportMap">
         SELECT *
         FROM report
         WHERE DATE_FORMAT(reporrt_date,'%Y-%m-%d' ) BETWEEN #{from} AND #{to}

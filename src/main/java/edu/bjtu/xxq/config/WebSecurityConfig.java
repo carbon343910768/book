@@ -51,14 +51,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 管理员权限
                 .and()
                 .authorizeRequests()
-                .antMatchers("/admin**","/admin/**")
-                .permitAll()
+                .antMatchers("/admin**", "/admin/**")
 //                .hasRole(UserRole.ADMIN)
+                .permitAll()
 
-                // 任何请求,登录后可以访问
+                // 顾客权限
                 .and()
                 .authorizeRequests()
-                .anyRequest()
+                .antMatchers("/customer**",
+                        "/order/**", "/order**",
+                        "/cart/**", "/cart**")
+//                .hasRole(UserRole.CUSTOMER)
                 .permitAll()
 
                 .and()
@@ -71,7 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers(
                 "/css/**",
                 "/images/**", "/js/**",
-                "/plugin/**"
+                "/plugin/**", "/fonts/**"
         );
     }
 }
