@@ -310,28 +310,47 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <script src="js/bootstrap.js"></script>
 <!-- ZDF -->
 <script type="text/javascript">
-    function getSupplier(registerNo,name,page) {
+    function getSupplier(registerNo,name) {
         $.ajax({
             type: "GET",
-            url: "/admin/order",
+            url: "/admin/supplier",
             data:{
                 registerNo:registerNo,
-                name:name,
+                company:name,
                 page:page
             },
             success:function (result) {
                 //{id: 4, customer: 1, address: "bjtu", phone: "1566262665", state: false}
                 console.log(result);
-                for(i in result){
+                var id = result.registerNo;
+                var address = result.name;
+                var customer = result.phone;
+                var time = result.email;
+            }
+        })
+    }
+    function getAllSupplier(page) {
+        $.ajax({
+            type: "GET",
+            url: "/admin/supplier",
+            data:{
+                page:page
+            },
+            success:function (result) {
+                //{id: 4, customer: 1, address: "bjtu", phone: "1566262665", state: false}
+                console.log(result);
+                for (i in result) {
                     var id = result[i].registerNo;
                     var address = result[i].name;
                     var customer = result[i].phone;
                     var time = result[i].email;
                 }
+
             }
         })
     }
-
+    
+    window.onload = getAllSupplier(1);
 </script>
 
 
