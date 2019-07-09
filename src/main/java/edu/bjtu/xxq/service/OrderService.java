@@ -56,4 +56,8 @@ public class OrderService {
         loggerService.actions(books.values().toArray(new Integer[0]), WeightUtil.ORDER);
         return order.getId();
     }
+
+    public List<Order> getAll(int page){
+        return orderDao.findAllOrders(page * PAGE_SIZE, PAGE_SIZE);
+    }
 }

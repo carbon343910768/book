@@ -13,6 +13,8 @@ public interface OrderDao {
 
     List<Order> findOrdersById(List<Integer> id);
 
+    List<Order> findAllOrders(int start, int limit);
+
     List<Integer> findOrdersByUser(int id, int start, int limit);
 
     List<Integer> findOrdersByDate(String date, int start, int limit);

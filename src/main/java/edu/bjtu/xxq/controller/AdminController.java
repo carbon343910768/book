@@ -115,7 +115,7 @@ public class AdminController {
         }
         if (StringUtils.hasLength(to))
             return gson.toJson(orderService.getList(orderService.getByDate(to, page).toArray(new Integer[0])));
-        return "";
+        return gson.toJson(orderService.getAll(page));
     }
 
     @Autowired
