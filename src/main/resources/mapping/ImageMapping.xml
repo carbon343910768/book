@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.bjtu.xxq.dao.ImageDao">
+
+    <resultMap id="imageMap" type="edu.bjtu.xxq.model.Image">
+        <result column="image_id" jdbcType="INTEGER" property="id"/>
+        <result column="image_content" jdbcType="BLOB" property="content"/>
+    </resultMap>
+
+    <select id="findImageById" resultMap="imageMap">
+        SELECT *
+        FROM image
+        WHERE image_id = #{id}
+    </select>
+
+    <insert id="addImage" >
+        <selectKey keyColumn="id" keyProperty="id" order="AFTER" resultType="integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO
+        image (
+        image_id,
+        image_content
+        )
+        VALUES (
+        #{id},
+        #{content}
+        );
+
+    </insert>
+
+</mapper>

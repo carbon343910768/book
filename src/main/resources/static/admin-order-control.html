@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>订单管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
+    <script
+            type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <!-- Custom CSS -->
+    <link href="css/bstyle.css" rel='stylesheet' type='text/css'/>
+    <!-- font CSS -->
+    <!-- font-awesome icons -->
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!-- js-->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+    <!--webfonts-->
+    <link href='http://fonts.useso.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic'
+          rel='stylesheet' type='text/css'>
+    <!--//webfonts-->
+    <!--animate-->
+    <link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
+    <script src="js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <!--//end-animate-->
+    <!-- Metis Menu -->
+    <script src="js/metisMenu.min.js"></script>
+    <script src="js/custom.js"></script>
+    <link href="css/custom.css" rel="stylesheet">
+    <!--//Metis Menu -->
+</head>
+
+<body class="cbp-spmenu-push">
+<div class="main-content">
+    <!--left-fixed -navigation-->
+    <div class=" sidebar" role="navigation">
+        <div class="navbar-collapse">
+            <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href="admin-index.html" class="active"><i class="fa fa-home nav_icon"></i>报表管理</a>
+                    </li>
+
+                    <li class="">
+                        <a href="admin-people-control.html"><i class="fa fa-book nav_icon"></i>权限管理 <span
+                                class="fa arrow"></span></a>
+
+                    </li>
+                    <li>
+                        <a href="admin-book-control.html"><i class="fa fa-th-large nav_icon"></i>图书管理 </a>
+                    </li>
+
+                    <li>
+                        <a href="admin-supply-control.html"><i class="fa fa-th-large nav_icon"></i>供应管理 </a>
+                    </li>
+                    <li>
+                        <a href="admin-supply-add.html"><i class="fa fa-th-large nav_icon"></i>添加供应 </a>
+                    </li>
+                    <li>
+                        <a href="admin-supplier-add.html"><i class="fa fa-th-large nav_icon"></i>添加供应商 </a>
+                    </li>
+                    <li>
+                        <a href="admin-supplier-control.html"><i class="fa fa-th-large nav_icon"></i>供应商管理</a>
+                    </li>
+
+                    <li>
+                        <a href="admin-order-control.html"><i class="fa fa-table nav_icon"></i>订单管理 </a>
+                    </li>
+                    <li>
+                        <a href="admin-login.html"><i class="fa fa-check-square-o nav_icon"></i>登录<span
+                                class="fa arrow"></span></a>
+
+                        <!-- //nav-second-level -->
+                    </li>
+
+                </ul>
+                <!-- //sidebar-collapse -->
+            </nav>
+        </div>
+    </div>
+    <!--left-fixed -navigation-->
+    <!-- header-starts -->
+    <!-- header-starts -->
+    <div class="sticky-header header-section ">
+        <div class="header-left">
+            <!--toggle button start-->
+            <button id="showLeftPush"><i class="fa fa-bars"></i></button>
+            <!--toggle button end-->
+            <!--logo -->
+            <div class="logo">
+                <a href="index.html">
+                    <h1>红粉凤凰后台管理系统</h1>
+                    <span>hongfenfenghuang</span>
+                </a>
+            </div>
+            <!--//logo-->
+            <!--search-box-->
+
+
+        </div>
+        <div class="header-right">
+
+            <!--notification menu end -->
+            <div class="profile_details">
+                <ul>
+                    <li class="dropdown profile_details_drop">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <div class="profile_img">
+                                <span class="prfil-img"><img src="images/a.png" alt=""> </span>
+                                <div class="user-name">
+                                    <p>Wikolia</p>
+                                    <span>Administrator</span>
+                                </div>
+                                <i class="fa fa-angle-down lnr"></i>
+                                <i class="fa fa-angle-up lnr"></i>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu drp-mnu">
+                            <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
+                            <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+                            <li><a href="#"><i class="fa fa-sign-out"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!-- //header-ends -->
+    <!-- //header-ends -->
+    <!-- main content start-->
+    <div id="page-wrapper">
+        <div class="main-page">
+
+            <div class="tables">
+                <h3 class="title1">订单管理</h3>
+                <div class="form-two widget-shadow">
+                    <div class="form-title">
+                        <h4>查询订单</h4>
+                    </div>
+                    <div class="form-body" data-example-id="simple-form-inline">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label for="exampleInputName2">ID</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="exampleInputName2"
+                                       placeholder="输入订单号">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail2">客户</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="exampleInputEmail2"
+                                       placeholder="输入客户ID">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail3">开始日期</label>
+                                <input type="date"
+                                       class="form-control"
+                                       id="exampleInputEmail3"
+                                       placeholder="选择购买日期">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail3">终止日期</label>
+                                <input type="date"
+                                       class="form-control"
+                                       id="exampleInputEmail4"
+                                       placeholder="选择购买日期">
+                            </div>
+                            <button type="submit"
+                                    class="btn btn-default">查询
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!--//end-search-box-->
+                <div class="clearfix"></div>
+                <div class="bs-example widget-shadow" data-example-id="contextual-table">
+                    <h4>订单列表</h4>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>订单号</th>
+                            <th>购买人</th>
+                            <th>详细信息</th>
+                            <th>下单时间</th>
+                        </tr>
+                        </thead>
+                        <tbody id="order-list">
+
+
+                        </tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination pagination-lg">
+                            <li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                            <li id="1"><a href="#">1</a></li>
+                            <li id="2"><a href="#">2</a></li>
+                            <li id="3"><a href="#">3</a></li>
+                            <li id="4"><a href="#">4</a></li>
+                            <li id="5"><a href="#">5</a></li>
+                            <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Classie -->
+<script src="js/classie.js"></script>
+<script>
+    var menuLeft = document.getElementById('cbp-spmenu-s1'),
+        showLeftPush = document.getElementById('showLeftPush'),
+        body = document.body;
+
+    showLeftPush.onclick = function () {
+        classie.toggle(this, 'active');
+        classie.toggle(body, 'cbp-spmenu-push-toright');
+        classie.toggle(menuLeft, 'cbp-spmenu-open');
+        disableOther('showLeftPush');
+    };
+
+    function disableOther(button) {
+        if (button !== 'showLeftPush') {
+            classie.toggle(showLeftPush, 'disabled');
+        }
+    }
+</script>
+<!--scrolling js-->
+<script src="js/jquery.nicescroll.js"></script>
+<script src="js/scripts.js"></script>
+<!--//scrolling js-->
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.js"></script>
+
+<!-- ZDF -->
+<script type="text/javascript">
+    function getOrder(orderId,userId,from,to,page) {
+        $.ajax({
+            type: "GET",
+            url: "/admin/order",
+            data:{
+                orderId:orderId,
+                userId:userId,
+                from:from,
+                to:to,
+                page:page
+            },
+            success:function (result) {
+                //{id: 4, customer: 1, address: "bjtu", phone: "1566262665", state: false}
+                console.log(result);
+                for(i in result){
+                    var id = result[i].id;
+                    var address = result[i].address;
+                    var customer = result[i].customer;
+                    var time = result[i].time;
+                    var price = result[i].price;
+                    var state = result[i].state;
+                    var phone = result[i].phone;
+
+                }
+            }
+        })
+    }
+    function getBatchOrder(page) {
+        $.ajax({
+            type: "GET",
+            url: "/admin/order",
+            data:{
+                page:page
+            },
+            success: function (result) {
+                console.log(result);
+                for (i in result) {
+                    var id = result[i].id;
+                    var address = result[i].address;
+                    var customer = result[i].customer;
+                    var time = result[i].time;
+                    var price = result[i].price;
+                    var state = result[i].state;
+                    var phone = result[i].phone;
+
+                    var content = '<tr>' +
+                        '<th scope="row">' + id + '</th>' +
+                        '<td>' + customer + '</td>' +
+                        '<td>' + price + '</td>' +
+                        '<td>' + time + '</td>' +
+                        '</tr>';
+
+                    $("#order-list").append(content);
+                    console.log(content);
+                }
+            }
+        })
+    }
+    $("#1").click(function () {
+        $('#order-list').html('');
+        window.onload =  getBatchOrder(1);
+    });
+
+    $("#2").click(function () {
+        $('#order-list').html('');
+        window.onload = getBatchOrder(2);
+
+    });
+
+    $("#3").click(function () {
+        $('#order-list').html('');
+        window.onload = getBatchOrder(3);
+    });
+
+    $("#4").click(function () {
+        $('#order-list').html('');
+        window.onload = getBatchOrder(4);
+    });
+
+    $("#5").click(function () {
+        $('#order-list').html('');
+        window.onload = getBatchOrder(5);
+    });
+
+</script>
+</body>
+
+
+
+</html>

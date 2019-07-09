@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.bjtu.xxq.dao.LoggerDao">
+
+    <resultMap id="loggerMap" type="edu.bjtu.xxq.model.RequestLog">
+        <result column="date" jdbcType="VARCHAR" property="date"/>
+        <result column="time" jdbcType="VARCHAR" property="time"/>
+        <result column="ip" jdbcType="VARCHAR" property="ip"/>
+        <result column="uri" jdbcType="VARCHAR" property="uri"/>
+        <result column="header" jdbcType="VARCHAR" property="header"/>
+        <result column="body" jdbcType="VARCHAR" property="body"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+    </resultMap>
+
+    <insert id="save">
+        INSERT INTO log (date, time, ip, uri, header, body, user_id)
+        VALUES (#{date}, #{time}, #{ip}, #{uri}, #{header}, #{body}, #{userId});
+    </insert>
+
+    <insert id="record">
+        INSERT INTO weighted_record(user_id, book_id, weight)
+        VALUES
+        <foreach collection="books" separator="," item="bookId">
+            (#{userId}, #{bookId}, #{weight})
+        </foreach>
+        ;
+        INSERT INTO transfer_record(user_id, book_id, action)
+        VALUES
+        <foreach collection="books" separator="," item="bookId">
+            (#{userId}, #{bookId}, #{action})
+        </foreach>
+        ;
+    </insert>
+
+</mapper>

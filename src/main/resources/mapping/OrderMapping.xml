@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.bjtu.xxq.dao.OrderDao">
+
+    <resultMap id="orderMap" type="edu.bjtu.xxq.model.Order">
+        <result column="order_id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="customer"/>
+        <result column="order_address" jdbcType="VARCHAR" property="address"/>
+        <result column="order_phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="order_time" jdbcType="DATE" property="time"/>
+        <result column="order_price" jdbcType="DECIMAL" property="price"/>
+        <result column="order_state" jdbcType="BOOLEAN" property="state"/>
+    </resultMap>
+
+    <select id="findOrderById" resultMap="orderMap">
+        SELECT co.*
+        FROM customer_order AS co
+        WHERE co.order_id = #{id}
+    </select>
+
+    <select id="findOrdersById" resultMap="orderMap" parameterType="java.util.List">
+        SELECT
+        co.*
+        FROM customer_order AS co
+        WHERE co.order_id IN (
+        <foreach collection="list" item="id" index="index" separator=",">
+            #{id}
+        </foreach>
+        )
+    </select>
+
+    <select id="findAllOrders" resultMap="orderMap" >
+        SELECT
+        co.*
+        FROM customer_order AS co
+        LIMIT #{start}, #{limit};
+    </select>
+
+    <select id="findOrdersByUser" resultType="integer">
+        SELECT order_id
+        FROM customer_order
+        WHERE user_id = #{id}
+        ORDER BY order_time
+        LIMIT #{start}, #{limit};
+    </select>
+
+    <select id="findOrdersByDate" resultType="integer">
+        SELECT order_id
+        FROM customer_order
+        WHERE DATE_FORMAT(order_time,'%Y-%m-%d' )= #{date}
+        ORDER BY order_time
+        LIMIT #{start}, #{limit};
+    </select>
+
+    <select id="findOrdersBetweenDate" resultType="integer">
+        SELECT order_id
+        FROM customer_order
+        WHERE DATE_FORMAT(order_time,'%Y-%m-%d' ) BETWEEN #{from} AND #{to}
+        ORDER BY order_time
+        LIMIT #{start}, #{limit};
+    </select>
+
+
+    <select id="findAllBooksInOrder" resultType="integer">
+        SELECT book_id
+        FROM order_book
+        WHERE order_book.order_id = #{id}
+    </select>
+
+    <select id="findBookNumberInOrder" resultType="integer">
+        SELECT order_book.book_number
+        FROM order_book
+        WHERE order_book.book_id = #{bookId}
+          AND order_book.order_id = #{orderId}
+    </select>
+
+    <insert id="addOrder">
+        INSERT INTO
+        customer_order (
+        user_id,
+        order_address,
+        order_phone,
+        order_time,
+        order_price,
+        order_state
+        )
+        VALUES (
+        #{customer},
+        #{address},
+        #{phone},
+        #{time},
+        #{price},
+        #{state}
+        );
+        <selectKey keyColumn="order_id" keyProperty="id" order="AFTER" resultType="integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <insert id="addBook">
+        INSERT INTO order_book (
+        order_id,
+        book_id,
+        book_number
+        ) VALUES
+        <foreach collection="books" index="key" item="value" open="" separator="," close=" ">
+            (#{orderId},#{key},#{value})
+        </foreach>
+
+    </insert>
+
+</mapper>
