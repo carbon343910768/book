@@ -56,6 +56,7 @@ public class OrderController {
             @RequestParam(value = "address", required = false) String address,
             @RequestParam(value = "phone", required = false) String phone
     ) {
+        cartId = UserUtil.getUserId();
         Map<Integer, Integer> bookMap
                 = IntStream.range(0, bookId.length).boxed()
                 .collect(Collectors.toMap(j -> bookId[j], j -> number[j]));
