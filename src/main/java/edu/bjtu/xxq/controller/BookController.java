@@ -36,4 +36,9 @@ public class BookController {
         return gson.toJson(bookService.getBookImages(id));
     }
 
+    @GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String search(@RequestParam("search") String search) {
+        return gson.toJson(bookService.search(search));
+    }
+
 }

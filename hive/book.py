@@ -6,6 +6,7 @@ import xlrd
 book = 'book.xlsx'
 book_image = 'book_image.xlsx'
 book_tag = 'book_tag.xlsx'
+host = 'localhost:8080'
 
 book = xlrd.open_workbook(book).sheet_by_index(0)
 book_image = xlrd.open_workbook(book_image).sheet_by_index(0)
@@ -27,7 +28,7 @@ for i in range(1, book.nrows):
         params[attr[j]] = row[j]
     print(params)
     if post:
-        book_id = requests.post("http://localhost:8080/admin/book", data=params).json()['data']
+        book_id = requests.post('http://' + host + '/admin/book', data=params).json()['data']
 
     while image_count < image_max:
         image = book_image.row_values(image_count)
@@ -37,7 +38,7 @@ for i in range(1, book.nrows):
         image = requests.get(image[1])
         file = {'image': ('image', image.content, 'image/jpg')}
         if post:
-            requests.post("http://localhost:8080/admin/book/image", data={'bookId': book_id}, files=file)
+            requests.post('http://' + host + '/admin/book/image', data={'bookId': book_id}, files=file)
         image_count += 1
     while tag_count < tag_max:
         tag = book_tag.row_values(tag_count)
@@ -45,6 +46,6 @@ for i in range(1, book.nrows):
             break
         print(tag)
         tag = tag[1]
-        if post:
-            requests.post("http://localhost:8080/admin/book/image", data={'bookId': book_id, 'tag': tag})
+        if post and not '/' in tag:
+            requests.post('http://' + host + '/admin/book/tag', data={'bookId': book_id, 'tag': tag})
         tag_count += 1
