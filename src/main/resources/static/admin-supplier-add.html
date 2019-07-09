@@ -147,7 +147,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <div class="sign-up2">
                         <form>
-                            <input type="text" name="name"  required>
+                            <input type="text" name="registerNo"  required>
                         </form>
                     </div>
                     <div class="clearfix"> </div>
@@ -158,7 +158,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <div class="sign-up2">
                         <form>
-                            <input type="text" name="name"  required>
+                            <input type="text" name="company"  required>
                         </form>
                     </div>
                     <div class="clearfix"> </div>
@@ -169,7 +169,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <div class="sign-up2">
                         <form>
-                            <input type="text" required>
+                            <input type="text" name="phone" required>
                         </form>
                     </div>
                     <div class="clearfix"> </div>
@@ -180,14 +180,14 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <div class="sign-up2">
                         <form>
-                            <input type="text" required>
+                            <input type="text" name="email" required>
                         </form>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
                 <div class="sub_home">
                     <form>
-                        <input type="submit" value="Submit">
+                        <input type="submit" value="Submit" onclick="addSupplier()">
                     </form>
                     <div class="clearfix"> </div>
                 </div>
@@ -221,6 +221,26 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <!--//scrolling js-->
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.js"></script>
+<script>
+    function addSupplier() {
+        var registerNo = document.getElementsByName("registerNo");
+        var company = document.getElementsByName("company");
+        var phone = document.getElementsByName("phone");
+        var email = document.getElementsByName("email");
+        $.ajax({
+            type: "POST",
+            url: "/admin/supplier",
+            data:{
+                registerNo:registerNo,
+                company:company,
+                phone:phone,
+                email:email
+            }
+        })
+
+
+    }
+</script>
 
 
 
