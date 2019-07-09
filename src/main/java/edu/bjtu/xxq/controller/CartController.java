@@ -9,10 +9,7 @@ import edu.bjtu.xxq.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/cart")
 @RestController
@@ -42,11 +39,19 @@ public class CartController {
 
     @PostMapping(value = "/book", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String addBook(
-            @RequestParam("cartId") int cartId,
             @RequestParam("bookId") int bookId,
             @RequestParam("number") int number
     ) {
-        cartService.addBook(cartId,bookId,number);
+        Integer userId = UserUtil.getUserId();
+        //TODO 这里的2不要忘了改成userid
+        cartService.addBook(2,bookId,number);
         return gson.toJson(new ResponseJson(ResponseCode.ADD_TO_CART_SUCCESS));
+    }
+
+    @GetMapping(value = "/book", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String getBookId(){
+        Integer userId = UserUtil.getUserId();
+        //TODO 这里的2不要忘了改成userid
+        return gson.toJson(cartService.getAllBooksInCart(2));
     }
 }
