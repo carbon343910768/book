@@ -189,7 +189,7 @@
 
                                     <div class="col-md-5 col-sm-5">
                                         <p>数量<span>*</span></p>
-                                        <select>
+                                        <select id="number">
                                             <option>1</option>
                                             <option>2</option>
                                             <option>3</option>
@@ -584,7 +584,11 @@
     }
     getBookInfo(book, checkAndLoad); // result[i]
     getBookImages(book, checkAndLoad);
-
+    var number = $("#number").val();
+    $("#shopping-cart").click(function () {
+        alert(number);
+        addCart(book,number);
+    });
 </script>
 
 </body>
