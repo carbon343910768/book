@@ -164,7 +164,7 @@
                             </table>
 
                             <div class="table-btn">
-                                <a id="submitAll" href="#" class="btn-black">全部结算</a>
+                                <a id="submitAll" href="#order-history" class="btn-black">全部结算</a>
                             </div>
                         </div>
                     </div>
@@ -288,7 +288,7 @@
                 if (typeof result == 'string')
                     result = JSON.parse(result);
                 console.log(result);
-                var content = '<tr > <td ><img id="book' + id + '" src="/image/' + getBookCover(id) + ' " alt=""/></td> ' +
+                var content = '<tr > <td ><img id="book' + id + '" src="/image/' + result.id + ' " alt=""/></td> ' +
                     ' <td> <select id="bookSelect' + id + '">' +
                     ' <option>1</option>' +
                     '<option>2</option>' +
@@ -369,7 +369,9 @@
     }
 
     $("#submitAll").click(function () {
+
         addOrder(BookId, NumberList);
+        window.location.href = "order-history.html";
     })
 
 
