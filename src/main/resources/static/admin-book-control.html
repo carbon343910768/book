@@ -48,26 +48,39 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 						<li>
 							<a href="admin-index.html" class="active"><i class="fa fa-home nav_icon"></i>报表管理</a>
 						</li>
-
+	
 						<li class="">
 							<a href="admin-people-control.html"><i class="fa fa-book nav_icon"></i>权限管理 <span
 									class="fa arrow"></span></a>
-
+	
 						</li>
 						<li>
 							<a href="admin-book-control.html"><i class="fa fa-th-large nav_icon"></i>图书管理 </a>
 						</li>
-
+	
+						<li>
+							<a href="admin-supply-control.html"><i class="fa fa-th-large nav_icon"></i>供应管理 </a>
+						</li>
+						<li>
+							<a href="admin-supply-add.html"><i class="fa fa-th-large nav_icon"></i>添加供应 </a>
+						</li>
+						<li>
+							<a href="admin-supplier-add.html"><i class="fa fa-th-large nav_icon"></i>添加供应商 </a>
+						</li>
+						<li>
+							<a href="admin-supplier-control.html"><i class="fa fa-th-large nav_icon"></i>供应商管理</a>
+						</li>
+	
 						<li>
 							<a href="admin-order-control.html"><i class="fa fa-table nav_icon"></i>订单管理 </a>
 						</li>
 						<li>
 							<a href="admin-login.html"><i class="fa fa-check-square-o nav_icon"></i>登录<span
 									class="fa arrow"></span></a>
-
+	
 							<!-- //nav-second-level -->
 						</li>
-
+	
 					</ul>
 					<!-- //sidebar-collapse -->
 				</nav>
@@ -135,8 +148,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="form-body" data-example-id="simple-form-inline">
 							<form class="form-inline">
-								<div class="form-group"> <label for="exampleInputName2">图书编号</label> <input type="text"
-										class="form-control" id="exampleInputName2" placeholder="请输入订单号"> </div>
+								<div class="form-group"> <label >图书编号</label>
+									<input type="text" class="form-control" id="exampleInputName2" placeholder="请输入图书编号"> </div>
+					<button type="submit" class="btn btn-default"  id="query-id">查询</button>
 								<div class="form-group"> <label for="exampleInputEmail2">图书分类</label> <input
 										type="email" class="form-control" id="exampleInputEmail2" placeholder="输入购买人姓名">
 								</div> <button type="submit" class="btn btn-default">查询</button>
@@ -205,47 +219,81 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 	<script src="js/bootstrap.js"> </script>
 	<!-- ZDF -->
 	<script type="text/javascript">
-		// function getBook(bookId,tag,page) {
-		// 	$.ajax({
-		// 		type: "GET",
-		// 		url: "/admin/book",
-		// 		data:{
-		// 			bookId:bookId,
-		// 			tag:tag,
-		// 			page:page
-		// 		},
-		// 		success:function (result) {
-		// 			//{id: 4, customer: 1, address: "bjtu", phone: "1566262665", state: false}
-		// 			console.log(result);var j=1;
-		// 			for(i in result){
-
-		// 				var ISBN = result.ISBN;
-		// 				var author = i.author;
-		// 				var description =i.description;
-		// 				var id = i.id;
-		// 				var name = i.name;
-		// 				var price = i.price;
-		// 				var published =i.published;
-		// 				var publisher =i.publisher;
-		// 				var tags =i.tags;
-		// 				console.log(ISBN);
-		// 			var content='<tr>'+
-		// 							'<th scope="row">'+j+'</th>'+
-		// 							'<td>'+id+'</td>'+
-		// 							'<td>'+name+'</td>'+
-		// 							'<td>'+price+'</td>'+
-		// 							'<td>'+description+'</td>'+
-		// 					'</tr>';
-		//               j++;
-		// 				$("#book-list").append(content);
-		//              console.log(content);
-		// 				}
 
 
+		var control=0;
+		function getBook(tag,page) {
+			$.ajax({
+				type: "GET",
+				url: "/admin/book",
+				data:{
+					tag:tag,
+					page:page
+				},
+				success:function (result) {
+					//{id: 4, customer: 1, address: "bjtu", phone: "1566262665", state: false}
+					console.log(result);var j=1;
+					for(i in result){
+						var ISBN = result[i].ISBN;
+						var author = result[i].author;
+						var description =result[i].description;
+						var id = result[i].id;
+						var name = result[i].name;
+						var price = result[i].price;
+						var published =result[i].published;
+						var publisher =result[i].publisher;
+						var tags =result[i].tags;
+						console.log(ISBN);
+						var content='<tr>'+
+								'<th scope="row">'+j+'</th>'+
+								'<td>'+id+'</td>'+
+								'<td>'+name+'</td>'+
+								'<td>'+price+'</td>'+
+								'<td>'+description+'</td>'+
+								'</tr>';
+						j++;
+						$("#book-list").append(content);
+						console.log(content);
+					}
+				}
+			})
+		}
 
-		// 		}
-		// 	})
-		// }
+		function getBookById(bookId) {
+			$.ajax({
+				type: "GET",
+				url: "/admin/book",
+				data:{
+					bookId:bookId
+				},
+				success: function (result) {
+					//{id: 4, customer: 1, address: "bjtu", phone: "1566262665", state: false}
+					console.log(result);
+					var ISBN = result.ISBN;
+					var author = result.author;
+					var description = result.description;
+					var id = result.id;
+					var name = result.name;
+					var price = result.price;
+					var published = result.published;
+					var publisher = result.publisher;
+					var tags = result.tags;
+					//
+					// description = description.substring(0, 100) + '...';
+					var content = '<tr>' +
+							'<th scope="row">' + id + '</th>' +
+							'<td>' + publisher + '</td>' +
+							'<td>' + name + '</td>' +
+							'<td>' + price + '</td>' +
+							'<td>' + description + '</td>' +
+							'</tr>';
+
+					$("#book-list").html("");
+					$("#book-list").append(content);
+					console.log(content);
+				}
+			})
+		}
 
 		function getBatchBook(page) {
 			var book = new Array();
@@ -262,7 +310,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				success: function (result) {
 					//{id: 4, customer: 1, address: "bjtu", phone: "1566262665", state: false}
 					console.log(result);
-					var j = 1;
+
 					for (i in result) {
 						var ISBN = result[i].ISBN;
 						var author = result[i].author;
@@ -282,39 +330,47 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							'<td>' + price + '</td>' +
 							'<td>' + description + '</td>' +
 							'</tr>';
-						j++;
+
 						$("#book-list").append(content);
-						console.log(content);
+						// console.log(content);
 					}
 				}
 			})
 		}
-		window.onload = getBatchBook(1);
+
+		//window.onload = getBatchBook(1);
 		$("#1").click(function () {
-	$('#book-list').html('');
+	  $('#book-list').html('');
       window.onload = getBatchBook(1);
     });
-		
-	$("#2").click(function () {
+
+     	$("#2").click(function () {
 		$('#book-list').html('');
       window.onload = getBatchBook(2);
 	
     });
 		
-	$("#3").click(function () {
+	   $("#3").click(function () {
 		$('#book-list').html('');
       window.onload = getBatchBook(3);
     });
 		
-	$("#4").click(function () {
+	  $("#4").click(function () {
 		$('#book-list').html('');
       window.onload = getBatchBook(4);
     });
 		
-	$("#5").click(function () {
+	    $("#5").click(function () {
 		$('#book-list').html('');
       window.onload = getBatchBook(5);
     });
+
+
+		$("#query-id").click(function () {
+
+			getBookById($("#exampleInputName2").val());
+		});
+
 	</script>
 
 </body>
