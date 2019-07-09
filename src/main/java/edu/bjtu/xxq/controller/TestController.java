@@ -2,18 +2,12 @@ package edu.bjtu.xxq.controller;
 
 import com.google.gson.Gson;
 import edu.bjtu.xxq.model.*;
-import edu.bjtu.xxq.service.BookService;
-import edu.bjtu.xxq.service.CartService;
-import edu.bjtu.xxq.service.ImageService;
-import edu.bjtu.xxq.service.OrderService;
+import edu.bjtu.xxq.service.*;
 import edu.bjtu.xxq.util.UserUtil;
 import org.omg.CORBA.DATA_CONVERSION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -102,17 +96,18 @@ public class TestController {
         return gson.toJson(new ResponseJson(ResponseCode.ORDER_SUCCESS));
     }
 
-//    @PostMapping(value = "/customer", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-//    public String detail(
-//            @RequestParam(value = "name", required = false) String name,
-//            @RequestParam(value = "phone", required = false) String phone,
-//            @RequestParam(value = "email", required = false) String email
-//    ) {
-//        Integer userId = UserUtil.getUserId();
-//        if (userId == null)
-//            return gson.toJson(new ResponseJson(ResponseCode.FAIL));
-//        userService.change(userId, name, phone, email);
-//        return gson.toJson(new ResponseJson(ResponseCode.SUCCESS));
-//    }
+    @Autowired
+    private UserService userService;
+
+    @PostMapping(value = "/customer", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String detail(
+            @RequestParam("id") Integer id,
+            @RequestParam("name") String name,
+            @RequestParam("phone") String phone,
+            @RequestParam("email") String email
+    ) {
+        userService.change(id, name, phone, email);
+        return gson.toJson(new ResponseJson(ResponseCode.SUCCESS));
+    }
 
 }
