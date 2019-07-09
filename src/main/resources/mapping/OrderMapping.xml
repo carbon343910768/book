@@ -29,6 +29,13 @@
         )
     </select>
 
+    <select id="findAllOrders" resultMap="orderMap" >
+        SELECT
+        co.*
+        FROM customer_order AS co
+        LIMIT #{start}, #{limit};
+    </select>
+
     <select id="findOrdersByUser" resultType="integer">
         SELECT order_id
         FROM customer_order
