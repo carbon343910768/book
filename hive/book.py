@@ -46,6 +46,6 @@ for i in range(1, book.nrows):
             break
         print(tag)
         tag = tag[1]
-        if post:
+        if post and not '/' in tag:
             requests.post('http://' + host + '/admin/book/tag', data={'bookId': book_id, 'tag': tag})
         tag_count += 1
