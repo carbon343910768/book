@@ -11,9 +11,9 @@
     </select>
 
     <select id="recommendByBook" resultType="integer">
-        SELECT book2
+        SELECT book_2
         FROM book_recommend
-        WHERE book1 = #{id}
+        WHERE book_1 = #{id}
         ORDER BY book_recommend.value desc
         LIMIT #{count}
     </select>
