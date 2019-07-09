@@ -1,6 +1,7 @@
 package edu.bjtu.xxq.service;
 
 import edu.bjtu.xxq.dao.UserDao;
+import edu.bjtu.xxq.model.CustomerDetail;
 import edu.bjtu.xxq.model.User;
 import edu.bjtu.xxq.model.UserRole;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -68,5 +69,17 @@ public class UserService implements UserDetailsService {
         if (phone == null) phone = "";
         if (email == null) email = "";
         userDao.changeDetail(userId, name, phone, email);
+    }
+
+    public CustomerDetail findCustomerById(int id){
+        return userDao.findCustomerById(id);
+    }
+
+    public CustomerDetail findCustomerByUsername(String username){
+        return userDao.findCustomerByUsername(username);
+    }
+
+    public List<CustomerDetail> findCustomer(int page){
+        return userDao.findCustomer(page * PAGE_SIZE, PAGE_SIZE);
     }
 }

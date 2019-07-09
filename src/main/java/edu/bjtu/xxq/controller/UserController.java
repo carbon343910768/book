@@ -8,6 +8,7 @@ import edu.bjtu.xxq.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -73,5 +74,17 @@ public class UserController {
             return gson.toJson(new ResponseJson(ResponseCode.FAIL));
         userService.change(userId, name, phone, email);
         return gson.toJson(new ResponseJson(ResponseCode.SUCCESS));
+    }
+
+    @GetMapping(value = "/customer",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String customerDetail(
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "page", required = false) Integer page
+    ){
+        if (name!=null)
+            return gson.toJson(userService.findCustomerByUsername(name));
+        if (page == null) page = 0;
+        else page--;
+        return gson.toJson(userService.findCustomer(page));
     }
 }

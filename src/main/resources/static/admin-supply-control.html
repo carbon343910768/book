@@ -192,11 +192,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>#</th>
                             <th>ID</th>
                             <th>公司</th>
                             <th>时间</th>
-                            <th>地址</th>
+                            <th>供应内容</th>
+                            <th>数量</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -328,6 +328,54 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.js"></script>
 
+<!-- ZDF -->
+<script type="text/javascript">
+    function getSupplier(from,to,page) {
+        $.ajax({
+            type: "GET",
+            url: "/admin/supplier",
+            data:{
+                from:from,
+                to:to,
+                page:page
+            },
+            success:function (result) {
+                //{id: 4, customer: 1, address: "bjtu", phone: "1566262665", state: false}
+                console.log(result);
+                for (i in result){
+                    var id = result[i].id;
+                    var company = result[i].company;
+                    var date = result[i].date;
+                    var address = result[i].address;
+                    var bookId = result[i].bookId;
+                    var number = result[i].number;
+                }
+
+            }
+        })
+    }
+    function getAllSupplier(supplyId) {
+        $.ajax({
+            type: "GET",
+            url: "/admin/supply",
+            data:{
+                supplyId:supplyId
+            },
+            success:function (result) {
+                //{id: 4, customer: 1, address: "bjtu", phone: "1566262665", state: false}
+                console.log(result);
+                var id = result[i].id;
+                var company = result.company;
+                var date = result.date;
+                var address = result.address;
+                var bookId = result.bookId;
+                var number = result.number;
+            }
+        })
+    }
+
+    window.onload = getAllSupplier(1);
+</script>
 
 </body>
 l>
