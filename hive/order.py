@@ -21,7 +21,7 @@ for i in range(1, order.nrows):
     params = {
         'bookId': [],
         'number': [],
-        'userId': row[1],
+        'userId': int(row[1]),
         'address': '',
         'phone': ''
     }
@@ -30,7 +30,7 @@ for i in range(1, order.nrows):
         detail = order_detail.row_values(detail_count)
         if detail[1] != order_id:
             break
-        params['bookId'].append(detail[2])
+        params['bookId'].append(int(detail[2]))
         params['number'].append(1)
         detail_count += 1
 

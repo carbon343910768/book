@@ -18,8 +18,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-@RestController
 @RequestMapping("/test")
+@RestController
 public class TestController {
 
     private final Gson gson = new Gson();
@@ -39,34 +39,6 @@ public class TestController {
 
     @Autowired
     private ImageService imageService;
-
-    @RequestMapping("/order")
-    public String testOrder() {
-        byte[] k = {1, 1, 1};
-        Book book = new Book().setName("asdqwe").setDescription("asdqwe").setAuthor("asdqwe").setPublisher("asdqwe").setPublished("1111-1-1").setISBN("11111").setPrice("11.12");
-
-/*        Order order = new Order().setCustomer(1).setPrice("1").setState(true).setTime("1111-1-1");
-        Map<Integer,Integer> books = new HashMap<>();
-        books.put(1,1);
-        books.put(1,2);
-        books.put(2,2);
-        return gson.toJson(orderService.addOrder(order,books));*/
-
-        //return gson.toJson(orderService.getOne(1));
-
-       /* Integer[] id = {1,3,2};
-        return gson.toJson(orderService.getList(id));*/
-
-        //  return gson.toJson(orderService.getByUser(1,1,3));
-
-        //return gson.toJson(orderService.getListByDate("1111-01-01",0,5));
-
-        return gson.toJson(orderService.getBetweenDate("1111-01-01", "1111-01-02", 0));
-
-//        return gson.toJson(orderService.getAllBooksInOrder(1));
-
-//        return gson.toJson(orderService.getBookNumber(1,1));
-    }
 
     @RequestMapping("/cart")
     public String testCart() {
@@ -118,12 +90,26 @@ public class TestController {
                 .collect(Collectors.toMap(j -> bookId[j], j -> number[j]));
 
         Order order = new Order()
-                .setAddress(address)
-                .setPhone(phone)
                 .setCustomer(userId)
+                .setPhone(phone)
+                .setAddress(address)
                 .setState(true);
         orderService.addOrder(order, bookMap);
+        System.out.println(order);
         return gson.toJson(new ResponseJson(ResponseCode.ORDER_SUCCESS));
     }
+
+//    @PostMapping(value = "/customer", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+//    public String detail(
+//            @RequestParam(value = "name", required = false) String name,
+//            @RequestParam(value = "phone", required = false) String phone,
+//            @RequestParam(value = "email", required = false) String email
+//    ) {
+//        Integer userId = UserUtil.getUserId();
+//        if (userId == null)
+//            return gson.toJson(new ResponseJson(ResponseCode.FAIL));
+//        userService.change(userId, name, phone, email);
+//        return gson.toJson(new ResponseJson(ResponseCode.SUCCESS));
+//    }
 
 }
