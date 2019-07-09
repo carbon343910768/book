@@ -185,16 +185,16 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>#</th>
-                            <th>注册号</th>
+                            <th>#注册号</th>
+                       
                             <th>公司名</th>
                             <th>电话</th>
 
                             <th>邮箱</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr class="active">
+                        <tbody id="supplier-list">
+                        <!-- <tr class="active">
                             <th scope="row">1</th>
                             <td>Column content</td>
                             <td>Column content</td>
@@ -262,21 +262,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
                             <td>Column content</td>
                             <td>Column content</td>
-                        </tr>
+                        </tr> -->
                         </tbody>
 
                     </table>
-                    <nav>
-                        <ul class="pagination pagination-lg">
-                            <li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                        </ul>
-                    </nav>
+                  
 
 
                 </div>
@@ -354,16 +344,38 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 console.log(result);
                 for (i in result) {
                     var id = result[i].registerNo;
-                    var address = result[i].name;
+                    var address = result[i].company;
                     var customer = result[i].phone;
                     var time = result[i].email;
+                    
+                    var content =  '<tr class="success">'+
+                            '<th scope="row">'+id+'</th>'+
+                            '<td>'+address+'</td>'+
+                           ' <td>'+customer+'</td>'+
+                            '<td>'+time+'</td>'+
+                     '   </tr>';
+
+						$("#supplier-list").append(content);
+						console.log(content);
                 }
 
             }
         })
     }
-    
-    window.onload = getAllSupplier(1);
+
+
+
+        window.onload = getAllSupplier(1);
+
+
+
+
+    $("#query-id").click(function () {
+
+        getBookById($("#exampleInputName2").val());
+    });
+
+
 </script>
 
 
