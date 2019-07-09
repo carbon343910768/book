@@ -24,7 +24,7 @@ public class RecommendController {
     ) {
         if (bookId == null) {
             Integer userId = UserUtil.getUserId();
-            if (userId == null) userId = 0;
+            if (userId == null) userId = 1;
             return gson.toJson(recommendService.recommendByUser(userId, count));
         }
         return gson.toJson(recommendService.recommendByBook(bookId, count));
