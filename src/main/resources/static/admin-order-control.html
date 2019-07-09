@@ -65,6 +65,19 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     </li>
 
                     <li>
+                        <a href="admin-supply-control.html"><i class="fa fa-th-large nav_icon"></i>供应管理 </a>
+                    </li>
+                    <li>
+                        <a href="admin-supply-add.html"><i class="fa fa-th-large nav_icon"></i>添加供应 </a>
+                    </li>
+                    <li>
+                        <a href="admin-supplier-add.html"><i class="fa fa-th-large nav_icon"></i>添加供应商 </a>
+                    </li>
+                    <li>
+                        <a href="admin-supplier-control.html"><i class="fa fa-th-large nav_icon"></i>供应商管理</a>
+                    </li>
+
+                    <li>
                         <a href="admin-order-control.html"><i class="fa fa-table nav_icon"></i>订单管理 </a>
                     </li>
                     <li>
@@ -287,7 +300,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                             <th>下单时间</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="order-list">
                         <tr>
                             <th scope="row">1</th>
                             <td>Mark</td>
@@ -329,14 +342,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
                 </div>
 
-                <!-- <div class="bs-example widget-shadow" data-example-id="hoverable-table">
-                    <h4>历史订单</h4>
-                    <table class="table table-hover"> <thead> <tr> <th>#</th> <th>First Name</th> <th>Last Name</th> <th>Username</th> </tr> </thead> <tbody> <tr> <th scope="row">1</th> <td>Mark</td> <td>Otto</td> <td>@mdo</td> </tr> <tr> <th scope="row">2</th> <td>Jacob</td> <td>Thornton</td> <td>@fat</td> </tr> <tr> <th scope="row">3</th> <td>Larry</td> <td>the Bird</td> <td>@twitter</td> </tr> </tbody> </table>
-                </div>  -->
-                <!-- <div class="table-responsive bs-example widget-shadow">
-                    <h4>Responsive Table:</h4>
-                    <table class="table table-bordered"> <thead> <tr> <th>#</th> <th>Table heading</th> <th>Table heading</th> <th>Table heading</th> <th>Table heading</th> <th>Table heading</th> <th>Table heading</th> </tr> </thead> <tbody> <tr> <th scope="row">1</th> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> </tr> <tr> <th scope="row">2</th> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> </tr> <tr> <th scope="row">3</th> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> </tr> </tbody> </table>
-                </div>   -->
+
             </div>
         </div>
     </div>
@@ -397,6 +403,74 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             }
         })
     }
+    function getBatchOrder(page) {
+        var book = new Array();
+        for (i = 0; i < 10; i++) {
+            book[i] = i + (page - 1) * 10;
+        }
+        $.ajax({
+            type: "GET",
+            url: "/admin/order",
+            data:{
+                orderId:orderId,
+                userId:userId,
+                from:from,
+                to:to,
+                page:page
+            },
+            success: function (result) {
+                //{id: 4, customer: 1, address: "bjtu", phone: "1566262665", state: false}
+                console.log(result);
+
+                for (i in result) {
+                    var id = result[i].id;
+                    var address = result[i].address;
+                    var customer = result[i].customer;
+                    var time = result[i].time;
+                    var price = result[i].price;
+                    var state = result[i].state;
+                    var phone = result[i].phone;
+
+                    description = description.substring(0, 100) + '...';
+                    var content = '<tr>' +
+                        '<th scope="row">' + id + '</th>' +
+                        '<td>' + customer + '</td>' +
+                        '<td>' +time + '</td>' +
+                        '<td>' + price + '</td>' +
+                        '<td>' + description + '</td>' +
+                        '</tr>';
+
+                    $("#order-list").append(content);
+                    console.log(content);
+                }
+            }
+        })
+    }
+    $("#1").click(function () {
+        $('#book-list').html('');
+        window.onload =  getBatchOrder(1);
+    });
+
+    $("#2").click(function () {
+        $('#book-list').html('');
+        window.onload = getBatchOrder(2);
+
+    });
+
+    $("#3").click(function () {
+        $('#book-list').html('');
+        window.onload = getBatchOrder(3);
+    });
+
+    $("#4").click(function () {
+        $('#book-list').html('');
+        window.onload = getBatchOrder(4);
+    });
+
+    $("#5").click(function () {
+        $('#book-list').html('');
+        window.onload = getBatchOrder(5);
+    });
 
 </script>
 </body>
